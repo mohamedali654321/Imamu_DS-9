@@ -1,0 +1,233 @@
+@if (showBackButton$ | async) {
+<ds-results-back-button [back]="back"></ds-results-back-button>
+}
+<div class="d-flex flex-row">
+  <ds-item-page-title-field [item]="object" class="mr-auto">
+  </ds-item-page-title-field>
+   <ds-kware-navigate-items [item]="object"></ds-kware-navigate-items> 
+  <ds-dso-edit-menu></ds-dso-edit-menu>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <ds-kware-social-sharing [item]="object"></ds-kware-social-sharing>
+    <br />
+    @if (!(mediaViewer.image || mediaViewer.video)) {
+    <ds-metadata-field-wrapper [hideIfNoTextContent]="false">
+      <ds-thumbnail [thumbnail]="object?.thumbnail | async"></ds-thumbnail>
+    </ds-metadata-field-wrapper>
+    } @if (mediaViewer.image || mediaViewer.video) {
+    <div class="mb-2">
+      <ds-media-viewer [item]="object"></ds-media-viewer>
+    </div>
+    }
+
+    <ds-generic-item-page-field
+      class="item-page-fields"
+      [item]="object"
+      [fields]="['dc.description']"
+      [label]="'journal.page.description'"
+    >
+    </ds-generic-item-page-field>
+
+    <ds-metadata-representation-list
+      class="ds-item-page-mixed-author-field"
+      [parentItem]="object"
+      [itemType]="'OrgUnit'"
+      [metadataFields]="['creativework.publisher']"
+      [label]="'journal.page.publisher' | translate"
+    >
+    </ds-metadata-representation-list>
+
+    <!-- kware-edit -->
+    <ds-metadata-representation-list
+      class="ds-item-page-mixed-author-field"
+      [parentItem]="object"
+      [itemType]="'Person'"
+      [metadataFields]="['creativework.generalSupervisor']"
+      [label]="'journal.page.generalSupervisor' | translate"
+    >
+    </ds-metadata-representation-list>
+
+    <ds-metadata-representation-list
+      class="ds-item-page-mixed-author-field"
+      [parentItem]="object"
+      [itemType]="'Person'"
+      [metadataFields]="['creativework.deputy']"
+      [label]="'journal.page.deputy' | translate"
+    >
+    </ds-metadata-representation-list>
+
+    <ds-metadata-representation-list
+      class="ds-item-page-mixed-author-field"
+      [parentItem]="object"
+      [itemType]="'Person'"
+      [metadataFields]="['creativework.editor']"
+      [label]="'journal.page.editor' | translate"
+    >
+    </ds-metadata-representation-list>
+
+    <ds-metadata-representation-list
+      class="ds-item-page-mixed-author-field"
+      [parentItem]="object"
+      [itemType]="'Person'"
+      [metadataFields]="['creativework.managingEditor']"
+      [label]="'journal.page.managingEditor' | translate"
+    >
+    </ds-metadata-representation-list>
+
+    <ds-metadata-representation-list
+      class="ds-item-page-mixed-author-field"
+      [parentItem]="object"
+      [itemType]="'Person'"
+      [metadataFields]="['creativework.editorialBoard']"
+      [label]="'journal.page.editorialBoard' | translate"
+    >
+    </ds-metadata-representation-list>
+
+    <ds-metadata-representation-list
+      class="ds-item-page-mixed-author-field"
+      [parentItem]="object"
+      [itemType]="'OrgUnit'"
+      [metadataFields]="['organization.legalName']"
+      [label]="'relationships.isAdministrationOfJournal' | translate"
+    >
+    </ds-metadata-representation-list>
+
+    <ds-related-items
+      [parentItem]="object"
+      [relationType]="'isVolumeOfJournal'"
+      [label]="'relationships.isVolumeOf' | translate"
+    >
+    </ds-related-items>
+
+    <ds-related-items
+      [parentItem]="object"
+      [relationType]="'isAdministrationOfJournal'"
+      [label]="'relationships.isAdministrationOfJournal' | translate"
+    >
+    </ds-related-items>
+
+    <!-- <ds-related-items
+      [parentItem]="object"
+      [relationType]="'isOrgUnitOfJournal'"
+      [label]="'relationships.isAdministrationOfJournal' | translate"
+    >
+    </ds-related-items> -->
+
+    <ds-related-items
+      class="mb-1 mt-1"
+      [parentItem]="object"
+      [relationType]="'isPublicationOfJournal'"
+      [label]="'relationships.isPublicationOfJournalIssue' | translate"
+    >
+    </ds-related-items>
+    <!-- <ds-related-items
+      [parentItem]="object"
+      [relationType]="'isVolumeOfJournal'"
+      [label]="'item.page.journal-volumes' | translate">
+    </ds-related-items>
+    <ds-generic-item-page-field class="item-page-fields" [item]="object"
+      [fields]="['dc.description']"
+      [label]="'journal.page.description'">
+    </ds-generic-item-page-field> -->
+  </div>
+
+  <div class="col-xs-12 col-md-4">
+    <ds-simple-view-statistics [object]="object"></ds-simple-view-statistics>
+    <br />
+
+    <!-- <ds-metadata-field-wrapper [hideIfNoTextContent]="false">
+      <ds-thumbnail [thumbnail]="object?.thumbnail | async"></ds-thumbnail>
+    </ds-metadata-field-wrapper> -->
+    <!-- <ds-generic-item-page-field class="item-page-fields" [item]="object"
+      [fields]="['creativeworkseries.issn']"
+      [label]="'journal.page.issn'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field class="item-page-fields" [item]="object"
+      [fields]="['creativework.publisher']"
+      [label]="'journal.page.publisher'">
+    </ds-generic-item-page-field>
+    <ds-generic-item-page-field [item]="object"
+      [fields]="['creativework.editor']"
+      [label]="'journal.page.editor'">
+    </ds-generic-item-page-field> -->
+    <ds-generic-item-page-field
+      class="item-page-fields"
+      [item]="object"
+      [fields]="['creativeworkseries.issn']"
+      [label]="'journal.page.issn'"
+    >
+    </ds-generic-item-page-field>
+
+    <ds-generic-item-page-field
+      [item]="object"
+      [fields]="['dc.description.frequancy']"
+      [label]="'journalissue.page.frequancy'"
+    >
+    </ds-generic-item-page-field>
+
+    <!-- <ds-generic-item-page-field class="item-page-fields" [item]="object"
+      [fields]="['creativework.publisher']"
+      [label]="'journal.page.publisher'">
+    </ds-generic-item-page-field> -->
+
+    <!-- <ds-metadata-representation-list class="ds-item-page-mixed-author-field"
+    [parentItem]="object"
+    [itemType]="'OrgUnit'"
+    [metadataFields]="['creativework.publisher']"
+    [label]="'journal.page.publisher' | translate">
+  </ds-metadata-representation-list> -->
+
+    <ds-generic-item-page-field
+      class="item-page-fields"
+      [item]="object"
+      [fields]="['dc.description.primaryContactAddress']"
+      [label]="'journal.page.primaryContactAddress'"
+    >
+    </ds-generic-item-page-field>
+
+    <ds-generic-item-page-field
+      class="item-page-fields"
+      [item]="object"
+      [fields]="['dc.description.technicalContactAddress']"
+      [label]="'journal.page.technicalContactAddress'"
+    >
+    </ds-generic-item-page-field>
+
+    <ds-item-page-collections [item]="object"></ds-item-page-collections>
+    <div>
+      <a
+        class="btn btn-outline-primary"
+        [routerLink]="[itemPageRoute + '/full']"
+        role="button"
+        tabindex="0"
+      >
+        {{ "item.page.link.full" | translate }}
+      </a>
+    </div>
+  </div>
+
+  <div class="mt-5 w-100 px-0">
+    <ds-tabbed-related-entities-search
+      [item]="object"
+      [relationTypes]="[
+        {
+          label: 'isPublicationOfJournal',
+          filter: 'isJournalOfPublication',
+          configuration: 'default-relationships'
+        },
+        {
+          label: 'isAdministrationOfJournal',
+          filter: 'isJournalOfAdministration',
+          configuration: 'administration-relationships'
+        },
+        {
+          label: 'isVolumeOfJournal',
+          filter: 'isJournalOfVolume',
+          configuration: 'volume-relationships'
+        }
+      ]"
+    >
+    </ds-tabbed-related-entities-search>
+  </div>
+</div>
