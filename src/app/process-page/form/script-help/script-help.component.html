@@ -1,14 +1,19 @@
 <div class="text-secondary">
-  <h2>{{script?.name}}</h2>
-  <span>{{script?.description}}</span>
+  <!-- <h2>{{script?.name}}</h2>
+  <span>{{script?.description}}</span> -->
+  <h2>{{ lang ? ('process.script.name.'+ script?.name | translate : {default: script?.name | translate} ): 'process.script.name.'+script?.name | translate }}</h2>
 
+  <span>{{lang ? ('process.script.description.'+ script?.name | translate : {default: script?.description}) : script?.description }}</span>
+  
   <table class="table-borderless mt-3">
     @for (param of script?.parameters; track param) {
       <tr>
         <td class="align-top text-nowrap">{{param.name}} {{param.nameLong}}
           <ng-container *ngTemplateOutlet="type; context: param"></ng-container>
         </td>
-        <td>{{param.description}}</td>
+        <!-- <td>{{param.description}}</td> -->
+      <td>{{lang ? ('process.script.'+ script?.name +'.param.'+(param.nameLong? createKey(param.nameLong): createKey(param.name)) | translate: {default: param.description} ) : param.description  }}</td>
+
       </tr>
     }
   </table>

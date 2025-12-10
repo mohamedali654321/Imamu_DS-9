@@ -54,6 +54,7 @@ import {
   browseParamsToOptions,
 } from '../browse-by-metadata/browse-by-metadata.component';
 import { KwareTranslatePipe } from "../../shared/utils/kware-translate.pipe";
+import { ThemedConfigurationSearchPageComponent } from "../../search-page/themed-configuration-search-page.component";
 
 @Component({
   selector: 'ds-browse-by-date',
@@ -65,7 +66,8 @@ import { KwareTranslatePipe } from "../../shared/utils/kware-translate.pipe";
     ThemedBrowseByComponent,
     ThemedLoadingComponent,
     TranslateModule,
-    KwareTranslatePipe
+    KwareTranslatePipe,
+    ThemedConfigurationSearchPageComponent
 ],
 })
 /**

@@ -1,0 +1,30 @@
+<div class="item-page-field">
+  <ds-metadata-field-wrapper [hideIfNoTextContent]="false">
+    <div class="simple-view-element">
+
+      <div class="simple-view-element-body">
+        <div  class="d-flex flex-column ml-3 gapy-1">
+          <div>
+           
+              <ds-item-page-dimension-field
+              *ngIf="item.hasMetadata('dc.identifier.doi') && item.firstMetadataValue('dc.identifier.doi').includes('https://doi.test') === false"
+                (widgetLoaded)="someWidgetHasLoaded($event)"
+                [item]="item"
+              ></ds-item-page-dimension-field>
+            </div>
+             <div>
+            <ds-item-page-altmetric-field
+              (widgetLoaded)="someWidgetHasLoaded($event)"
+              [item]="item"
+            ></ds-item-page-altmetric-field>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </ds-metadata-field-wrapper>
+</div>
+
+
+

@@ -1,5 +1,5 @@
 <div class="row">
-  <div *ngIf="showThumbnails" class="col-3 col-md-2">
+  <div *ngIf="showThumbnails" class="col-3 col-xl-2 pr-sm-0">
     <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'" rel="noopener noreferrer"
        [routerLink]="[itemPageRoute]" class="dont-break-out">
     <ds-thumbnail [item]="dso"  [thumbnail]="dso?.thumbnail | async" [limitWidth]="true">
@@ -12,8 +12,8 @@
     </ds-thumbnail>
     </span>
   </div>
-  <div [ngClass]="showThumbnails ? 'col-9' : 'col-md-12'">
-    <div class="d-flex">
+  <div [ngClass]="showThumbnails ? 'col-9 col-xl-10' : 'col-md-12'">
+        <div class="d-flex">
       <div class="label_dage" >
         <span class="badge badge-info" [attr.title]="'item.search.publishDate' | translate" style="background-color: #6aa3d5 !important;color: #FFF; margin-bottom: -2px;" *ngIf="dso.hasMetadata('dc.date.issued') || dso.hasMetadata('dc.date.issuedhijri')" >{{firstMetadataValue('dc.date.issued') ? firstMetadataValue('dc.date.issued') : firstMetadataValue('dc.date.issuedhijri') }}</span>
 
@@ -24,6 +24,9 @@
      </div>
       
     </div>
+    <div class="d-flex justify-content-between">
+      <div class="flex-fill">
+
     <ds-truncatable [id]="dso.id" *ngIf="object !== undefined && object !== null">
       <a *ngIf="linkType != linkTypes.None" [target]="(linkType == linkTypes.ExternalLink) ? '_blank' : '_self'" rel="noopener noreferrer"
          [routerLink]="[itemPageRoute]" class="lead item-list-title dont-break-out"
@@ -106,7 +109,7 @@
     </div>
      <!-- kware-edit keywords show -->
 
-  <div *ngIf="dso.hasMetadata('dc.subject')">
+   <div *ngIf="dso.hasMetadata('dc.subject')">
     <div class="keys-info ">
       <span class=" badge-info" *ngFor="let keyword of keywords;let last=last;"><a
           style="white-space: -webkit-nowrap !important;font-size:15px
@@ -114,7 +117,7 @@
           title="{{keyword | kwareTranslate}}">{{keyword | kwareTranslate}}</a><span style="color:#207698; ;"
           *ngIf="!last"> • </span> </span>
     </div>
-  </div>
+    </div>
       <div *ngIf="dso.firstMetadataValue('dc.description.abstract')" class="item-list-abstract">
         <!-- kware-edit kwareTranslatePipe -->
         <ds-truncatable-part [id]="dso.id" [minLines]="3"><span class="text-muted"
@@ -138,6 +141,11 @@
         </div>
       
     </ds-truncatable>
+    </div>
+          <div class="align-self-center" >
+        <ds-kware-metric-donuts [item]="dso"></ds-kware-metric-donuts>
+      </div>
+      </div>
     <span *ngIf="isRelationshipPage === false"  style="display:flex;justify-content: end;">
       <small style="background-color:transparent !important;color: #6c757d !important;font-weight: 500;" *ngIf="firstMetadataValue('dc.date.accessioned')" class="badge badge-pill badge-secondary align-self-center archived-items-lead" [attr.title]="('item.uploaded.on' | translate)">
         <i class="fa-solid fa-upload"></i> {{' ' + (translateDate() !== null ? translateDate(): (firstMetadataValue('dc.date.accessioned').split('T')[0] |  date:'longDate'))}}

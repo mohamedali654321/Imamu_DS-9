@@ -2,9 +2,20 @@
 
 
 
-::ng-deep html[dir="rtl"]{
-    .fa-caret-right{
+::ng-deep html[dir="rtl"] {
+    .fa-caret-right {
         transform: scale(-1);
-    }  
-}
+    }
 
+    @media (max-width: 1279px) {
+        ds-simple-view-statistics {
+            .ui.table:not(.unstackable) tbody tr td[data-label]:before {
+                margin-left: 1rem !important;
+                
+            }
+
+        }
+
+
+    }
+}

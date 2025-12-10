@@ -1,0 +1,24 @@
+@if(object.hasMetadata('dc.rights') && object.hasMetadata('dc.rights.uri')){
+<div class="sidebar-container">
+  <h2 class="ui medium top attached header mt-0">{{'kware.lisence.header' | translate}}</h2>
+  <div id="licenses" class="ui segment bottom attached rdm-sidebar">
+    <h4>{{'kware.lisence.title' | translate}}</h4>
+    <ul class="details-list m-0 p-0">
+      <li id="license-cc-by-4.0-1" class="has-popup">
+        <div
+          id="title-cc-by-4.0-1"
+          class="license clickable"
+          tabindex="0"
+          aria-haspopup="dialog"
+          aria-expanded="false"
+          role="button"
+          aria-label="Creative Commons Attribution 4.0 International"
+        >
+        <ds-item-page-cc-license-field [item]="object"></ds-item-page-cc-license-field>
+        </div>
+
+      </li>
+    </ul>
+  </div>
+</div>
+}

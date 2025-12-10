@@ -38,26 +38,46 @@
 
 <ds-live-region></ds-live-region> -->
 
-
-
-
 <button (click)="skipToMainContent()" class="sr-only" id="skip-to-main-content">
-  {{ 'root.skip-to-content' | translate }}
+  {{ "root.skip-to-content" | translate }}
 </button>
 
-<div class="outer-wrapper" >
-  <ds-admin-sidebar [expandedSidebarWidth$]="expandedSidebarWidth$" [collapsedSidebarWidth$]="collapsedSidebarWidth$"></ds-admin-sidebar>
-  <div class="inner-wrapper" [class.d-none]="shouldShowFullscreenLoader" [ngClass]="browserOsClasses.asObservable() | async" [@slideSidebarPadding]="{
-    value: ((isSidebarVisible$ | async) !== true ? 'hidden' : (slideSidebarOver$ | async) ? 'unpinned' : 'pinned'),
-    params: { collapsedWidth: (collapsedSidebarWidth$ | async), expandedWidth: (expandedSidebarWidth$ | async) }
-   }">
+<div class="outer-wrapper">
+  <ds-admin-sidebar
+    [expandedSidebarWidth$]="expandedSidebarWidth$"
+    [collapsedSidebarWidth$]="collapsedSidebarWidth$"
+  ></ds-admin-sidebar>
+  <div
+    class="inner-wrapper"
+    [class.d-none]="shouldShowFullscreenLoader"
+    [ngClass]="browserOsClasses.asObservable() | async"
+    [@slideSidebarPadding]="{
+      value:
+        (isSidebarVisible$ | async) !== true
+          ? 'hidden'
+          : (slideSidebarOver$ | async)
+          ? 'unpinned'
+          : 'pinned',
+      params: {
+        collapsedWidth: (collapsedSidebarWidth$ | async),
+        expandedWidth: (expandedSidebarWidth$ | async)
+      }
+    }"
+  >
     <ds-system-wide-alert-banner></ds-system-wide-alert-banner>
     <ds-header-navbar-wrapper></ds-header-navbar-wrapper>
 
     <main class="my-cs" id="main-content">
       <ds-breadcrumbs></ds-breadcrumbs>
-      <br>
-      <div class="container d-flex justify-content-center align-items-center h-100" *ngIf="shouldShowRouteLoader">
+      <!-- kware start edit -- issue.8.0.004
+      - add scroll to top btn -->
+      <ds-scroll-to-top></ds-scroll-to-top>
+      <!-- kware end edit -- issue.8.0.004 -->
+      <br />
+      <div
+        class="container d-flex justify-content-center align-items-center h-100"
+        *ngIf="shouldShowRouteLoader"
+      >
         <ds-loading [showMessage]="false"></ds-loading>
       </div>
       <div [class.d-none]="shouldShowRouteLoader">
@@ -69,14 +89,13 @@
   </div>
 </div>
 
-
 <ds-notifications-board [options]="notificationOptions">
 </ds-notifications-board>
 
 @if (shouldShowFullscreenLoader) {
-  <div class="ds-full-screen-loader">
-    <ds-loading [showMessage]="false"></ds-loading>
-  </div>
+<div class="ds-full-screen-loader">
+  <ds-loading [showMessage]="false"></ds-loading>
+</div>
 }
 
 <ds-live-region></ds-live-region>

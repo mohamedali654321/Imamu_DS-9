@@ -1,0 +1,21 @@
+::ng-deep ds-item-page-dimension-field {
+    .__dimensions_badge_embed__ .__dimensions_Badge_style_medium_circle .__dimensions_Badge_Image {
+    width: 64px;
+    height: 64px;
+}
+.__dimensions_badge_embed__ .__dimensions_Badge_style_medium_circle .__db_score.__db_score_small{
+    font-size: 30px;
+}
+
+.__dimensions_badge_embed__ .__dimensions_Badge_style_medium_circle .__db_label{
+    display: none;
+}
+
+.__dimensions_badge_embed__ .__dimensions_Badge_style_medium_circle.__dimensions_Badge_hover .__db_score{
+    transform: translate3d(0, -50%, 0) scale(0.6);
+}
+}
+
+
+
+

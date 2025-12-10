@@ -53,6 +53,8 @@ import {
 import { SearchFacetOptionComponent } from '../search-facet-filter-options/search-facet-option/search-facet-option.component';
 import { SearchFacetSelectedOptionComponent } from '../search-facet-filter-options/search-facet-selected-option/search-facet-selected-option.component';
 import { LocaleService } from 'src/app/core/locale/locale.service';
+import { SharedVariableService } from 'src/app/core/services/share-variable.service';
+
 
 @Component({
   selector: 'ds-search-hierarchy-filter',
@@ -83,6 +85,7 @@ export class SearchHierarchyFilterComponent extends SearchFacetFilterComponent i
               protected modalService: NgbModal,
               protected vocabularyService: VocabularyService,
               protected localeService: LocaleService,
+              protected sharedVariable: SharedVariableService,
               @Inject(APP_CONFIG) protected appConfig: AppConfig,
               @Inject(SEARCH_CONFIG_SERVICE) public searchConfigService: SearchConfigurationService,
   ) {
@@ -92,6 +95,7 @@ export class SearchHierarchyFilterComponent extends SearchFacetFilterComponent i
       rdbs,
       router,
       localeService,
+      sharedVariable,
       searchConfigService,
     );
   }

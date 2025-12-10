@@ -21,10 +21,22 @@
   />
   } @if (src() === null && isLoading() === false) {
   <div class="thumbnail-content outer">
-    <div class="inner">
-      <div class="thumbnail-placeholder centered">
+    <div class="inner" [ngClass]="{'dewey-height':(item !== undefined && item.firstMetadataValue('dspace.entity.type') === 'Subject' && item.hasMetadata('dc.identifier.dewey'))}">
+             @if(item !== undefined && item.firstMetadataValue('dspace.entity.type') === 'Subject' && item.hasMetadata('dc.identifier.dewey')){
+           <a *ngIf="item.hasMetadata('dc.identifier.dewey')"  class="container-img">
+      <img style="height: 40px;"  class="orcid-icon ng-star-inserted orcid-img"  src="/assets/images/dewey.png"/>
+      <div class="centered-dewey">{{item.firstMetadataValue('dc.identifier.dewey')}}</div>
+    </a> 
+      }
+      @else {
+             <div class="thumbnail-placeholder centered">
         {{ placeholder | translate }}
       </div>
+
+      }
+      <!-- <div class="thumbnail-placeholder centered">
+        {{ placeholder | translate }}
+      </div> -->
     </div>
   </div>
   }

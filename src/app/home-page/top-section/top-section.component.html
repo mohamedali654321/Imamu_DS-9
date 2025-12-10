@@ -8,23 +8,55 @@
             <h2  class="container" >
              {{'home.view-submissions.head' | translate}}</h2>
              <div class="card-columns row" >
-              <div class="card-column col col-sm-6 col-lg-4"  *ngFor="let item of itemRD.slice(0,5)"  @fadeIn>
+              <div class="card-column col col-sm-6 col-lg-4"    @fadeIn>
                 <div class="card-element" [attr.data-test]="'grid-object' | dsBrowserOnly">
-                  <ds-listable-object-component-loader [object]="item.payload"
+                  <ds-listable-object-component-loader [object]="item1.payload"
                                                        [viewMode]="viewMode"
                                                       ></ds-listable-object-component-loader>
                 </div>
               </div>
+
+
+
+               <div class="card-column col col-sm-6 col-lg-4"    @fadeIn>
+                <div class="card-element" [attr.data-test]="'grid-object' | dsBrowserOnly">
+                  <ds-listable-object-component-loader [object]="item2.payload"
+                                                       [viewMode]="viewMode"
+                                                      ></ds-listable-object-component-loader>
+                </div>
+              </div>
+
+
+
+               <div class="card-column col col-sm-6 col-lg-4"    @fadeIn>
+                <div class="card-element" [attr.data-test]="'grid-object' | dsBrowserOnly">
+                  <ds-listable-object-component-loader [object]="item3.payload"
+                                                       [viewMode]="viewMode"
+                                                      ></ds-listable-object-component-loader>
+                </div>
+              </div>
+
+              
+               <div class="card-column col col-sm-6 col-lg-4"    @fadeIn>
+                <div class="card-element" [attr.data-test]="'grid-object' | dsBrowserOnly">
+                  <ds-listable-object-component-loader [object]="item4.payload"
+                                                       [viewMode]="viewMode"
+                                                      ></ds-listable-object-component-loader>
+                </div>
+              </div>
+
+
+              
+               <div class="card-column col col-sm-6 col-lg-4"    @fadeIn>
+                <div class="card-element" [attr.data-test]="'grid-object' | dsBrowserOnly">
+                  <ds-listable-object-component-loader [object]="item5.payload"
+                                                       [viewMode]="viewMode"
+                                                      ></ds-listable-object-component-loader>
+                </div>
+              </div>
+
             </div>
-            <!-- <ds-viewable-collection
-            [config]="paginationConfig"
-            [sortConfig]="sortConfig"
-            [objects]="itemRD"
-            [hideGear]="true"
-            >
-          </ds-viewable-collection> -->
-           <!-- kware-edit end -->
-            <!-- <button (click)="onLoadMore()" class="btn btn-primary search-button mt-4 float-left ng-tns-c290-40"> {{'vocabulary-treeview.load-more' | translate }} ...</button> -->
+          
     </div>
   
     <ds-error *ngIf="itemRD?.length < 0" message="{{'error.recent-submissions' | translate}}"></ds-error>

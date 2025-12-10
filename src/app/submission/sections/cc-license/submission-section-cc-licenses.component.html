@@ -1,130 +1,142 @@
-@if (submissionCcLicenses) {
-  <div class="mb-4 ccLicense-select">
-    <div ngbDropdown>
-      <input id="cc-license-dropdown"
-        class="form-control"
-        [(ngModel)]="selectedCcLicense.name"
-        placeholder="{{ !storedCcLicenseLink ? ('submission.sections.ccLicense.select' | translate) : ('submission.sections.ccLicense.change' | translate)}}"
-        [ngModelOptions]="{standalone: true}"
-        ngbDropdownToggle
-        role="combobox"
-        #script="ngModel">
-      <div ngbDropdownMenu aria-labelledby="cc-license-dropdown" class="w-100 scrollable-menu"
-        role="menu"
-        infiniteScroll
-        (scroll)="onScroll($event)"
-        [infiniteScrollDistance]="5"
-        [infiniteScrollThrottle]="300"
-        [infiniteScrollUpDistance]="1.5"
-        [fromRoot]="true"
-        [scrollWindow]="false">
+<div class="mb-4 ccLicense-select">
+  <ds-select
+    [disabled]="!submissionCcLicenses">
 
-        @if(submissionCcLicenses?.length === 0) {
-          <button class="dropdown-item disabled">
-            {{ 'submission.sections.ccLicense.none' | translate }}
-          </button>
-        } @else {
-          @for(license of submissionCcLicenses; track license.id) {
-            <button class="dropdown-item" (click)="selectCcLicense(license)">
-              {{ license.name }}
-            </button>
-          }
-        }
+    <ng-container class="selection">
+      <span *ngIf="!submissionCcLicenses">
+        <ds-loading></ds-loading>
+      </span>
+      <span *ngIf="getSelectedCcLicense()">
+        <!-- {{ getSelectedCcLicense().name }} -->
+        {{ 'licence.name.value.'+createKey(getSelectedCcLicense().name) | translate }}
+      </span>
+      <span *ngIf="submissionCcLicenses && !getSelectedCcLicense()">
+        <ng-container *ngIf="storedCcLicenseLink">
+          {{ 'submission.sections.ccLicense.change' | translate }}
+        </ng-container>
+        <ng-container *ngIf="!storedCcLicenseLink">
+          {{ 'submission.sections.ccLicense.select' | translate }}
+        </ng-container>
+      </span>
+    </ng-container>
+
+    <ng-container class="menu">
+      <button *ngIf="submissionCcLicenses?.length === 0"
+              class="dropdown-item disabled">
+        {{ 'submission.sections.ccLicense.none' | translate }}
+      </button>
+      <button *ngFor="let license of submissionCcLicenses"
+              class="dropdown-item"
+              (click)="selectCcLicense(license)">
+        <!-- {{ license.name }} -->
+        {{ 'licence.name.value.'+createKey(license.name) | translate }}
+      </button>
+    </ng-container>
+
+  </ds-select>
+</div>
+
+<ng-container *ngIf="getSelectedCcLicense()">
+
+  <div *ngFor="let field of getSelectedCcLicense().fields"
+       class="mb-4">
+
+    <div class="d-flex flex-row">
+      <div class="font-weight-bold {{ field.id }}">
+        {{ 'cc.license.' + field.id | translate}}
+        <!-- {{ field.label }} -->
       </div>
+      <button
+        class="btn btn-outline-info btn-sm ml-2"
+        (click)="openInfoModal(infoModal)">
+        <i class="fas fa-question"></i>
+      </button>
     </div>
-  </div>
-}
 
-@if (getSelectedCcLicense()) {
-  @for (field of getSelectedCcLicense().fields; track field) {
-    <div
-      class="mb-4">
-      <div class="d-flex flex-row">
-        <div class="fw-bold {{ field.id }}">
-          {{ field.label }}
-        </div>
-        <button
-          class="btn btn-outline-info btn-sm ms-2"
-          (click)="openInfoModal(infoModal)">
-          <i class="fas fa-question"></i>
-        </button>
-      </div>
-      <ng-template #infoModal>
-        <div>
-          <div class="modal-header mb-4 ">
-            <div>
-              <h4>
-                {{ field.label }}
-              </h4>
-              <div [innerHTML]="field.description"></div>
+    <ng-template #infoModal>
+
+      <div>
+
+        <div class="modal-header mb-4 ">
+          <div>
+            <h4>
+              {{ 'cc.license.' + field.id | translate}}
+              <!-- {{ field.label }} -->
+            </h4>
+              <!-- kware-edit -->
+              <div *ngIf="field.description" [innerHTML]="locale === true? ('cc.license.option.description.' + field.id | translate: {default: field.description }) : field.description"></div>
             </div>
-            <button type="button" class="btn-close"
-              (click)="closeInfoModal()" aria-label="Close">
-            </button>
-          </div>
-          <div class="modal-body">
-            @for (value of field.enums; track value) {
-              <div
-                class="mb-4">
-                <h5>
-                  {{ value.label }}
-                </h5>
-                <div [innerHTML]="value.description" class="fw-light"></div>
-              </div>
-            }
+            <!-- <div [innerHTML]="field.description"></div>
+          </div> -->
+          <button type="button" class="close"
+                  (click)="closeInfoModal()" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <div *ngFor="let value of field.enums"
+               class="mb-4">
+            <h5>
+              {{ 'cc.license.value.' + value.id | translate}}
+              <!-- {{ value.label }} -->
+            </h5>
+            <div *ngIf="value.description" [innerHTML]="locale === true? ('cc.license.value.description.' + value.id | translate: {default: value.description }) : value.description" class="font-weight-light"></div>
+            <!-- <div [innerHTML]="value.description" class="font-weight-light"></div> -->
           </div>
         </div>
-      </ng-template>
-      @if (field.enums?.length > 5) {
-        <ds-select [disabled]="field.id === 'jurisdiction' && defaultJurisdiction !== undefined && defaultJurisdiction !== 'none'">
-          <ng-container class="selection" *ngVar="getSelectedOption(getSelectedCcLicense(), field) as option">
-            @if (option) {
-              <span>
-                {{ option.label }}
-              </span>
-            }
-            @if (!option) {
-              <span>
-                {{ 'submission.sections.ccLicense.option.select' | translate }}
-              </span>
-            }
-          </ng-container>
-          <ng-container class="menu">
-            <div class="options-select-menu overflow-auto">
-              @for (option of field.enums; track option) {
-                <button
+
+      </div>
+
+    </ng-template>
+
+    <ds-select *ngIf="field.enums?.length > 5" [disabled]="field.id === 'jurisdiction' && defaultJurisdiction !== undefined && defaultJurisdiction !== 'none'">
+      <ng-container class="selection" *ngVar="getSelectedOption(getSelectedCcLicense(), field) as option">
+        <span *ngIf="option">
+          {{ 'cc.license.options.'+ option.id | translate}}
+          <!-- {{ option.label }} -->
+        </span>
+        <span *ngIf="!option">
+          {{ 'submission.sections.ccLicense.option.select' | translate }}
+        </span>
+      </ng-container>
+      <ng-container class="menu">
+        <div class="options-select-menu overflow-auto">
+          <button *ngFor="let option of field.enums"
                   class="dropdown-item"
                   (click)="selectOption(getSelectedCcLicense(), field, option)">
-                  {{ option.label }}
-                </button>
-              }
-            </div>
-          </ng-container>
-        </ds-select>
-      }
-      @if (field.enums?.length <= 5) {
-        @for (option of field.enums; track option) {
-          <div
-            class="d-flex flex-row m-1">
-            <div (click)="selectOption(getSelectedCcLicense(), field, option)">
-              <input type="radio"
-                title="{{ option.label }}"
-                class="me-1"
-                [checked]="isSelectedOption(getSelectedCcLicense(), field, option)">
-              <span>{{ option.label }}</span>
-            </div>
-          </div>
-        }
-      }
-    </div>
-  }
-}
+            <!-- {{ option.label }} -->
+            {{ 'cc.license.options.'+ option.id | translate}}
+          </button>
+        </div>
+      </ng-container>
+    </ds-select>
 
-@if (ccLicenseLink$) {
-  @let licenseLink = (ccLicenseLink$ | async);
-  @if (licenseLink) {
-    <div
-      class="mt-2 p-4 bg-light text-dark">
+    <ng-container *ngIf="field.enums?.length <= 5">
+      <div *ngFor="let option of field.enums"
+           class="d-flex flex-row m-1">
+        <div (click)="selectOption(getSelectedCcLicense(), field, option)">
+          <input type="radio"
+                 title="{{ option.label }}"
+                 class="mr-1"
+                 [checked]="isSelectedOption(getSelectedCcLicense(), field, option)">
+          <!-- <span>{{ option.label }}</span> -->
+          <span>{{ 'cc.license.options.'+ option.id | translate}}</span>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+
+</ng-container>
+
+<ng-container *ngIf="getCcLicenseLink$()">
+  <ng-container *ngVar="getCcLicenseLink$() | async as licenseLink">
+    <div *ngIf="!licenseLink">
+      <ds-loading></ds-loading>
+    </div>
+    <div *ngIf="licenseLink"
+         class="mt-2 p-4 bg-light text-dark">
       <div>
         {{ 'submission.sections.ccLicense.link' | translate }}
       </div>
@@ -134,14 +146,12 @@
       <div class="m-2">
         <div (click)="setAccepted(!accepted)">
           <input type="checkbox"
-                 class="me-2"
+                 class="mr-2"
                  title="accepted"
                  [checked]="accepted">
           <span> {{ 'submission.sections.ccLicense.confirmation' | translate }}</span>
         </div>
       </div>
     </div>
-  } @else {
-    <ds-loading></ds-loading>
-  }
-}
+  </ng-container>
+</ng-container>

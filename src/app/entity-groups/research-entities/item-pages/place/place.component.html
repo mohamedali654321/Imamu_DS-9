@@ -284,6 +284,12 @@
     <ds-tabbed-related-entities-search
       [item]="object"
       [relationTypes]="[
+
+                {
+          label: 'isChildPlaceOf',
+          filter: 'isChildPlaceOf',
+          configuration: 'default-relationships'
+        },
         {
           label: 'isPublicationOfPlace',
           filter: 'isPlaceOfPublication',
@@ -299,11 +305,7 @@
           filter: 'isParentPlaceOf',
           configuration: 'default-relationships'
         },
-        {
-          label: 'isChildPlaceOf',
-          filter: 'isChildPlaceOf',
-          configuration: 'default-relationships'
-        },
+
         {
           label: 'isAdministrationOfPlace',
           filter: 'isPlaceOfAdministration',

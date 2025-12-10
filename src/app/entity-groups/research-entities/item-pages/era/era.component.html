@@ -14,21 +14,7 @@
   <div class="col-xs-12 col-md-8">
     <ds-kware-social-sharing [item]="object"></ds-kware-social-sharing>
     <br />
-    @if (!(mediaViewer.image || mediaViewer.video)) {
-    <ds-metadata-field-wrapper [hideIfNoTextContent]="false">
-      <ds-thumbnail
-        [thumbnail]="object?.thumbnail | async"
-        [defaultImage]="'assets/images/events.png'"
-        [alt]="'thumbnail.event.alt'"
-        [placeholder]="'thumbnail.event.placeholder'"
-      >
-      </ds-thumbnail>
-    </ds-metadata-field-wrapper>
-    } @if (mediaViewer.image || mediaViewer.video) {
-    <div class="mb-2">
-      <ds-media-viewer [item]="object"></ds-media-viewer>
-    </div>
-    }
+ئ
 
     <ds-generic-item-page-field
       [item]="object"

@@ -2082,8 +2082,9 @@
 
 ::ng-deep {
     .nav-item.nav-link:hover {
-        background-color: #eee;
+        background-color: #eeeeee6b;
     }
+
 
     ds-expandable-navbar-section .dropdown-toggle:focus,
     ds-expandable-navbar-section .dropdown-toggle:active {
@@ -3589,7 +3590,7 @@
         ds-home-news {
             ds-help-search {
                 .help-info .dropdown-menu {
-                    transform: translate(12px, 39px) !important;
+                    transform: translate(110px, 39px) !important;
                 }
             }
         }
@@ -3798,12 +3799,19 @@
 
 @media (max-width: 540px) {
     ::ng-deep html[dir="rtl"] ds-help-links>div>.dropdown-menu {
-        transform: translate(-100px, 27px) !important;
+        transform: translate(100px, 27px) !important;
     }
 
     ::ng-deep html[dir="ltr"] ds-help-links>div>.dropdown-menu {
-        transform: translate(-140px, 24px) !important;
+        transform: translate(150px, 34px) !important;
 
+    }
+
+    ::ng-deep html[dir="ltr"] .scrolledY {
+        ds-help-links>div>.dropdown-menu {
+            transform: translate(150px, 34px) !important;
+
+        }
     }
 
 }
@@ -3955,7 +3963,7 @@
 ::ng-deep html[dir="rtl"] ds-dynamic-lookup-relation-modal {
     ds-help-search {
         .help-info .dropdown-menu {
-            transform: translate(65px, 39px) !important;
+            transform: translate(210px, 39px) !important;
         }
 
         .tooltip-arrow {
@@ -3969,7 +3977,7 @@
 ::ng-deep html[dir="ltr"] ds-dynamic-lookup-relation-modal {
     ds-help-search {
         .help-info .dropdown-menu {
-            transform: translate(-210px, 39px) !important;
+            transform: translate(-70px, 39px) !important;
         }
 
         .tooltip-arrow {
@@ -4000,7 +4008,7 @@
 
     ds-tabbed-related-entities-search {
         .help-info .dropdown-menu {
-            transform: translate(85px, 39px) !important;
+            transform: translate(180px, 39px) !important;
         }
 
         .tooltip-arrow-left {
@@ -4015,7 +4023,7 @@
 
     ds-tabbed-related-entities-search {
         .help-info .dropdown-menu {
-            transform: translate(-180px, 39px) !important;
+            transform: translate(-80px, 39px) !important;
         }
 
         .tooltip-arrow-left {
@@ -4260,11 +4268,915 @@
 
 ::ng-deep {
     @media (min-width: 1200px) {
-        ds-base-home-page .container{
-            .col-lg-4{
+        ds-base-home-page .container {
+            .col-lg-4 {
                 max-width: 19.99993333% !important;
             }
         }
 
+    }
+}
+
+
+::ng-deep ds-base-search-form {
+    .btn-outline-secondary {
+        color: #fff;
+        background-color: #495057;
+        border-color: #495057;
+    }
+}
+
+::ng-deep {
+    ds-search-label {
+        a {
+            margin-top: 10px !important;
+        }
+    }
+}
+
+
+::ng-deep html[dir="rtl"] {
+    [class^=orejime-] {
+        text-align: right !important;
+    }
+
+    .orejime-AppItem-switch {
+        right: 0 !important;
+    }
+
+    .orejime-AppItem-input {
+        right: 0 !important;
+    }
+
+    .orejime-AppItem-label {
+        margin-right: 60px !important;
+    }
+
+    .orejime-AppItem-fullDescription {
+        margin-right: 60px !important;
+    }
+
+    .orejime-Modal-closeButton {
+        text-align: left !important;
+        left: 1em !important;
+        right: auto !important;
+    }
+}
+
+
+
+::ng-deep {
+    .btn-danger {
+        color: #FFF !important;
+    }
+
+    ds-search-label {
+        a {
+            margin-top: 10px !important;
+        }
+    }
+}
+
+
+
+::ng-deep html[dir="rtl"] {
+
+    .float-end {
+        float: left !important;
+        right: auto !important;
+    }
+
+
+    ngb-datepicker-navigation-select {
+        .form-select {
+            background-position: right 5.5rem center;
+        }
+    }
+
+
+
+    ds-dso-edit-menu {
+        margin: -1rem auto -1rem -1rem;
+    }
+
+    ds-base-item-page {
+        ds-dso-edit-menu {
+            margin: unset !important;
+        }
+    }
+
+    .modal-header .btn-close {
+        margin: -1rem auto -1rem -1rem;
+    }
+
+    // ds-submission-form-section-add{
+    //   .sections-dropdown-menu{
+    //     transform: translate(-1345px, 40px) !important;
+    //   }
+    // }
+
+
+}
+
+::ng-deep {
+    ngb-modal-window {
+        .close {
+            margin: -80px 0 0 0 !important;
+        }
+    }
+}
+
+
+::ng-deep html[dir="rtl"] {
+    [class^=orejime-] {
+        text-align: right !important;
+    }
+
+    .orejime-AppItem-switch {
+        right: 0 !important;
+    }
+
+    .orejime-AppItem-input {
+        right: 0 !important;
+    }
+
+    .orejime-AppItem-label {
+        margin-right: 60px !important;
+    }
+
+    .orejime-AppItem-fullDescription {
+        margin-right: 60px !important;
+    }
+
+    .orejime-Modal-closeButton {
+        text-align: left !important;
+        left: 1em !important;
+        right: auto !important;
+    }
+}
+
+
+::ng-deep {
+    .hidden-menu {
+        display: none;
+        visibility: hidden;
+    }
+}
+
+
+::ng-deep html[dir="rtl"] {
+    .modal-header .close {
+        margin: -1rem auto -1rem -.5rem;
+    }
+}
+
+
+::ng-deep html[dir="ltr"] {
+    .modal-header .close {
+        margin: -1rem auto -1rem 42rem;
+    }
+}
+
+::ng-deep html[dir="rtl"] {
+    ds-authorized-collection-selector {
+        input {
+            margin-top: 10px;
+        }
+    }
+}
+
+
+::ng-deep ds-kware-citation-section {
+    .ui.basic.button[_ngcontent-dspace-angular-c933812932]:active {
+        background-color: #04AA6D !important;
+        color: #fff !important;
+    }
+
+}
+
+
+
+::ng-deep html[dir="rtl"] {
+
+    // metrics css RTL
+    .__dimensions_badge_embed__ .__dimensions_Badge_Legend_hover.__dimensions_Badge_Legend_hover-left {
+        right: auto;
+        left: 100%;
+    }
+
+    .__dimensions_badge_embed__ .__dimensions_Badge_Legend_hover.__dimensions_Badge_Legend_hover-left .__dimensions_Badge_Legend::before {
+        right: auto;
+        left: -15px;
+        transform: scale(-1);
+    }
+
+    .__dimensions_badge_embed__ div {
+        text-align: right;
+    }
+
+    .__dimensions_badge_embed__ .__dimensions_Badge_stat_icon {
+        float: right;
+        clear: right;
+    }
+
+    div.altmetric-embed[id^=_altmetric_popover_el] {
+        // transform: translate(355px,0px);
+    }
+
+    div.altmetric-bottom[id^=_altmetric_popover_el] {
+        transform: translate(0px, 0px) !important;
+    }
+
+    div.altmetric-embed[id^=_altmetric_popover_el] div.altmetric_container div.altmetric_arrow.altmetric-left {
+        left: 1px;
+        right: auto;
+        transform: scale(-1);
+
+    }
+
+    // .altmetric-floating > div > div:first-child{
+    //   border-right: 16px solid #74CFED;
+    // }
+
+    .ppp-pop-left,
+    .ppp-pop-shadow-left {
+        left: 100%;
+        right: auto;
+        top: -10px;
+    }
+
+    .ppp-pop-left:before {
+        left: -16px;
+        right: auto;
+        transform: scale(-1);
+    }
+
+    .ppp-pop-left:after {
+        left: -15px;
+        transform: scale(-1);
+        right: auto;
+    }
+
+    // metrics css RTL
+
+}
+
+@media screen and (max-width:768px) {
+    ::ng-deep html[dir="rtl"] {
+        div.altmetric-embed[id^=_altmetric_popover_el] div.altmetric_container div.altmetric-popover-inner.altmetric-floating {
+            transform: translate(-360px, 10px);
+
+        }
+
+        div.altmetric-embed[id^=_altmetric_popover_el] div.altmetric_container div.altmetric_arrow.altmetric-right {
+
+            left: -25.53%;
+            transform: rotate(180deg);
+        }
+
+    }
+
+
+
+}
+
+
+
+::ng-deep html[dir="rtl"] {
+    div.altmetric-embed[id^=_altmetric_popover_el] div.altmetric_container div.altmetric-popover-inner.altmetric-floating {
+        transform: translate(-360px, 10px);
+
+    }
+
+    div.altmetric-embed[id^=_altmetric_popover_el] div.altmetric_container div.altmetric_arrow.altmetric-right {
+
+        left: -25.53%;
+        transform: rotate(180deg);
+    }
+
+}
+
+
+::ng-deep ds-item-page-metrics-field {
+    h2 {
+        font-size: 1.28571429rem !important;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+
+    ::ng-deep {
+        html>* {
+            -moz-overflow: -moz-scrollbars-vertical;
+            overflow-y: scroll;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px !important;
+            -webkit-overflow-scrolling: auto !important;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+    }
+
+    ::ng-deep html[dir="rtl"] ds-search-navbar .dropdown-menu-right {
+        left: 0 !important;
+        right: 0 !important;
+    }
+}
+
+
+
+// ::ng-deep html[dir="rtl"] ds-base-item-page-title-field{
+//     .orcid-img {
+//     margin-bottom: -15px !important;
+// }
+//     .container-img {
+//   position: relative;
+//   text-align: center;
+//   color: white;
+// }
+// .centered {
+//     font-size: 1rem;
+//     position: absolute;
+//     top: 43%;
+//     left: 40%;
+//     font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+// //   transform: translate(-50%, -50%);
+// }
+// }
+
+// ::ng-deep html[dir="rtl"] ds-subject {
+// ds-base-item-page-title-field{
+//     .orcid-img {
+//     margin-bottom: -15px !important;
+// }
+//     .container-img {
+//   position: relative;
+//   text-align: center;
+//   color: white;
+// }
+// .centered {
+//     font-size: 1rem;
+//     position: absolute;
+//     top: 43% !important;
+//     left: 38% !important;
+//     font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+// //   transform: translate(-50%, -50%);
+// }
+// }
+// }
+
+
+// ::ng-deep html[dir="ltr"] ds-subject{
+
+//     ds-base-item-page-title-field{
+//     .container-img {
+//   position: relative;
+//   text-align: center;
+//   color: white;
+// }
+// .centered {
+//     font-size: 1rem;
+//     position: absolute;
+//     top: 40%;
+//     left: 43% !important;
+//     font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+// //   transform: translate(-50%, -50%);
+// }
+// }
+// } 
+
+
+
+
+
+// ::ng-deep html[dir="ltr"] ds-base-item-page-title-field{
+//     .container-img {
+//   position: relative;
+//   text-align: center;
+//   color: white;
+// }
+// .centered {
+//     font-size: 1rem;
+//     position: absolute;
+//     top: 40%;
+//     left: 40%;
+//     font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+// //   transform: translate(-50%, -50%);
+// }
+// }
+
+
+
+
+
+
+
+
+
+
+// ::ng-deep html[dir="rtl"] ds-listable-object-component-loader {
+//     .orcid-img {
+//     margin-bottom: -5px !important;
+//     margin-right: 5px;
+// }
+//     .container-img {
+//   position: relative;
+//   text-align: center;
+//   color: white;
+// }
+// .centered-dewey {
+//     font-size: 1rem;
+//     position: absolute;
+//     top: 19%;
+//     left: 39%;
+//     font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+// //   transform: translate(-50%, -50%);
+// }
+// }
+
+
+// ::ng-deep html[dir="ltr"] ds-listable-object-component-loader {
+//   .orcid-img {
+
+//     margin-left: 5px;
+// }
+//     .container-img {
+//   position: relative;
+//   text-align: center;
+//   color: white;
+// }
+// .centered-dewey {
+//     font-size: 1rem;
+//     position: absolute;
+//     top: 5%;
+//     left: 44%;
+//     font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+// //   transform: translate(-50%, -50%);
+// }
+// }
+
+
+// ::ng-deep html[dir="rtl"] ds-subject-search-result-list-element{
+
+//         .container-img {
+//   position: relative;
+//   text-align: center;
+//   color: white;
+// }
+// .centered-dewey {
+// font-size: 1.5rem;
+//     position: absolute;
+//     top: 25%;
+//     left: 45%;
+//     font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+// //   transform: translate(-50%, -50%);
+// }
+
+// }
+
+
+// ::ng-deep html[dir="ltr"] ds-subject-search-result-list-element{
+
+//         .container-img {
+//   position: relative;
+//   text-align: center;
+//   color: white;
+// }
+// .centered-dewey {
+//     font-size: 1.5rem;
+//     position: absolute;
+//     top: -20%;
+//     left: 45%;
+//     font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+// //   transform: translate(-50%, -50%);
+// }
+
+// }
+
+
+
+
+
+// ::ng-deep html[dir="rtl"] ds-subject-search-result-grid-element{
+// .dewey-height{
+//     top: 39% !important; 
+//     bottom: 39% !important;
+// }
+//     .orcid-img{
+//         height: 100% !important;
+//     }
+
+//         .container-img {
+//   position: relative;
+//   text-align: center;
+//   color: white;
+// }
+// .centered-dewey {
+//     font-size: 2.5rem;
+//     position: absolute;
+//     top: -15%;
+//     left: 46%;
+//     font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+// //   transform: translate(-50%, -50%);
+// }
+
+// }
+
+
+
+
+
+// ::ng-deep html[dir="ltr"] ds-subject-search-result-grid-element{
+
+//     .dewey-height{
+//     top: 39% !important; 
+//     bottom: 39% !important;
+// }
+
+//     .orcid-img{
+//         height: 100% !important;
+//     }
+
+//         .container-img {
+//   position: relative;
+//   text-align: center;
+//   color: white;
+// }
+// .centered-dewey {
+// font-size: 2.5rem;
+//     position: absolute;
+//     top: -75%;
+//     left: 46%;
+//     font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+// //   transform: translate(-50%, -50%);
+// }
+
+// }
+
+// ::ng-deep html[dir="rtl"] ds-subject{
+// .dewey-height{
+//     top: 20% !important; 
+//     bottom: 20% !important;
+// }
+
+// .dewey-height img { 
+//     max-width: 200px;
+
+// }
+//     .orcid-img{
+//         height: 60% !important;
+//     }
+
+//         .container-img {
+//   position: relative;
+//   text-align: center;
+//   color: white;
+// }
+// .centered-dewey {
+// font-size: 2.5rem;
+//     position: absolute;
+//     top: -10%;
+//     left: 45%;
+//     font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+// //   transform: translate(-50%, -50%);
+// }
+
+// }
+
+
+
+// ::ng-deep html[dir="ltr"] ds-subject{
+
+
+//     .dewey-height{
+//     top: 20% !important; 
+//     bottom: 20% !important;
+// }
+
+// .dewey-height img { 
+//     max-width: 200px;
+
+// }
+
+//     .orcid-img{
+//         height: 60% !important;
+//     }
+
+//         .container-img {
+//   position: relative;
+//   text-align: center;
+//   color: white;
+// }
+// .centered-dewey {
+// font-size: 2.5rem;
+//     position: absolute;
+//     top: -70%;
+//     left: 45%;
+//     font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+// //   transform: translate(-50%, -50%);
+// }
+
+// }
+
+
+
+// ::ng-deep html[dir="rtl"] ds-dynamic-lookup-relation-modal{
+//     .orcid-img{
+//         height: 25px !important;
+//     }
+
+//     .centered-dewey {
+// font-size: 1rem;
+//     position: absolute;
+//     top: 40%;
+//     left: 40%;
+//     font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+// //   transform: translate(-50%, -50%);
+// }
+// }
+
+
+// ::ng-deep html[dir="ltr"] ds-dynamic-lookup-relation-modal{
+//     .orcid-img{
+//         height: 25px !important;
+//     }
+
+//     .centered-dewey {
+//     font-size: 1rem;
+//     position: absolute;
+//     top: 6%;
+//     left: 40%;
+//     font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+// //   transform: translate(-50%, -50%);
+// }
+// }
+
+
+
+
+::ng-deep html[dir="rtl"] ds-subject-search-result-list-element{
+
+    .orcid-img{
+        max-width: none;
+    }
+        .container-img {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.centered-dewey {
+    font-size: 1.1rem;
+    position: absolute;
+    right: 5px;
+    top: 30%;
+    left: auto;
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+//   transform: translate(-50%, -50%);
+}
+
+}
+
+
+::ng-deep html[dir="ltr"] ds-subject-search-result-list-element{
+
+        .orcid-img{
+        max-width: none;
+    }
+
+        .container-img {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.centered-dewey {
+    font-size: 1.1rem;
+    position: absolute;
+    top: -5%;
+    left: auto;
+    right: 5px;
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+//   transform: translate(-50%, -50%);
+}
+
+}
+
+
+
+
+
+::ng-deep html[dir="rtl"] ds-subject-search-result-grid-element{
+.dewey-height{
+    top: 39% !important; 
+    bottom: 39% !important;
+}
+    .orcid-img{
+        height: 100% !important;
+    }
+
+        .container-img {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.centered-dewey {
+    font-size: 1.6rem;
+    position: absolute;
+    top: 10%;
+    left: auto;
+    right: 7px;
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+//   transform: translate(-50%, -50%);
+}
+
+}
+
+
+
+
+
+::ng-deep html[dir="ltr"] ds-subject-search-result-grid-element{
+
+    .dewey-height{
+    top: 39% !important; 
+    bottom: 39% !important;
+}
+
+    .orcid-img{
+        height: 100% !important;
+    }
+
+        .container-img {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.centered-dewey {
+font-size: 1.6rem;
+    position: absolute;
+    top: -40%;
+    left: auto;
+    right: 7px;
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+//   transform: translate(-50%, -50%);
+}
+
+}
+
+::ng-deep html[dir="rtl"] ds-subject{
+.dewey-height{
+    top: 20% !important; 
+    bottom: 20% !important;
+}
+
+.dewey-height img { 
+    max-width: 400px;
+
+}
+    .orcid-img{
+        height: 60% !important;
+    }
+
+        .container-img {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.centered-dewey {
+    font-size: 1.6rem;
+    position: absolute;
+    top: 10%;
+    left: auto;
+    right: 10px;
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+//   transform: translate(-50%, -50%);
+}
+
+}
+
+
+
+::ng-deep html[dir="ltr"] ds-subject{
+
+
+    .dewey-height{
+    top: 20% !important; 
+    bottom: 20% !important;
+}
+
+.dewey-height img { 
+    max-width: 400px;
+
+}
+
+    .orcid-img{
+        height: 60% !important;
+    }
+
+        .container-img {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.centered-dewey {
+    font-size: 1.6rem;
+    position: absolute;
+    top: -40%;
+    left: auto;
+    right: 10px;
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+//   transform: translate(-50%, -50%);
+}
+
+}
+
+
+
+::ng-deep html[dir="rtl"] ds-dynamic-lookup-relation-modal{
+    .orcid-img{
+        height: 25px !important;
+        max-width: 80px !important;
+    }
+
+    .centered-dewey {
+font-size: .7rem;
+    position: absolute;
+    top: 53%;
+    left: auto;
+    right: 2px;
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+//   transform: translate(-50%, -50%);
+}
+}
+
+
+::ng-deep html[dir="ltr"] ds-dynamic-lookup-relation-modal{
+    .orcid-img{
+        height: 25px !important;
+        max-width: 80px !important;
+    }
+
+    .centered-dewey {
+    font-size: .7rem;
+    position: absolute;
+    top: 20%;
+    left: auto;
+    right: 2px;
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+//   transform: translate(-50%, -50%);
+}
+}
+
+
+::ng-deep html[dir="rtl"] {
+
+        ds-search-text-filter{
+                .float-end{
+            float: right !important;
+        }
+    }
+
+        ds-search-hierarchy-filter{
+        .float-end{
+            float: right !important;
+        }
+    }
+
+    ds-base-metadata-import-page{
+    .form-check .form-check-input{
+        float: right;
+    }
+}
+    ds-dso-selector{
+        .mb-3{
+            margin-top: .5rem;
+        }
     }
 }

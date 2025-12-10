@@ -17,9 +17,11 @@ import {
   END_USER_AGREEMENT_PATH,
   FEEDBACK_PATH,
   PRIVACY_PATH,
+  HELP_PATH
 } from './info-routing-paths';
 import { NotifyInfoComponent } from './notify-info/notify-info.component';
 import { ThemedPrivacyComponent } from './privacy/themed-privacy.component';
+import { ThemedHelpComponent } from './help/themed-help.component';
 
 
 export const ROUTES: Routes = [
@@ -60,4 +62,15 @@ export const ROUTES: Routes = [
       breadcrumbKey: 'info.coar-notify-support',
     },
   } : undefined,
+    {
+    path: HELP_PATH,
+    component: ThemedHelpComponent,
+    resolve: {
+      breadcrumb: i18nBreadcrumbResolver,
+    },
+    data: {
+      title: 'info.help.title',
+      breadcrumbKey: 'info.help',
+    },
+  }
 ].filter((route: Route) => hasValue(route));

@@ -10,6 +10,7 @@ import { KwareDocumentViewerComponent } from '../media-viewers/kware-document-vi
 import { UnknownFileFormatComponent } from '../shared/unknown-file-format/unknown-file-format.component';
 import { LoadingFileComponent } from '../shared/loading-file/loading-file.component';
 import { RequestACopyComponent } from '../shared/request-a-copy/request-a-copy.component';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'ds-viewer-panel',
@@ -27,7 +28,8 @@ import { RequestACopyComponent } from '../shared/request-a-copy/request-a-copy.c
     KwareDocumentViewerComponent,
     UnknownFileFormatComponent,
     LoadingFileComponent,
-    RequestACopyComponent
+    RequestACopyComponent,
+    NgbAccordionModule
   ],
 })
 export class ViewerPanelComponent {
@@ -39,7 +41,6 @@ export class ViewerPanelComponent {
   @Input() isLoading: boolean;
   @Input() isEmptyList: boolean;
   @Input() closeViewer: () => void;
-
   msFilesFormats = [
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
     'application/vnd.openxmlformats-officedocument.presentationml.presentation',
@@ -50,4 +51,7 @@ export class ViewerPanelComponent {
   ];
 
   constructor(private viewerService: MediaViewerService) {}
+
+
+
 }

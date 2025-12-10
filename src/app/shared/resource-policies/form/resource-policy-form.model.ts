@@ -10,60 +10,63 @@ import { ActionType } from '../../../core/resource-policy/models/action-type.mod
 import { PolicyType } from '../../../core/resource-policy/models/policy-type.model';
 import { DsDynamicInputModelConfig } from '../../form/builder/ds-dynamic-form-ui/models/ds-dynamic-input.model';
 import { DsDynamicTextAreaModelConfig } from '../../form/builder/ds-dynamic-form-ui/models/ds-dynamic-textarea.model';
+import { hasValue } from '../../empty.util';
+export const PolicyTranslate: boolean = (typeof window === 'object' && hasValue(window.localStorage)) && window.localStorage.getItem('selectedLangCode') === 'ar';
 
 const policyTypeList: DynamicFormOptionConfig<any>[] = [
   {
-    label: PolicyType.TYPE_SUBMISSION,
-    value: PolicyType.TYPE_SUBMISSION,
+    label:PolicyTranslate? 'النوع_تقديم' : PolicyType.TYPE_SUBMISSION,
+    value: PolicyType.TYPE_SUBMISSION
   },
   {
-    label: PolicyType.TYPE_WORKFLOW,
-    value: PolicyType.TYPE_WORKFLOW,
+    label:PolicyTranslate? 'النوع_سير عمل' : PolicyType.TYPE_WORKFLOW,
+    value: PolicyType.TYPE_WORKFLOW
   },
   {
-    label: PolicyType.TYPE_INHERITED,
-    value: PolicyType.TYPE_INHERITED,
+    label:PolicyTranslate? 'النوع_موروث' : PolicyType.TYPE_INHERITED,
+    value: PolicyType.TYPE_INHERITED
   },
   {
-    label: PolicyType.TYPE_CUSTOM,
-    value: PolicyType.TYPE_CUSTOM,
+    label:PolicyTranslate? 'النوع_مخصص' : PolicyType.TYPE_CUSTOM,
+    value: PolicyType.TYPE_CUSTOM
   },
 ];
 
 const policyActionList: DynamicFormOptionConfig<any>[] = [
   {
-    label: ActionType.READ.toString(),
-    value: ActionType.READ,
+    label:PolicyTranslate? 'قراءة' : ActionType.READ.toString(),
+    value: ActionType.READ
   },
   {
-    label: ActionType.WRITE.toString(),
-    value: ActionType.WRITE,
+    label:PolicyTranslate? 'كتابة' : ActionType.WRITE.toString(),
+    value: ActionType.WRITE
   },
   {
-    label: ActionType.REMOVE.toString(),
-    value: ActionType.REMOVE,
+    label: PolicyTranslate? 'إزالة' : ActionType.REMOVE.toString(),
+    value: ActionType.REMOVE
   },
   {
-    label: ActionType.ADMIN.toString(),
-    value: ActionType.ADMIN,
+    label: PolicyTranslate? 'مسؤول' : ActionType.ADMIN.toString(),
+    value: ActionType.ADMIN
   },
   {
-    label: ActionType.DELETE.toString(),
-    value: ActionType.DELETE,
+    label: PolicyTranslate? 'حذف' : ActionType.DELETE.toString(),
+    value: ActionType.DELETE
   },
   {
-    label: ActionType.WITHDRAWN_READ.toString(),
-    value: ActionType.WITHDRAWN_READ,
+    label: PolicyTranslate? 'مسحوب_قراءة' : ActionType.WITHDRAWN_READ.toString(),
+    value: ActionType.WITHDRAWN_READ
   },
   {
-    label: ActionType.DEFAULT_BITSTREAM_READ.toString(),
-    value: ActionType.DEFAULT_BITSTREAM_READ,
+    label: PolicyTranslate? 'افتراضي_تدفق البت_قراءة' : ActionType.DEFAULT_BITSTREAM_READ.toString(),
+    value: ActionType.DEFAULT_BITSTREAM_READ
   },
   {
-    label: ActionType.DEFAULT_ITEM_READ.toString(),
-    value: ActionType.DEFAULT_ITEM_READ,
-  },
+    label: PolicyTranslate? 'افتراضي_مادة_قراءة' : ActionType.DEFAULT_ITEM_READ.toString(),
+    value: ActionType.DEFAULT_ITEM_READ
+  }
 ];
+
 
 export const RESOURCE_POLICY_FORM_NAME_CONFIG: DsDynamicInputModelConfig = {
   id: 'name',

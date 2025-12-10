@@ -1,0 +1,57 @@
+@import '../../../styles/_kware_styles.scss';
+
+::ng-deep html[dir="rtl"] {
+    @media (min-width: 768px) {
+        .citation-item-page {
+            display: block !important;
+            min-width: 20em;
+            max-width: 20em;
+            padding-left: 10px
+        }
+    }
+
+    .citation-item-page {
+        display: block !important;
+        border: 1px solid rgba(34, 36, 38, .15);
+        height: 45px;
+        padding-right: .5em;
+    }
+
+    #citation-style-label {
+        padding-left: 10px;
+    }
+
+}
+
+
+::ng-deep html[dir="ltr"] {
+    @media (min-width: 768px) {
+        .citation-item-page {
+            display: block !important;
+            min-width: 15em;
+            max-width: 15em;
+
+
+        }
+    }
+
+    .citation-item-page {
+        display: block !important;
+        border: 1px solid rgba(34, 36, 38, .15);
+        height: 38px;
+        padding-left: .5em;
+    }
+
+}
+
+::ng-deep ds-kware-citation-section {
+    h2 {
+        font-size: 1.28571429rem !important;
+    }
+
+    .ui.basic.button[_ngcontent-dspace-angular-c933812932]:active {
+        background-color: #04AA6D !important;
+        color: #fff !important;
+    }
+
+}

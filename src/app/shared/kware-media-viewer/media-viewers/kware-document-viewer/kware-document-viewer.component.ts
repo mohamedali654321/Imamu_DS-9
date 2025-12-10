@@ -24,7 +24,9 @@ export class KwareDocumentViewerComponent implements OnChanges {
 
   iframeURL?: SafeResourceUrl = undefined;
 
-  constructor(private domSanitizer: DomSanitizer) { }
+  constructor(private domSanitizer: DomSanitizer) {
+    
+   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.docURL.currentValue) {

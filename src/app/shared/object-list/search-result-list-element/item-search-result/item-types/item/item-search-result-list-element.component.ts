@@ -20,6 +20,8 @@ import { hasValue } from "src/app/shared/empty.util";
 import { ThemedMetadataRepresentationListComponent } from "../../../../../../item-page/simple/metadata-representation-list/themed-metadata-representation-list.component";
 import { ViewStatisticsComponent } from "../../../../../view-statistics/view-statistics.component";
 import { PublictaionCountComponent } from "../../../../../publictaion-count/publictaion-count.component";
+import { KwareMetricDonutsComponent } from "src/app/shared/kware-metric-donuts/kware-metric-donuts.component";
+
 
 @listableObjectComponent("PublicationSearchResult", ViewMode.ListElement)
 @listableObjectComponent(ItemSearchResult, ViewMode.ListElement)
@@ -46,7 +48,8 @@ import { PublictaionCountComponent } from "../../../../../publictaion-count/publ
     NgClass,
     // NgStyle,
     DatePipe,
-    PublictaionCountComponent
+    PublictaionCountComponent,
+    KwareMetricDonutsComponent
 ],
 })
 /**
@@ -66,7 +69,7 @@ export class ItemSearchResultListElementComponent
     this.showThumbnails =
       this.showThumbnails ?? this.appConfig.browseBy.showThumbnails;
     this.itemPageRoute = getItemPageRoute(this.dso);
-    // this.linkService.resolveLink<Item>(this.dso, followLink("thumbnail")); //kware-edit
+     this.linkService.resolveLink<Item>(this.dso, followLink("thumbnail")); //kware-edit
   }
 
   // kware edit

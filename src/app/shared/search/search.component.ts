@@ -64,6 +64,8 @@ import { ThemedSearchSidebarComponent } from "./search-sidebar/themed-search-sid
 import { SearchConfigurationOption } from "./search-switch-configuration/search-configuration-option.model";
 import { NavigationItemsService } from "../kware-navigate-items/service/services/navigation-items.service";
 import { PaginationComponentOptions } from "../pagination/pagination-component-options.model";
+import { SearchBrowseCategoriesComponent } from "../search-browse-categories/search-browse-categories.component";
+
 
 @Component({
   selector: "ds-base-search",
@@ -82,6 +84,7 @@ import { PaginationComponentOptions } from "../pagination/pagination-component-o
     ThemedSearchSidebarComponent,
     TranslateModule,
     ViewModeSwitchComponent,
+    SearchBrowseCategoriesComponent
   ],
 })
 
@@ -111,6 +114,8 @@ export class SearchComponent implements OnDestroy, OnInit {
    * If empty, the query will be determined by the route parameter called 'filter'
    */
   @Input() fixedFilterQuery: string;
+
+  @Input() filterFields: string;
 
   /**
    * A hidden query that will be used but not displayed in the url/searchbar
@@ -667,7 +672,15 @@ export class SearchComponent implements OnDestroy, OnInit {
         searchOptionsWithHidden.query = this.hiddenQuery;
       }
     }
+             /**
+   * kware-edit start 
+   * search tabs
+   */
+   this.browseSearchOptions.next(searchOptions) ;
 
+   /**
+  * kware-edit end 
+  */
     this.service
       .search(
         searchOptionsWithHidden,

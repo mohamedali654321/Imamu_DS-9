@@ -60,6 +60,7 @@ import { PaginationComponentOptions } from '../../shared/pagination/pagination-c
 import { StartsWithType } from '../../shared/starts-with/starts-with-type';
 import { BrowseByDataType } from '../browse-by-switcher/browse-by-data-type';
 import { KwareTranslatePipe } from 'src/app/shared/utils/kware-translate.pipe';
+import { ThemedConfigurationSearchPageComponent } from 'src/app/search-page/themed-configuration-search-page.component';
 
 export const BBM_PAGINATION_ID = 'bbm';
 
@@ -72,7 +73,8 @@ export const BBM_PAGINATION_ID = 'bbm';
     ThemedBrowseByComponent,
     ThemedLoadingComponent,
     TranslateModule,
-    KwareTranslatePipe
+    KwareTranslatePipe,
+    ThemedConfigurationSearchPageComponent
   ],
   standalone: true,
 })
@@ -194,6 +196,16 @@ export class BrowseByMetadataComponent implements OnInit, OnChanges, OnDestroy {
    */
   ssrRenderingDisabled = false;
 
+
+    sideBarWidth = 2;
+  searchEnabled = true;
+  configuration: string;
+  fixedFilter: string;
+  filterPart =new BehaviorSubject('');
+  valuePart=new BehaviorSubject('');
+  isBrowseCategories=new BehaviorSubject(false);
+  queryFilters: any[];
+
   public constructor(protected route: ActivatedRoute,
                      protected browseService: BrowseService,
                      protected dsoService: DSpaceObjectDataService,
@@ -259,6 +271,10 @@ export class BrowseByMetadataComponent implements OnInit, OnChanges, OnDestroy {
         }
       }));
     this.updateStartsWithTextOptions();
+
+    this.route.params.subscribe(params => {this.filterPart.next(params.id);})
+    this.route.queryParams.subscribe(params=>{this.valuePart.next(params.value);})
+    this.route.queryParams.subscribe(params=>{this.isBrowseCategories.next(params.source);})
 
   }
 

@@ -74,7 +74,7 @@
             <small style="background-color:transparent !important;color: #6c757d !important;font-weight: 500;" *ngIf="firstMetadataValue('dc.date.accessioned')" class="badge badge-pill badge-secondary align-self-center archived-items-lead" [attr.title]="('item.uploaded.on' | translate)">
                 <i class="fa-solid fa-upload"></i> {{' ' + (translateDate() !== null ? translateDate(): (firstMetadataValue('dc.date.accessioned').split('T')[0] |  date:'longDate'))}}
               </small>
-            <ds-view-statistics [object]="dso"></ds-view-statistics>
+            <!-- <ds-view-statistics [object]="dso"></ds-view-statistics> -->
           </span>
     </div>
 </div>

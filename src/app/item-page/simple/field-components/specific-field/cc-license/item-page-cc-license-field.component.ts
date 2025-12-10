@@ -15,6 +15,7 @@ import {
   of,
 } from 'rxjs';
 import { ConfigurationDataService } from 'src/app/core/data/configuration-data.service';
+import { LocaleService } from 'src/app/core/locale/locale.service';
 import { ConfigurationProperty } from 'src/app/core/shared/configuration-property.model';
 import { Item } from 'src/app/core/shared/item.model';
 import {
@@ -80,14 +81,17 @@ export class ItemPageCcLicenseFieldComponent implements OnInit {
   name$: Observable<string>;
   uri$: Observable<string>;
   imgSrc$: Observable<string>;
+  locale:string;
 
 
   constructor(
     protected configService: ConfigurationDataService,
+    protected localeService: LocaleService
   ) {
   }
 
   ngOnInit(): void {
+    this.locale = '/deed.'+this.localeService.getCurrentLanguageCode();
     if (hasValue(this.ccLicenseNameField)) {
       this.name$ = of(this.item.firstMetadataValue(this.ccLicenseNameField));
     } else {

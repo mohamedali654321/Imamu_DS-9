@@ -9,6 +9,7 @@ import { DSONameService } from '../../../../../core/breadcrumbs/dso-name.service
 import { Item } from '../../../../../core/shared/item.model';
 import { KwareTranslatePipe } from "../../../../../shared/utils/kware-translate.pipe";
 import { NgIf } from '@angular/common';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'ds-base-item-page-title-field',
@@ -17,7 +18,8 @@ import { NgIf } from '@angular/common';
   imports: [
     TranslateModule,
     KwareTranslatePipe,
-    NgIf
+    NgIf,
+    NgbTooltipModule 
 ],
 })
 /**

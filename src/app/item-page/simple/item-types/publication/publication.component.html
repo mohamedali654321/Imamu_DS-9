@@ -96,7 +96,7 @@
   <ds-item-page-title-field [item]="object" class="mr-auto">
   </ds-item-page-title-field>
 
-  <button
+  <!-- <button
     placement="top"
     [ngbTooltip]="'show.citation.btn' | translate"
     style="width: 35.5px; height: 31px; padding: 4px 4px"
@@ -107,8 +107,8 @@
       class="citation-img"
       src="assets/images/download30x30_white_no_bg.png"
     />
-  </button>
-  <ds-kware-navigate-items [item]="object"></ds-kware-navigate-items> 
+  </button> -->
+  <ds-kware-navigate-items [item]="object"></ds-kware-navigate-items>
   <ds-dso-edit-menu></ds-dso-edit-menu>
 </div>
 <ds-metadata-representation-list
@@ -125,6 +125,7 @@
     <ds-kware-social-sharing [item]="object"></ds-kware-social-sharing>
     <br />
     <ds-kware-media-viewer [item]="object"></ds-kware-media-viewer>
+    <br />
     <!-- <ds-related-items
       [parentItem]="object"
       [relationType]="'isProjectOfPublication'"
@@ -228,7 +229,7 @@
     >
     </ds-generic-item-page-field>
 
-    <ds-metadata-representation-list
+    <!-- <ds-metadata-representation-list
       [parentItem]="object"
       [itemType]="'OrgUnit'"
       [metadataFields]="['dc.publisher']"
@@ -260,7 +261,7 @@
       [fields]="['dc.language.iso']"
       [label]="'item.page.language'"
     >
-    </ds-generic-item-page-field>
+    </ds-generic-item-page-field> -->
 
     <ds-generic-item-page-field
       [item]="object"
@@ -269,7 +270,7 @@
     >
     </ds-generic-item-page-field>
 
-    <ds-generic-item-page-field
+    <!-- <ds-generic-item-page-field
       [item]="object"
       [fields]="['dc.type']"
       [label]="'item.page.type'"
@@ -281,7 +282,7 @@
       [fields]="['dc.type.content']"
       [label]="'item.page.content'"
     >
-    </ds-generic-item-page-field>
+    </ds-generic-item-page-field> -->
 
     <ds-generic-item-page-field
       [item]="object"
@@ -670,14 +671,14 @@
     >
     </ds-metadata-representation-list>
 
-    <ds-metadata-representation-list
+    <!-- <ds-metadata-representation-list
       class="ds-item-page-mixed-author-field"
       [parentItem]="object"
       [itemType]="'Subject'"
       [metadataFields]="['dc.subject']"
       [label]="'item.page.subject' | translate"
     >
-    </ds-metadata-representation-list>
+    </ds-metadata-representation-list> -->
 
     <ds-generic-item-page-field
       [item]="object"
@@ -826,7 +827,17 @@
   </div>
 
   <div class="col-xs-12 col-md-4">
+    <ds-item-page-metrics-field [item]="object"></ds-item-page-metrics-field>
+    <br />
     <ds-simple-view-statistics [object]="object"></ds-simple-view-statistics>
+    <br />
+    <ds-kware-subjects-section [object]="object"></ds-kware-subjects-section>
+    <br />
+    <ds-kware-details-section [object]="object"></ds-kware-details-section>
+    <br />
+    <ds-kware-lisence-section [object]="object"></ds-kware-lisence-section>
+    <br />
+    <ds-kware-citation-section [object]="object"></ds-kware-citation-section>
     <br />
     <!-- @if (!(mediaViewer.image || mediaViewer.video)) {
     <ds-metadata-field-wrapper [hideIfNoTextContent]="false">
@@ -846,12 +857,12 @@
       [label]="'publication.page.journal-title'"
     >
     </ds-generic-item-page-field>
-    <ds-generic-item-page-field
+    <!-- <ds-generic-item-page-field
       [item]="object"
       [fields]="['journal.identifier.issn']"
       [label]="'publication.page.journal-issn'"
     >
-    </ds-generic-item-page-field>
+    </ds-generic-item-page-field> -->
     <ds-generic-item-page-field
       [item]="object"
       [fields]="['journalvolume.identifier.name']"
@@ -947,14 +958,14 @@
     >
     </ds-generic-item-page-field>
 
-    <ds-generic-item-page-field
+    <!-- <ds-generic-item-page-field
       [item]="object"
       [fields]="['dc.identifier.isbn']"
       [label]="'item.page.isbn'"
     >
-    </ds-generic-item-page-field>
+    </ds-generic-item-page-field> -->
 
-    <ds-item-page-uri-field
+    <!-- <ds-item-page-uri-field
       [item]="object"
       [fields]="['dc.identifier.uri']"
       [label]="'item.page.uri'"
@@ -973,7 +984,10 @@
       [fields]="['dc.identifier.openalex']"
       [label]="'item.page.openalex'"
     >
-    </ds-item-page-uri-field>
+    </ds-item-page-uri-field> -->
+
+  <!-- <ds-item-page-metrics-field [item]="object"></ds-item-page-metrics-field> -->
+
 
     <ds-item-page-collections [item]="object"></ds-item-page-collections>
 

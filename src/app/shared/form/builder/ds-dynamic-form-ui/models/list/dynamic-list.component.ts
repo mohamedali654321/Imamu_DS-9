@@ -49,6 +49,7 @@ import { ThemedLoadingComponent } from '../../../../../loading/themed-loading.co
 import { FormBuilderService } from '../../../form-builder.service';
 import { DynamicListCheckboxGroupModel } from './dynamic-list-checkbox-group.model';
 import { DynamicListRadioGroupModel } from './dynamic-list-radio-group.model';
+import { SharedVariableService } from 'src/app/core/services/share-variable.service';
 
 export interface ListItem {
   id: string;
@@ -94,6 +95,7 @@ export class DsDynamicListComponent extends DynamicFormControlComponent implemen
               private formBuilderService: FormBuilderService,
               protected layoutService: DynamicFormLayoutService,
               protected validationService: DynamicFormValidationService,
+              protected sharedVariableService: SharedVariableService, //kware-edit mohamed
   ) {
     super(layoutService, validationService);
   }
@@ -149,6 +151,7 @@ export class DsDynamicListComponent extends DynamicFormControlComponent implemen
       }
     } else {
       (this.model as DynamicListRadioGroupModel).value = this.optionsList[target.value];
+      this.sharedVariableService.setMainAdministrationType(target.id)
     }
     this.change.emit(event);
   }

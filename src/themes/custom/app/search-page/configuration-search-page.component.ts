@@ -18,6 +18,8 @@ import { ThemedSearchSidebarComponent } from '../../../../app/shared/search/sear
 import { ThemedSearchFormComponent } from '../../../../app/shared/search-form/themed-search-form.component';
 import { PageWithSidebarComponent } from '../../../../app/shared/sidebar/page-with-sidebar.component';
 import { ViewModeSwitchComponent } from '../../../../app/shared/view-mode-switch/view-mode-switch.component';
+import { SearchBrowseCategoriesComponent } from 'src/app/shared/search-browse-categories/search-browse-categories.component';
+
 
 @Component({
   selector: 'ds-themed-configuration-search-page',
@@ -44,6 +46,7 @@ import { ViewModeSwitchComponent } from '../../../../app/shared/view-mode-switch
     ThemedSearchSidebarComponent,
     TranslateModule,
     ViewModeSwitchComponent,
+    SearchBrowseCategoriesComponent
   ],
 })
 export class ConfigurationSearchPageComponent extends BaseComponent {

@@ -30,6 +30,8 @@ import { PageWithSidebarComponent } from '../shared/sidebar/page-with-sidebar.co
 import { SidebarService } from '../shared/sidebar/sidebar.service';
 import { ViewModeSwitchComponent } from '../shared/view-mode-switch/view-mode-switch.component';
 import { NavigationItemsService } from '../shared/kware-navigate-items/service/services/navigation-items.service';
+import { SearchBrowseCategoriesComponent } from "../shared/search-browse-categories/search-browse-categories.component";
+
 
 /**
  * This component renders a search page using a configuration as input.
@@ -57,6 +59,7 @@ import { NavigationItemsService } from '../shared/kware-navigate-items/service/s
     ThemedSearchSidebarComponent,
     TranslateModule,
     ViewModeSwitchComponent,
+    SearchBrowseCategoriesComponent
   ],
 })
 

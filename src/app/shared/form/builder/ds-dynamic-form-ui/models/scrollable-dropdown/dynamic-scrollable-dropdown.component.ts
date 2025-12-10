@@ -159,7 +159,7 @@ export class DsDynamicScrollableDropdownComponent extends DsDynamicVocabularyCom
     this.sharedVariableService.currentMainAdministrationType.subscribe(administration=>{mainAdministrationName =administration});
     this.sharedVariableService.currentMainCollege.subscribe(college=>{collegeName = college})
     if(this.model.id === 'organization_legalName' && currentChildOrgUnit === 'Department | قسم'){
-      this.vocabularyService.getVocabularyEntriesByValue(this.inputText, false, {name:`${mainAdministrationName.split(' | ')[0].toLocaleLowerCase().split(' ').join('_')}_${collegeName.split(' | ')[0].toLocaleLowerCase().split(' ').join('_')}_type`,closed:true}, this.pageInfo).pipe(
+      this.vocabularyService.getVocabularyEntriesByValue(this.inputText, false, {name:`${mainAdministrationName.split('belongTo_')[1].split(' | ')[0].toLocaleLowerCase().split(' ').join('_')}_${collegeName.split(' | ')[0].toLocaleLowerCase().split(' ').join('_')}_type`,closed:true}, this.pageInfo).pipe(
         getFirstSucceededRemoteDataPayload(),
         catchError(() => observableOf(buildPaginatedList(new PageInfo(), []))),
         tap(() => this.loading = false),

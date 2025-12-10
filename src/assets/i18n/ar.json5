@@ -7065,6 +7065,20 @@
   "cookies.consent.app.description.accessibility": "مطلوب لحفظ إعدادات إمكانية الوصول محليًا",
   "footer.link.accessibility": "إعدادات إمكانية الوصول",
   "person.page.affiliationName": "الانتساب الرئيسي",
+
+
+"submission.sections.describe.relationship-lookup.search-tab.tab-title.openalexPerson": "OpenAlex ({{ count }})",
+
+"submission.sections.describe.relationship-lookup.search-tab.tab-title.openalexInstitution": "بحث OpenAlex حسب المؤسسة ({{ count }})",
+
+"submission.sections.describe.relationship-lookup.search-tab.tab-title.openalexPublisher": "بحث OpenAlex حسب الناشر ({{ count }})",
+
+"submission.sections.describe.relationship-lookup.search-tab.tab-title.openalexFunder": "بحث OpenAlex حسب الممول ({{ count }})",
+
+"submission.sections.describe.relationship-lookup.search-tab.tab-title.dataciteProject": "بحث Datacite حسب المشروع ({{ count }})",
+
+"submission.import-external.source.dataciteProject": "DataCite",
+
   // DS 9
   "401.help": "غير مصرح لك بالوصول إلى هذه الصفحة. يمكنك استخدام الزر أدناه للعودة إلى الصفحة الرئيسية.",
 
@@ -17939,7 +17953,7 @@
   "submission.sections.describe.relationship-lookup.title.isPublicationOfSubject": "المنشورات",
   "submission.sections.describe.relationship-lookup.search-tab.tab-title.isPublicationOfSubject": "المنشورات المحلية ({{ count }})",
 
-  "item.citation.modal.header": "الإستشهادات",
+  "item.citation.modal.header": "استشهد بهذا!",
   "show.citation.btn": "استشهد بهذا",
 
   "copy.to.clipboard": "نسخ إلى الحافظة",
@@ -17986,7 +18000,7 @@
   "query.filter.narrowerSubject": " موضوع أضيق",
   "query.filter.relatedSubject": "موضوع ذي علاقة",
   "query.filter.subjectHeading": "اسم قائمة الاستناد",
-  "query.filter.deway": "معرف تصنيف ديوي",
+  "query.filter.dewey": "معرف تصنيف ديوي",
   "item.page.dewey": "معرف تصنيف ديوي",
   "query.filter.doi": "معرف الكائن الرقمي",
   "query.filter.orcid": "الأوركيد",
@@ -18044,4 +18058,36 @@
   "publication.page.startPage": "صفحة البداية",
   "publication.page.issueNumber": "رقم العدد",
   "item.page.Edition": "الإصدارة",
+"cookies.consent.app.title.correlation-id": "معرّف الارتباط",
+
+"cookies.consent.app.description.correlation-id": "اسمح لنا بتتبع جلستك في سجلات الواجهة الخلفية لأغراض الدعم/التصحيح",
+
+  "cookies.consent.content-notice.description": "نقوم بجمع ومعالجة معلوماتك الشخصية للأغراض التالية: الاستيثاق، والتفضيلات، والإقرار، والإحصائيات.  لمعرفة المزيد، يرجى قراءة {privacyPolicy}.",
+
+  "cookies.consent.content-notice.description.no-privacy": "نقوم بجمع ومعالجة معلوماتك الشخصية للأغراض التالية: الاستيثاق، والتفضيلات، والإقرار، والإحصائيات.",
+ "citation.item.page.style":"التوثيق",
+ "kware.details.section":"التفاصيل",
+  "kware.lisence.header":"عبارة الحقوق",
+  "kware.lisence.title":"الترخيص",
+  "kware.media.viewer.browseFiles.btn.download": "تنزيل",
+  "kware.media.viewer.browseFiles.btn.preview": "عرض",
+  "kware.media.viewer.browseFiles.btn.downloadAll": "تنزيل الكل",
+  "kware.media.viewer.browseFiles.name": "الاسم",
+  "kware.media.viewer.browseFiles.size": "الحجم",
+  "kware.media.viewer.browseFiles.tooltip.fingerprint":"هذه هي بصمة الملف (المجموع الاختباري)، والتي يمكن استخدامها للتحقق من سلامة الملف.",
+  // "item.page.metrics":"مقاييس الاقتباس/ الاستشهاد/ اعادة النشر",
+    "item.page.metrics":"مقاييس الاقتباس/ الاستشهاد/ الذكر",
+  "page.tooltip.dewey":"معرف تصنيف ديوي",
+
+  "submission.sections.describe.relationship-lookup.selection-tab.title.openalexPublisher":"نتائج البحث",
+  "submission.sections.describe.relationship-lookup.selection-tab.title.openalexPerson":"نتائج البحث",
+  "submission.sections.describe.relationship-lookup.selection-tab.title.openalexInstitution":"نتائج البحث",
+  "submission.sections.describe.relationship-lookup.selection-tab.title.openalexFunder":"نتائج البحث",
+  "submission.sections.describe.relationship-lookup.selection-tab.title.dataciteProject":"نتائج البحث",
+
+  "home.browse-by.college":"التصفح  بالكلية",
+
+  "department-relationships.search.results.head":"نتائج البحث عن أقسام ذات علاقة",
+  "item.page.relationships.isOrgUnitOfDepartment":"الأقسام",
+  "suggestion.source.openalex": "أوبن أليكس",
 }

@@ -1,0 +1,46 @@
+<!-- kware start edit -- issue.7.6.003 
+  * menu has liks guides for dspace documentation 
+-->
+<div ngbDropdown class="navbar-nav help-info"  display="dynamic" placement="bottom-right">
+  <a href="#" role="button"
+
+     [attr.aria-label]="'nav.help' |translate"
+     [title]="'nav.help' | translate" class="px-1"
+     (click)="$event.preventDefault()" data-toggle="dropdown" ngbDropdownToggle
+     tabindex="2">
+    <i  class="far fa-question-circle"></i>
+  </a>
+  <div ngbDropdownMenu class="dropdown-menu"  >
+    <div
+    class="tooltip fade bottom in"
+    role="tooltip"
+    id="tooltip819342"
+    style=" display: block"
+  >
+    <div class="tooltip-arrow tooltip-arrow-left" style="left: 50%"></div>
+    <div class="tooltip-inner">
+      <h4>{{'help.info.search.header' | translate}}</h4>
+      <p>
+        
+
+        {{'help.info.search.content1' | translate}}
+      </p>
+      <p>
+        {{'help.info.search.content2' | translate}}
+      </p>
+      <p>
+        {{'help.info.search.content3' | translate}}
+        </p>
+      <p>
+        {{'help.info.search.content4' | translate}}
+       </p>
+      <p>
+        <a href="info/help">{{'help.info.search.link' | translate}}</a>
+      </p>
+    </div>
+  </div>
+ 
+    
+  </div>
+</div>
+<!-- kware start edit -- issue.7.6.003 -->

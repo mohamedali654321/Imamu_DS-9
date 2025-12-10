@@ -1,0 +1,53 @@
+<div class="sidebar-container">
+  <h2 class="ui medium top attached header mt-0">
+    {{ "item.citation.modal.header" | translate }}
+  </h2>
+  <div id="citation" class="ui segment bottom attached rdm-sidebar">
+    <div id="recordCitation">
+      <div>
+        <div id="citation-text" class="wrap-overflowing-text rel-mb-2">
+          <div style="font-size: 14px; color: black">
+            {{ selectedContent }}
+          </div>
+        </div>
+        <div class="auto-column-grid no-wrap">
+          <div class="flex align-items-center">
+            <label
+              style="color: black"
+              id="citation-style-label"
+              class="mr-10"
+              >{{ "citation.item.page.style" | translate }}</label
+            >
+            <div
+              aria-labelledby="citation-style-label"
+              role="listbox"
+              aria-expanded="false"
+              class="ui selection citation-dropdown"
+              tabindex="0"
+            >
+              <select
+                (change)="onSelect($event)"
+                class="citation-item-page scrollable-dropdown-menu w-100"
+              >
+                @for (citation of getCitationOfPublication(); track $index) {
+                <option [value]="convertComma(citation[1])">
+                  {{ "citation.head." + citation[0] | translate }}
+                </option>
+                }
+              </select>
+            </div>
+          </div>
+          <button
+            placement="top"
+            [ngbTooltip]="'copy.to.clipboard' | translate"
+            (click)="copyToClipboard(selectedContent)"
+            aria-label="Copy to clipboard"
+            class="ui basic icon button copy"
+          >
+            <i aria-hidden="true" class="fa-solid fa-copy"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

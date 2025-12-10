@@ -1,0 +1,261 @@
+ .search-tooltip:empty 
+i.fa-qrcode {
+  margin-left: 12px;
+}
+
+
+ .search-tooltip button {
+  background-color: transparent;
+  border: none;
+  margin-left: 30px;
+  color: #723981;
+}
+ .search-tooltip button .icon {
+  cursor: pointer;
+}
+
+.search-tooltip button {
+  background-color: transparent;
+  border: none;
+  margin-left: 30px;
+  color: #723981;
+}
+
+.tooltip-search-local, .tooltip-search-pci, .tooltip-summon-advanced {
+  display: inline;
+}
+
+button{
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+button {
+  text-transform: none;
+}
+button {
+  overflow: visible;
+}
+button{
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+ .search-help-icon {
+  color: #fff;
+}
+.searchbox-flex .search-tooltip button .icon {
+  cursor: pointer;
+}
+.searchbox .search-help-icon, .searchbox-flex .search-help-icon {
+  font-size: 26px;
+}
+
+
+.tooltip.bottom {
+  margin-top: 5px;
+  padding: 6px 0;
+}
+// .tooltip.in {
+//   filter: alpha(opacity = 100);
+//   opacity: 1;
+// }
+// .fade.in {
+//   opacity: 1;
+// }
+.tooltip {
+  max-width: 300px;
+}
+.tooltip {
+  position: absolute;
+  z-index: 1020;
+  display: block;
+  font-style: normal;
+  line-break: auto;
+  text-align: left;
+  text-align: start;
+  text-shadow: none;
+  letter-spacing: normal;
+  font-size: 12px !important;
+  // filter: alpha(opacity = 0);
+  // opacity: 0;
+}
+.modal-title, .popover, .tooltip {
+  line-height: 1.5;
+}
+.popover, .tooltip {
+  text-transform: none;
+  white-space: normal;
+  text-decoration: none;
+  word-break: normal;
+  word-spacing: normal;
+  word-wrap: normal;
+}
+.badge, .popover, .tooltip {
+  font-weight: 400;
+}
+.fade {
+  opacity: 1;
+  -webkit-transition: opacity .15s linear;
+  -o-transition: opacity .15s linear;
+  transition: opacity .15s linear;
+}
+
+
+.tooltip.bottom .tooltip-arrow {
+  left: 50%;
+  margin-left: -6px;
+}
+.tooltip.bottom .tooltip-arrow, .tooltip.bottom-left .tooltip-arrow, .tooltip.bottom-right .tooltip-arrow {
+  border-width: 0 6px 6px;
+  border-bottom-color: #723981;
+  top: 0;
+}
+.tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+
+
+.tooltip.bottom .tooltip-inner {
+  box-shadow: 0 5px 20px -4px #2b2b2b;
+}
+.tooltip-inner {
+  min-width: 250px;
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 1.1em;
+  font-weight: 400;
+  box-shadow: 0 0 20px -10px #fff inset;
+}
+.tooltip-inner {
+  max-width: 300px;
+  color: #121212;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+
+.tooltip-inner h4, .tooltip-inner h5, .tooltip-inner h6 {
+  font-size: 16px;
+  margin: -12px -16px 10px;
+  padding: 12px 16px;
+  background-color: #781eb8 ;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: #f8f5f9;
+}
+
+
+.tooltip.bottom .tooltip-arrow {
+  left: 50%;
+  margin-left: -6px;
+}
+.tooltip.bottom .tooltip-arrow, .tooltip.bottom-left .tooltip-arrow, .tooltip.bottom-right .tooltip-arrow {
+  border-width: 0 6px 6px;
+  border-bottom-color: #723981;
+  top: 0;
+}
+.tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+
+
+.tooltip-arrow {
+  left: 50%;
+  margin-left: -6px;
+}
+
+
+ .tooltip-arrow {
+  border-width: 0 6px 6px;
+  border-bottom-color: #781eb8 ;
+  top: 0;
+}
+
+.tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+
+.tooltip-inner{
+  box-shadow: 0 5px 20px -4px #2b2b2b;
+}
+
+
+
+.help-info {
+  .dropdown-menu{
+    padding: 0 !important;
+    border: none !important;
+  }
+  .px-1{
+    font-size: 26px;
+    color: #781eb8;
+    
+
+  }
+
+  .dropdown-toggle::after{
+    visibility: hidden;
+    position: absolute;
+  }
+}
+
+
+::ng-deep html[dir="rtl"]{
+  .tooltip-inner{
+    text-align: right;
+  }
+  // .help-info .dropdown-menu{
+  //   transform: translate(25px, 39px) !important;
+
+  // }
+
+  .tooltip {
+    font-family: cufi !important;
+  }
+}
+
+@media (min-width: 768px){
+  ::ng-deep html[dir="rtl"]   .help-info .dropdown-menu{
+    transform: translate(110px, 39px) !important;
+
+  }
+  ::ng-deep html[dir="ltr"]{
+    .help-info .dropdown-menu{
+    transform: translate(-20px, 39px) !important;
+  
+  }
+  }
+  
+}
+
+@media (max-width: 768px){
+  ::ng-deep html[dir="rtl"]{
+    .tooltip-arrow-left{
+      left: 93% !important;
+    }
+  }
+  ::ng-deep html[dir="ltr"]{
+    .tooltip-arrow-left{
+      left: 7% !important;
+    }
+    .help-info .dropdown-menu{
+    transform: translate(-140px, 39px) !important;
+  
+  }
+  }
+}
+
+

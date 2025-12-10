@@ -1,4 +1,4 @@
-import { AsyncPipe, CommonModule, isPlatformBrowser } from "@angular/common";
+import { AsyncPipe, CommonModule, isPlatformBrowser,NgClass } from "@angular/common";
 import {
   Component,
   Inject,
@@ -38,10 +38,10 @@ import { FileMetadataService } from "../shared/kware-media-viewer/services/file-
   styleUrls: ["./thumbnail.component.scss"],
   templateUrl: "./thumbnail.component.html",
   standalone: true,
-  imports: [CommonModule, SafeUrlPipe,AsyncPipe, ThemedLoadingComponent, TranslateModule],
+  imports: [CommonModule, SafeUrlPipe,AsyncPipe,NgClass, ThemedLoadingComponent, TranslateModule],
 })
 export class ThumbnailComponent implements OnChanges {
-  @Input() item;
+  @Input() item :Item;
   /**
    * The thumbnail Bitstream
    */

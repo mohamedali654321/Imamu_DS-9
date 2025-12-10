@@ -26,6 +26,8 @@ import { RecentItemListComponent } from './recent-item-list/recent-item-list.com
 import { ThemedTopLevelCommunityListComponent } from './top-level-community-list/themed-top-level-community-list.component';
 import { BrowseCategoriesComponent } from './browse-categories/browse-categories.component';
 import { TopSectionComponent } from './top-section/top-section.component';
+import { BrowseBySchoolComponent } from "./browse-by-school/browse-by-school.component";
+
 
 @Component({
   selector: 'ds-base-home-page',
@@ -44,7 +46,8 @@ import { TopSectionComponent } from './top-section/top-section.component';
     ThemedTopLevelCommunityListComponent,
     TranslateModule,
     BrowseCategoriesComponent,
-    TopSectionComponent
+    TopSectionComponent,
+    BrowseBySchoolComponent
   ],
 })
 export class HomePageComponent implements OnInit {

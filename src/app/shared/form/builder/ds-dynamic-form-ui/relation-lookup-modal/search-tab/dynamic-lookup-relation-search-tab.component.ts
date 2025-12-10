@@ -176,6 +176,10 @@ export class DsDynamicLookupRelationSearchTabComponent implements OnInit, OnDest
    */
   @Output() resultFound: EventEmitter<SearchObjects<DSpaceObject>> = new EventEmitter<SearchObjects<DSpaceObject>>();
 
+  
+  @Input() relationshipLabel: string;
+  filterFields ;
+
   constructor(
     protected searchService: SearchService,
     protected selectableListService: SelectableListService,
@@ -190,8 +194,116 @@ export class DsDynamicLookupRelationSearchTabComponent implements OnInit, OnDest
    * Sets up the pagination and fixed query parameters
    */
   ngOnInit(): void {
+    if(this.relationship.searchConfiguration === 'orgunit'){
+      this.filterFields='OrgUnit'
+     }
+     else if(this.relationship.searchConfiguration ==='journalissue'){
+      this.filterFields='JournalIssue'
+     }
+     else if(this.relationship.searchConfiguration ==='journalvolume'){
+      this.filterFields='JournalVolume'
+     }
+     else{
+      this.filterFields=this.capitalizeFirstLetter(this.relationship.searchConfiguration)
+     }
+
+
+     if (this.relationship.relationshipType === 'OrgUnit') {
+      if (
+        this.relationshipLabel.includes('department') ||
+        this.relationshipLabel.includes('Department')
+      ) {
+        this.relationship.searchConfiguration = 'department';
+        this.filterFields = 'department';
+      }
+      if (
+        this.relationshipLabel.includes('college') ||
+        this.relationshipLabel.includes('College')
+      ) {
+        this.relationship.searchConfiguration = 'college';
+        this.filterFields = 'college';
+      }
+
+      if (
+        this.relationshipLabel.includes('isParentOrgUnitOf') ||
+        this.relationshipLabel === 'isOrgUnitLinkedTo' ||
+        this.relationshipLabel === 'isOrgUnitLinkingTo'
+      ) {
+        this.relationship.searchConfiguration = 'organization';
+        this.filterFields = 'OrgUnit';
+      }
+
+      if (this.relationshipLabel.includes('isChildOrgUnitOf')) {
+        this.relationship.searchConfiguration = 'suborgunit';
+        this.filterFields = 'Administration';
+      } else {
+        this.relationship.searchConfiguration =
+          this.relationship.searchConfiguration;
+      }
+    }
+
+    if (this.relationship.relationshipType === 'Place'){
+
+      if (
+        this.relationshipLabel.includes('isParentPlaceOf') ||
+        this.relationshipLabel === 'isPlaceLinkedTo' ||
+        this.relationshipLabel === 'isPlaceLinkingTo'
+      ) {
+        this.relationship.searchConfiguration = 'places';
+        this.filterFields = 'Place';
+      }
+      if (this.relationshipLabel.includes('isChildPlaceOf')) {
+        this.relationship.searchConfiguration = 'sites';
+        this.filterFields = 'Site';
+      }
+      if(this.relationshipLabel.includes('site')){
+        this.relationship.searchConfiguration = 'sites';
+        this.filterFields = 'Site';
+      }
+      if(this.relationshipLabel.includes('place')){
+        this.relationship.searchConfiguration = 'places';
+        this.filterFields = 'Place';
+      }
+      else {
+        this.relationship.searchConfiguration =
+          this.relationship.searchConfiguration;
+      }
+    }
+
+    if (this.relationship.relationshipType === 'Event'){
+
+      if (
+        this.relationshipLabel.includes('isParentEventOf') ||
+        this.relationshipLabel === 'isEventLinkedTo' ||
+        this.relationshipLabel === 'isEventLinkingTo'
+      ) {
+        this.relationship.searchConfiguration = 'events';
+        this.filterFields = 'Event';
+      }
+      if (this.relationshipLabel.includes('isChildEventOf')) {
+        this.relationship.searchConfiguration = 'activities';
+        this.filterFields = 'Activity';
+      }
+      if(this.relationshipLabel.includes('activity')){
+        this.relationship.searchConfiguration = 'activities';
+        this.filterFields = 'Activity';
+      }
+      if(this.relationshipLabel.includes('event')){
+        this.relationship.searchConfiguration = 'events';
+        this.filterFields = 'Event';
+      }
+      else {
+        this.relationship.searchConfiguration =
+          this.relationship.searchConfiguration;
+      }
+    }
+
     this.resetRoute();
   }
+
+  capitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
 
   /**
    * Method to reset the route when the window is opened to make sure no strange pagination issues appears

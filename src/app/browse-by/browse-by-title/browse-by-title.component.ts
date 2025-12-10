@@ -31,6 +31,7 @@ import {
   browseParamsToOptions,
 } from '../browse-by-metadata/browse-by-metadata.component';
 import { KwareTranslatePipe } from 'src/app/shared/utils/kware-translate.pipe';
+import { ThemedConfigurationSearchPageComponent } from 'src/app/search-page/themed-configuration-search-page.component';
 
 @Component({
   selector: 'ds-browse-by-title',
@@ -42,7 +43,8 @@ import { KwareTranslatePipe } from 'src/app/shared/utils/kware-translate.pipe';
     ThemedBrowseByComponent,
     ThemedLoadingComponent,
     TranslateModule,
-    KwareTranslatePipe
+    KwareTranslatePipe,
+    ThemedConfigurationSearchPageComponent
   ],
 })
 /**

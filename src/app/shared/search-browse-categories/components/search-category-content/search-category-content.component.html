@@ -1,0 +1,71 @@
+<div class="">
+  <div class="d-flex justify-content-between">
+    <h4 style="color: #530a86 !important">
+      {{ "search.results.head" | translate }}
+    </h4>
+
+    <ds-search-export-csv [searchConfig]="searchConfig"></ds-search-export-csv>
+  </div>
+
+  <div
+    *ngIf="
+      (objects | async) &&
+      (objects | async)?.hasSucceeded &&
+      !(objects | async)?.isLoading &&
+      (objects | async)?.payload?.page.length > 0
+    "
+    @fadeIn
+  >
+    <ds-viewable-collection
+      [config]="SearchOptions.pagination"
+      [sortConfig]="SearchOptions.sort"
+      [objects]="objects | async"
+      [hideGear]="true"
+    >
+    </ds-viewable-collection>
+  </div>
+
+  <ds-loading
+    *ngIf="isLoading(objects | async)"
+    message="{{ 'loading.search-results' | translate }}"
+  ></ds-loading>
+  <ds-error
+    *ngIf="showError(objects | async)"
+    message="{{ errorMessageLabel(objects | async) | translate }}"
+  ></ds-error>
+  <div
+    *ngIf="
+      (objects | async)?.payload?.page.length == 0 ||
+      (objects | async)?.statusCode == 400
+    "
+  >
+    {{ "search.results.no-results" | translate }}
+    <a
+      [routerLink]="['/search']"
+      [queryParams]="{ query: surroundStringWithQuotes(searchConfig?.query) }"
+      queryParamsHandling="merge"
+    >
+      {{ "search.results.no-results-link" | translate }}
+    </a>
+  </div>
+  <!-- <div *ngIf="!(objects | async)?.payload?.page.length" class="content-loading">
+    <ds-themed-loading
+      message="{{ 'loading.default' | translate }}"
+      [showMessage]="true"
+    ></ds-themed-loading>
+  </div> -->
+
+  <!-- <div *ngIf="(objects | async)?.payload?.totalElements > 5" class="loadMore">
+    <a
+      [routerLink]="[loadMoreLink]"
+      [queryParams]="{
+        value: loadMoreParams.value,
+        view: loadMoreParams.view,
+        source: loadMoreParams.source
+      }"
+      class="btn btn-primary search-button mt-2 float-right ng-tns-c290-40"
+    >
+      {{ "vocabulary-treeview.load-more" | translate }} ...</a
+    >
+  </div> -->
+</div>

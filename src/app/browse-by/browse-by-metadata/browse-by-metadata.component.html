@@ -1,7 +1,7 @@
 @if ((!ssrRenderingDisabled)) {
   <section class="comcol-page-browse-section">
     <div class="browse-by-metadata w-100">
-      @if ((loading$ | async) !== true) {
+      @if ((loading$ | async) !== true && !(isBrowseCategories | async)) {
         <ds-browse-by class="col-xs-12 w-100"
                          title="{{'browse.title' | translate:{
                            field: 'browse.metadata.' + browseId | translate,
@@ -17,6 +17,22 @@
           (prev)="goPrev()"
           (next)="goNext()">
         </ds-browse-by>
+      }
+      @if((isBrowseCategories | async)){
+            <h3 >{{'search.title' | translate:{
+        field: 'browse.metadata.' + browseId | translate,
+        startsWith: (startsWith)? ('browse.startsWith' | translate: { startsWith: '&quot;' + startsWith + '&quot;' }) : '',
+        value: (value)? '&quot;' + (browseId === 'entityType' ? (getEntity(value) | translate):(browseId === 'rights' ? (getRights(value) | translate):(value | kwareTranslate)) )+ '&quot;': ''
+      } }}</h3>
+      <br>
+      <ds-configuration-search-page
+      [fixedFilterQuery]="(valuePart | async)? 'f.'+(filterPart | async)+'='+(valuePart | async)+',query' : fixedFilter"
+      
+      [configuration]="configuration"
+      [searchEnabled]="searchEnabled"
+      [sideBarWidth]="sideBarWidth"
+      [showCsvExport]="true">
+    </ds-configuration-search-page>
       }
       @if (loading$ | async) {
         <ds-loading

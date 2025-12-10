@@ -142,6 +142,8 @@ export class KwareImageViewerComponent implements OnInit, OnChanges {
         this.canvas.style.transform = 'none';
       }
     });
+
+    
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -265,7 +267,6 @@ export class KwareImageViewerComponent implements OnInit, OnChanges {
   }
 
   downloadImage = (canvas) => {
-    console.log(this.fileformat);
     const image = canvas.toDataURL(this.fileformat);
     const link = document.createElement('a');
     link.href = image;

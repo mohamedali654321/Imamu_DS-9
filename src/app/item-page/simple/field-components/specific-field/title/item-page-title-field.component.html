@@ -9,7 +9,7 @@
 
 <h1 class="item-page-title-field">
   
-  <div *ngIf="item.firstMetadataValue('dspace.entity.type') && (item.firstMetadataValue('dspace.entity.type') !== 'Publication' && item.firstMetadataValue('dspace.entity.type') !== 'OrgUnit' && item.firstMetadataValue('dspace.entity.type') !== 'Place' && item.firstMetadataValue('dspace.entity.type') !== 'Event')" class="d-inline">
+  <div *ngIf="item.firstMetadataValue('dspace.entity.type') && (item.firstMetadataValue('dspace.entity.type') !== 'Publication' && item.firstMetadataValue('dspace.entity.type') !== 'OrgUnit' && item.firstMetadataValue('organization.child.type') !== 'College | كلية' && item.firstMetadataValue('organization.child.type') !== 'Department | قسم' && item.firstMetadataValue('organization.child.type') !== 'Library | مكتبة'  && item.firstMetadataValue('dspace.entity.type') !== 'Place' && item.firstMetadataValue('dspace.entity.type') !== 'Event')" class="d-inline">
     {{  item.firstMetadataValue('dspace.entity.type').toLowerCase() + '.page.titleprefix' | translate }}
   </div>
   <div *ngIf="item.firstMetadataValue('dspace.entity.type')  && item.firstMetadataValue('dspace.entity.type') === 'Event'" class="d-inline">
@@ -18,7 +18,7 @@
   <div *ngIf="item.firstMetadataValue('dspace.entity.type')  && item.firstMetadataValue('dspace.entity.type') === 'Place'" class="d-inline">
     {{ item.firstMetadataValue('place.type') ? ((item.firstMetadataValue('place.type') | kwareTranslate )+':') : item.firstMetadataValue('dspace.entity.type').toLowerCase() + '.page.titleprefix' | translate }}
   </div>
-    <div *ngIf="item.firstMetadataValue('dspace.entity.type')  && item.firstMetadataValue('dspace.entity.type') === 'OrgUnit'" class="d-inline">
+    <div *ngIf="item.firstMetadataValue('dspace.entity.type')  && item.firstMetadataValue('dspace.entity.type') === 'OrgUnit' && item.firstMetadataValue('organization.child.type') !== 'College | كلية' && item.firstMetadataValue('organization.child.type') !== 'Department | قسم' && item.firstMetadataValue('organization.child.type') !== 'Library | مكتبة'" class="d-inline">
     {{ item.firstMetadataValue('organization.child.type') ? ((item.firstMetadataValue('organization.child.type') | kwareTranslate )+':') : ((item.firstMetadataValue('organization.type') | kwareTranslate)+':') }}
   </div>
   <span class="dont-break-out">{{ dsoNameService.getName(item) }} 
@@ -26,6 +26,9 @@
     <a *ngIf="item.hasMetadata('person.identifier.orcid')" target="_blank" href="https://sandbox.orcid.org/{{item.firstMetadataValue('person.identifier.orcid')}}"><img style="width: 30px !important;" class="orcid-icon ng-star-inserted orcid-img"  src="/assets/images/orcid.logo.icon.svg"/></a> 
     <a *ngIf="item.hasMetadata('dc.identifier.doi')" target="_blank" href="{{item.firstMetadataValue('dc.identifier.doi').includes('https://') === false ? 'https://doi.org/'+item.firstMetadataValue('dc.identifier.doi'): item.firstMetadataValue('dc.identifier.doi')}}"><img style="width: 30px !important;" class="orcid-icon ng-star-inserted orcid-img"  src="/assets/images/DOI_logo.svg.png" /></a> 
     <a *ngIf="item.hasMetadata('dc.identifier.openalex')" target="_blank" href="{{item.firstMetadataValue('dc.identifier.openalex').includes('https://') === false ? 'https://openalex.org/'+item.firstMetadataValue('dc.identifier.openalex'): item.firstMetadataValue('dc.identifier.openalex')}}" class="openalex-img"><img style="width: 28px !important;" class="orcid-icon ng-star-inserted orcid-img "  src="/assets/images/proxy-image.png" /></a>    
-
+    <!-- <a *ngIf="item.hasMetadata('dc.identifier.dewey')"  class="container-img">
+      <img  style="width: 70px;height: 20px;border-radius: 15px;" class="orcid-icon ng-star-inserted orcid-img"  src="/assets/images/dewey.png"/>
+      <div class="centered">{{item.firstMetadataValue('dc.identifier.dewey')}}</div>
+    </a>  -->
   </span>
 </h1>

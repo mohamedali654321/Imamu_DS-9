@@ -55,5 +55,9 @@ export class LinkMenuItemComponent implements OnInit {
     }
     event.stopPropagation();
   }
+    ToggleShow() {
+    const elementToBeHidden = document.querySelector(".dropdown-menu.show");
+    elementToBeHidden.classList.toggle("hidden-menu");
+  }
 
 }

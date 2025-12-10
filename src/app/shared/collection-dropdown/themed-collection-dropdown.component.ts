@@ -30,7 +30,17 @@ export class ThemedCollectionDropdownComponent extends ThemedComponent<Collectio
 
   @Output() selectionChange = new EventEmitter();
 
-  protected inAndOutputNames: (keyof CollectionDropdownComponent & keyof this)[] = ['entityType', 'searchComplete', 'theOnlySelectable', 'selectionChange'];
+            /*kware start edit
+   - get selected collection from SubmissionFormCollectionComponent
+   - send  searchListCollectionLength to SubmissionFormCollectionComponent to check if length > 1
+   **/
+   @Input() selectedCollection: string;
+
+   @Output() searchListCollectionLength = new EventEmitter<number>();
+ 
+ /*kware end edit**/
+
+  protected inAndOutputNames: (keyof CollectionDropdownComponent & keyof this)[] = ['entityType', 'selectedCollection','searchListCollectionLength','searchComplete', 'theOnlySelectable', 'selectionChange'];
 
   protected getComponentName(): string {
     return 'CollectionDropdownComponent';

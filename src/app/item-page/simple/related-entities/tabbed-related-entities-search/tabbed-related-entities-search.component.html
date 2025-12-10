@@ -9,6 +9,7 @@
           <div class="mt-4">
             <ds-related-entities-search [item]="item"
               [relationType]="relationType.filter"
+               [relationLabel]="relationType.label"
               [configuration]="relationType.configuration"
               [searchEnabled]="searchEnabled"
               [sideBarWidth]="sideBarWidth">
@@ -24,6 +25,7 @@
   <div class="mt-4">
     <ds-related-entities-search *ngVar="(newRelationships | async)[0] as relationType" [item]="item"
       [relationType]="relationType.filter"
+       [relationLabel]="relationType.label"
       [configuration]="relationType.configuration"
       [searchEnabled]="searchEnabled"
       [sideBarWidth]="sideBarWidth">

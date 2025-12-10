@@ -1,4 +1,4 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgClass, NgIf } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
@@ -50,6 +50,7 @@ import { hasValue } from '../empty.util';
 import { ThemedLoadingComponent } from '../loading/themed-loading.component';
 import { followLink } from '../utils/follow-link-config.model';
 import { KwareTranslatePipe } from "../utils/kware-translate.pipe";
+import { ActivatedRoute } from '@angular/router';
 
 /**
  * An interface to represent a collection entry
@@ -80,7 +81,9 @@ export interface CollectionListEntry {
     ReactiveFormsModule,
     ThemedLoadingComponent,
     TranslateModule,
-    KwareTranslatePipe
+    KwareTranslatePipe,
+    NgIf,
+    NgClass
 ],
 })
 export class CollectionDropdownComponent implements OnInit, OnDestroy {
@@ -156,11 +159,35 @@ export class CollectionDropdownComponent implements OnInit, OnDestroy {
    */
   @Output() theOnlySelectable = new EventEmitter<CollectionListEntry>();
 
+
+      /*
+ kware start edit
+ - length of search list collection
+ **/
+ @Output() searchListCollectionLength = new EventEmitter<number>();
+
+
+
+ @Input() selectedCollection: string;
+ /** kware end edit*/
+  
+       /*
+ kware start edit
+ - check route if from fast add bt
+ */
+currentEntityType ='';
+
+isFastAdd:boolean;
+
+  /* kware end edit*/ 
+
+
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
     private collectionDataService: CollectionDataService,
     private el: ElementRef,
     public dsoNameService: DSONameService,
+    private route: ActivatedRoute,
   ) { }
 
   /**
@@ -183,6 +210,13 @@ export class CollectionDropdownComponent implements OnInit, OnDestroy {
    * Initialize collection list
    */
   ngOnInit() {
+                   /*
+   kware start edit
+   - check route if from fast add bt
+   */
+   this.route?.queryParams?.subscribe((params=>{this.currentEntityType= params.entityType}));
+   this.route?.queryParams?.subscribe((params=>{this.isFastAdd = params.action ? true :false}));
+ /* kware end edit*/ 
     this.isLoading.next(false);
     this.subs.push(this.searchField.valueChanges.pipe(
       debounceTime(500),
@@ -254,7 +288,8 @@ export class CollectionDropdownComponent implements OnInit, OnDestroy {
           followLink('parentCommunity'));
     } else {
       searchListService$ = this.collectionDataService
-        .getAuthorizedCollection(query, findOptions, true, true, followLink('parentCommunity'));
+      .getAuthorizedCollection(this.currentEntityType ? (this.currentEntityType ==='journal'? this.currentEntityType+'~0' : this.currentEntityType ) : query, findOptions, true, true, followLink('parentCommunity'));
+
     }
     this.searchListCollection$ = searchListService$.pipe(
       getFirstCompletedRemoteData(),

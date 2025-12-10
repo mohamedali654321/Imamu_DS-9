@@ -1,3 +1,4 @@
+import { hasValue } from "src/app/shared/empty.util";
 
 export const SECTION_LICENSE_FORM_LAYOUT = {
 
@@ -13,16 +14,16 @@ export const SECTION_LICENSE_FORM_LAYOUT = {
 export const SECTION_LICENSE_FORM_MODEL = [
   {
     id: 'granted',
-    label: 'submission.sections.license.granted-label',
+    label: (typeof window === 'object' && hasValue(window.localStorage)) && window.localStorage.getItem('selectedLangCode') === 'ar' ?  'أؤكد الترخيص أعلاه':'I confirm the license above',
     required: true,
     value: false,
     validators: {
-      required: null,
+      required: null
     },
     errorMessages: {
-      required: 'submission.sections.license.required',
-      notgranted: 'submission.sections.license.notgranted',
+      required:(typeof window === 'object' && hasValue(window.localStorage)) && window.localStorage.getItem('selectedLangCode') === 'ar' ? 'يجب عليك قبول الترخيص': 'You must accept the license',
+      notgranted: (typeof window === 'object' && hasValue(window.localStorage)) && window.localStorage.getItem('selectedLangCode') === 'ar' ? 'يجب عليك قبول الترخيص': 'You must accept the license'
     },
     type: 'CHECKBOX',
-  },
+  }
 ];

@@ -34,6 +34,12 @@
             <span *ngIf="linkType == linkTypes.None"
                   class="lead"
                   [innerHTML]="(dsoTitle | kwareTranslate)  || ('place.listelement.no-title' | translate | kwareTranslate)"></span>
+                                        <!-- <a *ngIf="dso.hasMetadata('dc.identifier.dewey')"  class="container-img">
+      
+      <img  style="width: 70px;height: 20px;border-radius: 15px;" class="orcid-icon ng-star-inserted orcid-img"  src="/assets/images/dewey.png"/>
+
+  <div class="centered-dewey">{{dso.firstMetadataValue('dc.identifier.dewey')}}</div>
+    </a>  -->
                   <ds-publictaion-count  [dso]="dso"></ds-publictaion-count>
             
           <div *ngIf="dso.allMetadata(['subject.broader']).length > 0">

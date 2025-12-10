@@ -39,7 +39,8 @@ export class BrowseCategoriesComponent implements OnInit, OnDestroy {
   parentCategories = [];
   matchCategories = [];
   // sortedCategories = ['Publication', 'Person', 'Administration', 'OrgUnit', 'Project', 'JournalIssue', 'JournalVolume', 'Journal', 'Site', 'Place', 'Activity', 'Event', 'Era', 'Series'];
-  sortedCategories = ['Publication', 'Person', 'OrgUnit', 'Project', 'Journal', 'Place', 'Event', 'Era', 'Series', 'Subject'];
+  // sortedCategories = ['Publication', 'Person', 'OrgUnit', 'Project', 'Journal', 'Place', 'Event', 'Era', 'Series', 'Subject'];
+  sortedCategories = ['Publication', 'Person','Administration', 'OrgUnit', 'Journal', 'Project','Place', 'Event', 'Era', 'Series', 'Subject'];
   categoriesConfigs = {
     'Publication': { icon: 'fa-solid fa-book-open' },
     'Person': { icon: 'fa fa-users' },

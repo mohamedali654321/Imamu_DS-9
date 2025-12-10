@@ -101,7 +101,7 @@
 
 </a>
 <!-- kware-edit kwareTranslatePipe -->
-<a style="color: #207698 !important;" *ngIf="!externalLinks && check && !orcidLinks; else elseBlock" href="/search?query=&f.{{link}}={{value}},equals">
+<a style="color: #207698 ;" *ngIf="!externalLinks && check && !orcidLinks; else elseBlock" href="/search?query=&f.{{link}}={{value}},equals">
     {{value | kwareTranslate }}
  </a>
  <ng-template  #elseBlock>

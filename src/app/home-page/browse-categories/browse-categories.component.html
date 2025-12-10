@@ -11,13 +11,13 @@
 
   <!-- Category content -->
   <ds-category-content
-    *ngIf="selectedCategory !== 0 && selectedCategory !== 2 && selectedCategory !== 4 && selectedCategory !== 5 && selectedCategory !== 6 "
+    *ngIf="selectedCategory !== 0 &&  selectedCategory !== 2  "
     [objects]="itemRD$"
     [paginationConfig]="paginationConfig" 
     [sortConfig]="sortConfig"
     [loadMoreLink]="'/browse/entityType'"
     [loadMoreParams]="{
-      value: (selectedCategory === 1 || selectedCategory === 9)  ? parentCategories[selectedCategory].value : parentCategories[selectedCategory],
+      value: (selectedCategory === 1 || selectedCategory === 9)  ? parentCategories[selectedCategory].value : parentCategories[selectedCategory].value,
       view: 'list',
       source: 'browseCategory'
     }"
@@ -27,11 +27,16 @@
     *ngIf="selectedCategory === 0 "
   ></ds-publication-category>
 
+  <ds-orgunit-category
+*ngIf="selectedCategory === 2 "
+></ds-orgunit-category>
+
+
   <!-- <ds-administration-category
   *ngIf="selectedCategory === 2 "
 ></ds-administration-category> -->
 
-<ds-orgunit-category
+<!-- <ds-orgunit-category
 *ngIf="selectedCategory === 2 "
 ></ds-orgunit-category>
 
@@ -41,7 +46,7 @@
 
 <ds-event-category
 *ngIf="selectedCategory === 6 "
-></ds-event-category>
+></ds-event-category> -->
 
 <ds-journal-category
 *ngIf="selectedCategory === 4 "

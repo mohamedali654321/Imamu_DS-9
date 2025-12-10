@@ -49,6 +49,8 @@ import { FacetValues } from '../../../models/facet-values.model';
 import { SearchFilterConfig } from '../../../models/search-filter-config.model';
 import { SearchOptions } from '../../../models/search-options.model';
 import { LocaleService } from 'src/app/core/locale/locale.service';
+import { SharedVariableService } from 'src/app/core/services/share-variable.service';
+
 
 /**
  * The operators the {@link AppliedFilter} should have in order to be shown in the facets
@@ -151,6 +153,7 @@ export class SearchFacetFilterComponent implements OnInit, OnDestroy {
               protected rdbs: RemoteDataBuildService,
               protected router: Router,
               protected localeService: LocaleService,
+               protected sharedVariable: SharedVariableService,
               @Inject(SEARCH_CONFIG_SERVICE) public searchConfigService: SearchConfigurationService,
   ) {
   }
@@ -174,6 +177,22 @@ export class SearchFacetFilterComponent implements OnInit, OnDestroy {
       map((allAppliedFilters: AppliedFilter[]) => allAppliedFilters.filter((appliedFilter: AppliedFilter) => FACET_OPERATORS.includes(appliedFilter.operator))),
       distinctUntilChanged((previous: AppliedFilter[], next: AppliedFilter[]) => JSON.stringify(previous) === JSON.stringify(next)),
     );
+    
+             /**
+      * kware-edit start 
+   * get selected  entity facets 
+   * serach tabs
+   */
+// kware-edit start 
+
+this.facetValues$.subscribe((res)=>{
+ 
+  if(res[0] && res[0]?.name && res[0]?.name === 'entityType'){
+    this.sharedVariable.setEntityTypes(res[0]?.page)
+  }
+
+})
+// kware-edit end
   }
 
   /**

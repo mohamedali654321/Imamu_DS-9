@@ -1,0 +1,67 @@
+@import '../../../styles/_kware_styles.scss';
+
+::ng-deep ds-kware-subjects-section {
+    h2 {
+        font-size: 1.28571429rem !important;
+    }
+
+    .subject {
+
+        padding: 0.2rem 0.6rem !important;
+
+        &:hover {
+
+            background-color: hsla(210, 6%, 79%, 0.15) !important;
+            color: #434343 !important;
+            text-decoration: none;
+
+        }
+    }
+
+    ds-plain-text-metadata-list-element {
+
+        .dont-break-out {
+            // border: 1px solid rgba(34, 36, 38, 0.15);
+            // border-radius: 0.28571429rem;
+            box-sizing: border-box;
+            color: #696969 !important;
+            font-size: 1rem !important;
+            cursor: pointer;
+            display: inline-block;
+            // padding: 0.2rem 0.6rem;
+            text-decoration: none;
+
+            &:hover {
+
+                background-color: hsla(210, 6%, 79%, 0.15) !important;
+                color: #434343 !important;
+                text-decoration: none;
+
+            }
+        }
+
+    }
+
+    ds-subject-item-metadata-list-element {
+        a {
+            // border: 1px solid rgba(34, 36, 38, 0.15);
+            // border-radius: 0.28571429rem;
+            box-sizing: border-box;
+            color: #696969 !important;
+            font-size: 1rem !important;
+            cursor: pointer;
+            display: inline-block;
+            // padding: 0.2rem 0.6rem;
+            text-decoration: none;
+
+            &:hover {
+
+                background-color: hsla(210, 6%, 79%, 0.15) !important;
+                color: #434343 !important;
+                text-decoration: none;
+
+            }
+        }
+
+    }
+}

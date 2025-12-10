@@ -1,0 +1,235 @@
+ <div class="sidebar-container">
+  <h2 class="ui medium top attached header mt-0"> {{"kware.details.section" | translate }}</h2>
+  <div id="record-details" class="ui segment bottom attached rdm-sidebar">
+    <dl class="details-list">
+
+      @if (object.hasMetadata('dc.identifier.uri')) {
+      <div style="margin-bottom: 10px" id="uri">
+        <dt class="ui tiny header">{{ "item.page.uri" | translate }}</dt>
+        <div class="d-flex">
+          <a
+            style="display: inline-flex"
+            [href]="object.firstMetadataValue('dc.identifier.uri')"
+          >
+            <span
+              style="background-color: #555 !important"
+              class="badge badge-pill badge-info icon-label"
+              >URI</span
+            >
+            <span
+              style="background-color: #007ec6 !important"
+              class="badge badge-pill badge-info text-label"
+            >
+              {{ object.firstMetadataValue("dc.identifier.uri") }}</span
+            >
+          </a>
+        </div>
+      </div>
+      } 
+      @if (object.hasMetadata('dc.identifier.doi')) {
+      <div style="margin-bottom: 10px" id="doi">
+        <dt class="ui tiny header">{{ "item.page.doi" | translate }}</dt>
+        <div class="d-flex">
+          <a
+            style="display: inline-flex"
+            [href]="
+              object
+                .firstMetadataValue('dc.identifier.doi')
+                ?.includes('https://doi.') == true
+                ? object.firstMetadataValue('dc.identifier.doi')
+                : 'https://doi.org/' +
+                  object.firstMetadataValue('dc.identifier.doi')
+            "
+          >
+            <span
+              style="background-color: #555 !important"
+              class="badge badge-pill badge-info icon-label"
+              >DOI</span
+            >
+            <span
+              style="background-color: #007ec6 !important"
+              class="badge badge-pill badge-info text-label"
+            >
+              {{
+                object
+                  .firstMetadataValue("dc.identifier.doi")
+                  ?.includes(".org/") === true
+                  ? object
+                      .firstMetadataValue("dc.identifier.doi")
+                      ?.split(".org/")[1]
+                  : object.firstMetadataValue("dc.identifier.doi")
+              }}</span
+            >
+          </a>
+        </div>
+      </div>
+      } 
+      @if (object.hasMetadata('dc.identifier.openalex')) {
+      <div style="margin-bottom: 10px" id="openalex">
+        <dt class="ui tiny header">{{ "item.page.openalex" | translate }}</dt>
+        <div class="d-flex">
+          <a
+            style="display: inline-flex"
+            [href]="
+              object
+                .firstMetadataValue('dc.identifier.openalex')
+                ?.includes('https://openalex.')
+                ? object.firstMetadataValue('dc.identifier.openalex')
+                : 'https://openalex.org/' +
+                  object.firstMetadataValue('dc.identifier.openalex')
+            "
+          >
+            <span
+              style="background-color: #555 !important"
+              class="badge badge-pill badge-info icon-label"
+              >OpenAlex</span
+            >
+            <span
+              style="background-color: #007ec6 !important"
+              class="badge badge-pill badge-info text-label"
+            >
+              {{
+                object
+                  .firstMetadataValue("dc.identifier.openalex")
+                  ?.includes(".org/") === true
+                  ? object
+                      .firstMetadataValue("dc.identifier.openalex")
+                      ?.split(".org/")[1]
+                  : object.firstMetadataValue("dc.identifier.openalex")
+              }}</span
+            >
+          </a>
+        </div>
+      </div>
+      }
+
+
+
+      @if (object.hasMetadata('journal.identifier.issn')) {
+      <div style="margin-bottom: 10px" id="issn">
+        <dt class="ui tiny header">{{ "publication.page.journal-issn" | translate }}</dt>
+        <div class="d-flex">
+          <span
+            style="display: inline-flex"
+          >
+            <span
+              style="background-color: #555 !important"
+              class="badge badge-pill badge-info icon-label"
+              >ISSN</span
+            >
+            <span
+              style="background-color: #007ec6 !important"
+              class="badge badge-pill badge-info text-label"
+            >
+              {{
+                object.firstMetadataValue("journal.identifier.issn")
+              }}</span
+            >
+            </span>
+        </div>
+      </div>
+      }
+
+
+      @if (object.hasMetadata('dc.identifier.isbn')) {
+      <div style="margin-bottom: 10px" id="isbn">
+        <dt class="ui tiny header">{{ "item.page.isbn" | translate }}</dt>
+        <div class="d-flex">
+          <span
+            style="display: inline-flex"
+          >
+            <span
+              style="background-color: #555 !important"
+              class="badge badge-pill badge-info icon-label"
+              >ISBN</span
+            >
+            <span
+              style="background-color: #007ec6 !important"
+              class="badge badge-pill badge-info text-label"
+            >
+              {{
+                object.firstMetadataValue("dc.identifier.isbn")
+              }}</span
+            >
+            </span>
+        </div>
+      </div>
+      }
+
+      @if (object.hasMetadata('dc.identifier.dewey')) {
+      <div style="margin-bottom: 10px" id="dewey">
+        <dt class="ui tiny header">{{ "item.page.dewey" | translate }}</dt>
+        <div class="d-flex">
+          <span
+            style="display: inline-flex"
+          >
+            <span
+              style="background-color: #555 !important"
+              class="badge badge-pill badge-info icon-label"
+              >DEWEY</span
+            >
+            <span
+              style="background-color: #007ec6 !important"
+              class="badge badge-pill badge-info text-label"
+            >
+              {{
+                object.firstMetadataValue("dc.identifier.dewey")
+              }}</span
+            >
+            </span>
+        </div>
+      </div>
+      }
+
+
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.type']"
+        [label]="'item.page.type'"
+      >
+      </ds-generic-item-page-field>
+
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.type.content']"
+        [label]="'item.page.content'"
+      >
+      </ds-generic-item-page-field>
+
+      <ds-metadata-representation-list
+        [parentItem]="object"
+        [itemType]="'OrgUnit'"
+        [metadataFields]="['dc.publisher']"
+        [label]="'publication.page.publisher' | translate"
+      >
+      </ds-metadata-representation-list>
+
+      <ds-metadata-representation-list
+        [parentItem]="object"
+        [itemType]="'OrgUnit'"
+        [metadataFields]="['dc.publisher.arabicedition']"
+        [label]="'publication.page.publisherArabicEdition' | translate"
+      >
+      </ds-metadata-representation-list>
+
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.source']"
+        [label]="
+          object &&
+          object.firstMetadataValue('dc.type') === 'Manuscript | مخطوطة'
+            ? 'publication.page.source'
+            : 'item.page.source'
+        "
+      >
+      </ds-generic-item-page-field>
+
+      <ds-generic-item-page-field
+        [item]="object"
+        [fields]="['dc.language.iso']"
+        [label]="'item.page.language'"
+      >
+      </ds-generic-item-page-field>
+    </dl>
+  </div>
+</div>

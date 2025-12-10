@@ -82,7 +82,6 @@ export class KwarePdfViewerComponent implements OnInit, OnChanges {
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.fileUrl?.currentValue) {
-      console.log('changes.fileUrl.currentValue: ', changes.fileUrl.currentValue);
       if (this.pdfJsViewer) {
         this.pdfJsViewer.pdfSrc = encodeURIComponent(changes.fileUrl.currentValue);
         this.pdfJsViewer.refresh();
@@ -126,6 +125,7 @@ export class KwarePdfViewerComponent implements OnInit, OnChanges {
   }
 
   downloadPdf(filename: string, byte: any) {
+    
     console.log(this.fileformat);
     let blob = new Blob([byte], { type: this.fileformat });
     let link = document.createElement('a');

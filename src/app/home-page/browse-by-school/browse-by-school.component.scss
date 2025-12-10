@@ -1,0 +1,11 @@
+::ng-deep ds-browse-by-school{
+    ds-pagination{
+        .pagination-info{
+        position: absolute !important;
+        visibility: hidden !important;
+        opacity: 0;
+        display: none !important;
+    }
+    }
+
+}

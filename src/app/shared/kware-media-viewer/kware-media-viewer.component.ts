@@ -56,7 +56,7 @@ export class KwareMediaViewerComponent implements OnInit, OnDestroy {
   fileUrl: any;
   fileFormat: string;
   isMobile: boolean;
-  isViewerOpen = false;
+  isViewerOpen = true;
 
   filesMenuWidth: string;
 
@@ -71,7 +71,7 @@ export class KwareMediaViewerComponent implements OnInit, OnDestroy {
   // @HostListener('window:resize', ['$event'])
   // onResize(event) {
   //   this.isMobile = this.breakpointObserver.isMatched([
-  //     Breakpoints.HandsetLandscape,
+  //     Breakpoints.HandsetLandscape,  
   //     Breakpoints.HandsetPortrait,
   //   ]);
   //   if (this.isMobile) {
@@ -127,6 +127,8 @@ export class KwareMediaViewerComponent implements OnInit, OnDestroy {
 
     /** fetch bitstreams */
     this.onFetchBitstreams();
+
+
   }
 
   onFetchBitstreams() {
@@ -217,11 +219,11 @@ export class KwareMediaViewerComponent implements OnInit, OnDestroy {
       if (this.viewerPanelsStatus.isFilesMenuOpen) {
         this.viewerService.setViewerPanelsStatus({
           isFilesMenuOpen: true,
-          isViewerPanelOpen: false,
+          isViewerPanelOpen: true,
         });
       } else {
         this.viewerService.setViewerPanelsStatus({
-          isFilesMenuOpen: false,
+          isFilesMenuOpen: true,
           isViewerPanelOpen: true,
         });
       }
@@ -242,7 +244,7 @@ export class KwareMediaViewerComponent implements OnInit, OnDestroy {
     this.isViewerOpen = true;
     if (this.isMobile) {
       this.viewerService.setViewerPanelsStatus({
-        isFilesMenuOpen: false,
+        isFilesMenuOpen: true,
         isViewerPanelOpen: true,
       });
       this.filesMenuWidth = '100%';

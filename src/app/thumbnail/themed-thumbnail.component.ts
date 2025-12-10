@@ -20,7 +20,7 @@ import { Item } from '../core/shared/item.model';
 })
 export class ThemedThumbnailComponent extends ThemedComponent<ThumbnailComponent> {
 
-  @Input() item ;
+  @Input() item :Item;
 
   @Input() thumbnail: Bitstream | RemoteData<Bitstream>;
 

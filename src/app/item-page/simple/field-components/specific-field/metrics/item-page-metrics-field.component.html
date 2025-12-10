@@ -1,0 +1,74 @@
+<!-- <div class="item-page-field">
+  <ds-metadata-field-wrapper [hideIfNoTextContent]="false">
+    <div class="simple-view-element">
+      <h2 *ngIf="showTitle" class="simple-view-element-header">
+        {{ "item.page.metrics" | translate }}
+      </h2>
+      <div class="simple-view-element-body">
+        <div style="gap: 25px;" class="d-flex flex-row">
+          <div>
+           
+              <ds-item-page-dimension-field
+              *ngIf="item.hasMetadata('dc.identifier.doi') && item.firstMetadataValue('dc.identifier.doi').includes('https://doi.test') === false"
+                (widgetLoaded)="someWidgetHasLoaded($event)"
+                [item]="item"
+              ></ds-item-page-dimension-field>
+            </div>
+             <div>
+            <ds-item-page-altmetric-field
+              (widgetLoaded)="someWidgetHasLoaded($event)"
+              [item]="item"
+            ></ds-item-page-altmetric-field>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </ds-metadata-field-wrapper>
+</div> -->
+
+
+
+
+    <div *ngIf="item.hasMetadata('dc.identifier.doi') && item.firstMetadataValue('dc.identifier.doi').includes('https://doi.test') === false" class="item-page-field" >
+  <ds-metadata-field-wrapper [hideIfNoTextContent]="true">
+    <div class="simple-view-element">
+<div class="sidebar-container">
+
+        <h2  class="simple-view-element-header ui medium top attached header mt-0">
+        {{ "item.page.metrics" | translate }}
+      </h2>
+  <div class="simple-view-element-body">
+  <div id="citation" class="ui segment bottom attached rdm-sidebar">
+    <div id="recordCitation">
+      
+
+        <div style="gap: 25px;" class="d-flex flex-row">
+          <div>
+           
+              <ds-item-page-dimension-field
+              *ngIf="item.hasMetadata('dc.identifier.doi') && item.firstMetadataValue('dc.identifier.doi').includes('https://doi.test') === false"
+                (widgetLoaded)="someWidgetHasLoaded($event)"
+                [item]="item"
+              ></ds-item-page-dimension-field>
+            </div>
+             <div>
+            <ds-item-page-altmetric-field
+              (widgetLoaded)="someWidgetHasLoaded($event)"
+              [item]="item"
+            ></ds-item-page-altmetric-field>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+  </ds-metadata-field-wrapper>
+
+</div>
+

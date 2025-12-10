@@ -4,7 +4,7 @@
   [submissionId]="submissionId" [sectionType]="sectionData.sectionType" [sectionId]="sectionData.id">
   @if ((sectionRef.isEnabled() | async)) {
     <ngb-accordion #acc="ngbAccordion"
-      (panelChange)="sectionRef.sectionChange($event)" activeIds="{{ sectionData.id }}" [destroyOnHide]="false">
+      (panelChange)="sectionRef.sectionChange($event)" activeIds="{{ sectionID | async }}" [destroyOnHide]="false">
       <ngb-panel id="{{ sectionData.id }}" [type]="sectionRef.isInfo() ? 'info' : ''">
         <ng-template ngbPanelTitle class="d-flex">
           <span [ngClass]="{ 'text-white' : sectionRef.isInfo()}" class="flex-grow-1 section-title" tabindex="0">{{

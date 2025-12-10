@@ -28,7 +28,9 @@
   @if (searchListCollection?.length > 0) {
     @for (listItem of searchListCollection; track listItem) {
       <li
+      
         class="dropdown-item collection-item"
+        [ngClass]="{'bg-primary': listItem.collection.id === selectedCollection}"
         role="menuitem"
         title="{{ listItem.collection.name | kwareTranslate}}"
         (click)="onSelect(listItem)">

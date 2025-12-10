@@ -7,7 +7,7 @@
 <div class="d-flex flex-row">
   <ds-item-page-title-field [item]="object" class="mr-auto">
   </ds-item-page-title-field>
-   <ds-kware-navigate-items [item]="object"></ds-kware-navigate-items> 
+  <ds-kware-navigate-items [item]="object"></ds-kware-navigate-items>
   <ds-dso-edit-menu></ds-dso-edit-menu>
 </div>
 
@@ -15,7 +15,7 @@
   <div class="col-xs-12 col-md-8">
     <ds-kware-social-sharing [item]="object"></ds-kware-social-sharing>
     <br />
-    @if (!(mediaViewer.image || mediaViewer.video)) {
+    <!-- @if (!(mediaViewer.image || mediaViewer.video)) {
     <ds-metadata-field-wrapper [hideIfNoTextContent]="false">
       <ds-thumbnail
         [thumbnail]="object?.thumbnail | async"
@@ -29,8 +29,17 @@
     <div class="mb-2">
       <ds-media-viewer [item]="object"></ds-media-viewer>
     </div>
-    }
+    } -->
+      <ds-thumbnail
+        [item]="object"
 
+        [thumbnail]="object?.thumbnail | async"
+        [defaultImage]="'assets/images/series-placehplder.svg'"
+        [alt]="'thumbnail.subject.alt'"
+        [placeholder]="'thumbnail.subject.placeholder'"
+      >
+      </ds-thumbnail>
+      
     <ds-metadata-representation-list
       class="ds-item-page-mixed-author-field"
       [parentItem]="object"
@@ -148,13 +157,6 @@
       [relationType]="'isSubjectRelatingTo'"
       [label]="'relationships.isSubjectRelatingTo' | translate">
     </ds-related-items> -->
-
-    <ds-item-page-uri-field
-      [item]="object"
-      [fields]="['dc.identifier.uri']"
-      [label]="'item.page.uri'"
-    >
-    </ds-item-page-uri-field>
   </div>
   <div class="col-xs-12 col-md-4">
     <ds-simple-view-statistics [object]="object"></ds-simple-view-statistics>
@@ -183,6 +185,13 @@
       [label]="'item.page.dewey'"
     >
     </ds-generic-item-page-field>
+
+    <ds-item-page-uri-field
+      [item]="object"
+      [fields]="['dc.identifier.uri']"
+      [label]="'item.page.uri'"
+    >
+    </ds-item-page-uri-field>
 
     <ds-item-page-collections [item]="object"></ds-item-page-collections>
 

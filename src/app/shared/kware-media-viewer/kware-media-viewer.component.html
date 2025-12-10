@@ -1,4 +1,4 @@
-<div *ngIf="!isViewerOpen">
+<!-- <div *ngIf="!isViewerOpen">
   <div class="row">
     <div class="col-xs-12 col-md-3">
       <button class="files-browse-btn" (click)="openViewer()">
@@ -7,27 +7,10 @@
       </button>
     </div>
   </div>
-</div>
-<div class="viewer-container" *ngIf="isViewerOpen">
-  <div
-    class="files-panel"
-    style="--filesMenuWidth:{{ filesMenuWidth }}"
-    *ngIf="viewerPanelsStatus.isFilesMenuOpen"
-  >
-    <ds-item-files-menu
-      [item]="item"
-      [bitstreams]="bitstreams$ | async"
-      [totalElements]="totalElements"
-      [isLoading]="isLoading"
-      [isEmptyList]="isEmptyList"
-      [isLastPage]="isLastPage"
-      [isMobile]="isMobile"
-      [viewerPanelsStatus]="viewerPanelsStatus"
-      (scrollingFinished)="onScrollingFinished()"
-    ></ds-item-files-menu>
-  </div>
+</div> -->
 
-  <div class="viewer-panel" *ngIf="viewerPanelsStatus.isViewerPanelOpen">
+
+  <div class="" style="margin-bottom: 20px;"  *ngIf="(bitstreams$ | async).length > 0">
     <ds-viewer-panel
       [closeViewer]="closeViewer"
       [fileMeta]="fileMeta"
@@ -39,4 +22,25 @@
       [isEmptyList]="isEmptyList"
     ></ds-viewer-panel>
   </div>
-</div>
+
+
+
+  <div
+    
+    [ngStyle]="{'width':isMobile ? '100%' : '100%'}"
+ 
+    *ngIf="(bitstreams$ | async).length > 0"
+  >
+    <ds-item-files-menu
+      [item]="item"
+      [bitstreams]="bitstreams$"
+      [totalElements]="totalElements"
+      [isLoading]="isLoading"
+      [isEmptyList]="isEmptyList"
+      [isLastPage]="isLastPage"
+      [isMobile]="isMobile"
+      [viewerPanelsStatus]="viewerPanelsStatus"
+      (scrollingFinished)="onScrollingFinished()"
+    ></ds-item-files-menu>
+  </div>
+

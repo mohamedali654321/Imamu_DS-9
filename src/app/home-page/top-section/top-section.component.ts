@@ -12,8 +12,8 @@ import { SortDirection, SortOptions } from '../../core/cache/models/sort-options
 import { environment } from '../../../environments/environment';
 import { ViewMode } from '../../core/shared/view-mode.model';
 import { SearchConfigurationService } from '../../core/shared/search/search-configuration.service';
-import { toDSpaceObjectListRD } from '../../core/shared/operators';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { getFirstSucceededRemoteData, getFirstSucceededRemoteDataPayload, getRemoteDataPayload, toDSpaceObjectListRD } from '../../core/shared/operators';
+import { BehaviorSubject, map, Observable, switchMap } from 'rxjs';
 import { followLink, FollowLinkConfig } from '../../shared/utils/follow-link-config.model';
 import { APP_CONFIG, AppConfig } from '../../../config/app-config.interface';
 import { AsyncPipe, isPlatformBrowser, NgFor, NgIf } from '@angular/common';
@@ -31,6 +31,11 @@ import { VarDirective } from 'src/app/shared/utils/var.directive';
 import { ErrorComponent } from 'src/app/shared/error/error.component';
 import { ListableObjectComponentLoaderComponent } from 'src/app/shared/object-collection/shared/listable-object/listable-object-component-loader.component';
 import { BrowserOnlyPipe } from 'src/app/shared/utils/browser-only.pipe';
+import { Site } from 'src/app/core/shared/site.model';
+import { StatisticsPageDirective } from 'src/app/statistics-page/statistics-page/statistics-page.directive';
+import { SiteDataService } from 'src/app/core/data/site-data.service';
+import { DSpaceObject } from 'src/app/core/shared/dspace-object.model';
+import { redirectOn4xx } from 'src/app/core/shared/authorized.operators';
 @Component({
   selector: 'ds-top-section',
   templateUrl: './top-section.component.html',
@@ -43,13 +48,20 @@ import { BrowserOnlyPipe } from 'src/app/shared/utils/browser-only.pipe';
   standalone:true,
   imports:[ThemedLoadingComponent,NgIf,TranslateModule,VarDirective,ErrorComponent,ListableObjectComponentLoaderComponent,AsyncPipe,BrowserOnlyPipe,NgFor]
 })
-export class TopSectionComponent implements OnInit {
+export class TopSectionComponent extends StatisticsPageDirective<Site> implements OnInit  {
   itemRD$: Observable<RemoteData<PaginatedList<Item>>>;
   paginationConfig: PaginationComponentOptions;
   sortConfig: SortOptions;
   itemsRD$ =new BehaviorSubject<any[]>([]);
-  itemIds=[];
-  
+  itemsArr=[];
+  items=[];
+  itemsIDs=[];
+  item1:any;
+  item2:any;
+  item3:any;
+  item4:any;
+  item5:any;
+
   /**
  * The view-mode we're currently on
  * @type {ViewMode}
@@ -62,16 +74,15 @@ export class TopSectionComponent implements OnInit {
   private _placeholderFontClass: string;
 
   constructor(
-    // private searchService: SearchService,
+   
     private paginationService: PaginationService,
-    // public searchConfigurationService: SearchConfigurationService,
-    // protected elementRef: ElementRef,
-    protected dsoService: DSpaceObjectDataService,
+    public dsoService: DSpaceObjectDataService,
     private httpClient: HttpClient,
     @Inject(APP_CONFIG) private appConfig: AppConfig,
-    // @Inject(PLATFORM_ID) private platformId: Object,
+    protected siteService: SiteDataService
   ) {
 
+super();
     this.paginationConfig = Object.assign(new PaginationComponentOptions(), {
       id: 'hp',
       pageSize: 5,
@@ -79,62 +90,96 @@ export class TopSectionComponent implements OnInit {
       maxSize: 1
     });
     this.sortConfig = new SortOptions(environment.homePage.recentSubmissions.sortField, SortDirection.DESC);
+    
   }
   ngOnInit(): void {
-    const linksToFollow: FollowLinkConfig<Item>[] = [];
-    if (this.appConfig.browseBy.showThumbnails) {
-      linksToFollow.push(followLink('thumbnail'));
-    }
+    this.getReports$().subscribe(res=>{      
+      
+
+     this.dsoService.findById(res[0].points.slice(0,5)[0].id)?.pipe(getFirstSucceededRemoteData()).subscribe((item)=>{
+      this.item1=item;
+     })
+
+    this.dsoService.findById(res[0].points.slice(0,5)[1].id)?.pipe(getFirstSucceededRemoteData()).subscribe((item)=>{
+      this.item2=item;
+     })
+
+    this.dsoService.findById(res[0].points.slice(0,5)[2].id)?.pipe(getFirstSucceededRemoteData()).subscribe((item)=>{
+      this.item3=item;
+     })
+
+     
+    this.dsoService.findById(res[0].points.slice(0,5)[3].id)?.pipe(getFirstSucceededRemoteData()).subscribe((item)=>{
+      this.item4=item;
+     })
+
+    this.dsoService.findById(res[0].points.slice(0,5)[4].id)?.pipe(getFirstSucceededRemoteData()).subscribe((item)=>{
+      this.item5=item;
+     })
+
+      res[0].points.slice(0,5).forEach(item=>{
+       this.itemsIDs.push(item.id) 
+      })
 
 
-this.getMostViewsItems(this.siteId).then((items) => {
-  items.subscribe((item) => {
-    item['_embedded'].usagereports[0]?.points?.sort(
-      (p1, p2) => (p1.values.views < p2.values.views) ? 1 : (p1.values.views > p2.values.views) ? -1 : 0).forEach(async(point) => {
-      let itemId =await point.id;
-      this.itemIds.push(point.id);
+    this.itemsIDs.forEach(async(item)=>{
+             await this.dsoService.findById(item)?.pipe(getFirstSucceededRemoteData()).subscribe(async(items)=>{
+        //  console.log(items)
+            
+              
+         await  this.itemsRD$.next(this.itemsRD$.getValue().concat([items]))
 
-      await this.dsoService.findById(itemId)?.subscribe( async item=>{
-        if(item.payload?.id == point?.id){
-          await this.itemsRD$.next(this.itemsRD$.getValue().concat([item]))
+        
+      })
+
+    })
+      res.forEach(point=>{
+
+        point.points.slice(0, 5).forEach(async(item)=>{
+        // console.log(item.id);
+
+
+         await this.dsoService.findById(item.id)?.pipe(getFirstSucceededRemoteData()).subscribe(async(items)=>{
+        //  console.log(items)
+            if(items.payload?.id == item?.id){
+              this.itemsArr.push(items)
+        //  await  this.itemsRD$.next(this.itemsRD$.getValue().concat([items]))
 
         }
       })
+        })
+        
+      })
+
     })
-  })
-})
-  }
-  
-  async getMostViewsItems(siteId: string) : Promise<any>{
-    const  data= await this.httpClient.get(`${environment.rest.baseUrl}/api/statistics/usagereports/search/object?&uri=${environment.rest.baseUrl}/api/core/site/${siteId}`);
-    return await data;
+
+
 
   }
+  
+
 
   ngOnDestroy(): void {
     this.paginationService.clearPagination(this.paginationConfig.id);
   }
 
-  // onLoadMore(): void {
-  //   this.paginationService.updateRouteWithUrl(this.searchConfigurationService.paginationID, ['search'], {
-  //     sortField: environment.homePage.recentSubmissions.sortField,
-  //     sortDirection: 'DESC' as SortDirection,
-  //     page: 1
-  //   });
-  // }
 
-  // get placeholderFontClass(): string {
-  //   if (this._placeholderFontClass === undefined) {
-  //     if (isPlatformBrowser(this.platformId)) {
-  //       const width = this.elementRef.nativeElement.offsetWidth;
-  //       this._placeholderFontClass = setPlaceHolderAttributes(width);
-  //     } else {
-  //       this._placeholderFontClass = 'hide-placeholder-text';
-  //     }
-  //   }
-  //   return this._placeholderFontClass;
-  // }
+  protected getReports$() {
+    return this.usageReportService.searchStatistics(`${environment.rest.baseUrl}/api/core/sites/${this.siteId}`, 0, 5)
+  }
 
+sortArray(array,sortOrderIds){
+  array.sort((a, b) => {
+  return sortOrderIds.indexOf(a.id) - sortOrderIds.indexOf(b.id);
+});
+}
+
+getItemById(id):any{
+return  this.dsoService.findById(id)?.pipe(getFirstSucceededRemoteDataPayload()).subscribe((item)=>{
+  return item
+
+})
+}
 }
 
 

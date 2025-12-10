@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { Script } from '../../scripts/script.model';
 import { ScriptParameterType } from '../../scripts/script-parameter-type.model';
+import { LocaleService } from 'src/app/core/locale/locale.service';
 
 /**
  * Components that represents a help section for the script use and parameters
@@ -31,4 +32,21 @@ export class ScriptHelpComponent {
    * The available script parameter types
    */
   parameterTypes = ScriptParameterType;
+
+  
+  //kware-edit
+  constructor(
+    public localeService : LocaleService , /* kware edit - call service from LocaleService */
+
+  ){}
+
+   //kware-edit
+   // check for language
+   lang:boolean =this.localeService.getCurrentLanguageCode()==='ar'? true : false
+
+   // remove (-) from param names to create key
+  createKey(str:string){
+     const res= str || str !== null ? str.replace(/-/g,"") : "";
+     return res.toLocaleLowerCase();
+   }
 }

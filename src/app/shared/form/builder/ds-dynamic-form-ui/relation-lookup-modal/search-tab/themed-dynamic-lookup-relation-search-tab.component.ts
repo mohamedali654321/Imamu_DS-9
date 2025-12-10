@@ -27,11 +27,13 @@ import { DsDynamicLookupRelationSearchTabComponent } from './dynamic-lookup-rela
   ],
 })
 export class ThemedDynamicLookupRelationSearchTabComponent extends ThemedComponent<DsDynamicLookupRelationSearchTabComponent> {
-  protected inAndOutputNames: (keyof DsDynamicLookupRelationSearchTabComponent & keyof this)[] = ['relationship', 'listId',
+  protected inAndOutputNames: (keyof DsDynamicLookupRelationSearchTabComponent & keyof this)[] = ['relationship', 'relationshipLabel', 'listId',
     'query', 'hiddenQuery', 'repeatable', 'selection$', 'context', 'relationshipType', 'item', 'isLeft', 'toRemove', 'isEditRelationship',
     'deselectObject', 'selectObject', 'resultFound'];
 
   @Input() relationship: RelationshipOptions;
+
+  @Input() relationshipLabel: string;
 
   @Input() listId: string;
 

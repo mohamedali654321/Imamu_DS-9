@@ -32,7 +32,7 @@ export class PublictaionCountComponent {
    relationsCounter= new BehaviorSubject<number>(0);
 
    options = new FindListOptions();
-orgUnitRelations=['isPublicationOfOrgUnit','isPublicationOfPublisher','isPublicationOfArabicPublisher'];
+orgUnitRelations=['isPublicationOfOrgUnit','isPublicationOfPublisher','isPublicationOfArabicPublisher','isPublicationOfDepartment'];
 publicationRelations=['isPublicationLinkedTo','isPublicationLinkingTo'];
 
   constructor(
@@ -194,8 +194,8 @@ publicationRelations=['isPublicationLinkedTo','isPublicationLinkingTo'];
     }
 
     else if(
-      this.dso.firstMetadataValue('dspace.entity.type') === 'OrgUnit' && (this.dso.allMetadataValues('relation.isPublicationOfOrgUnit').length > 0 || 
-      this.dso.allMetadataValues('relation.isPublicationOfPublisher').length > 0 || this.dso.allMetadataValues('relation.isPublicationOfArabicPublisher').length > 0)
+      this.dso.firstMetadataValue('dspace.entity.type') === 'OrgUnit' &&  this.dso.firstMetadataValue('organization.child.type') !== 'College | كلية'  && (this.dso.allMetadataValues('relation.isPublicationOfOrgUnit').length > 0 || 
+      this.dso.allMetadataValues('relation.isPublicationOfPublisher').length > 0 || this.dso.allMetadataValues('relation.isPublicationOfArabicPublisher').length > 0 || this.dso.allMetadataValues('relation.isPublicationOfDepartment').length > 0)
       
     ){
       this.orgUnitRelations.forEach(relation=>{
@@ -207,6 +207,23 @@ publicationRelations=['isPublicationLinkedTo','isPublicationLinkingTo'];
 
       })
     
+    }
+        else if ( 
+      this.dso.firstMetadataValue('dspace.entity.type') === 'OrgUnit' &&  this.dso.firstMetadataValue('organization.child.type') === 'College | كلية' &&
+      this.dso.allMetadataValues('relation.isDepartmentOfCollege').length > 0
+    ) {
+
+      this.relationshipService.getRelatedItemsByLabel(this.dso ,'isDepartmentOfCollege', Object.assign(this.options,
+        { elementsPerPage: -1, currentPage: 1, fetchThumbnail: false })).pipe(getFirstSucceededRemoteDataPayload()).subscribe((data) => {
+          data.page.forEach((department)=>{
+            this.relationshipService.getRelatedItemsByLabel(department ,'isPublicationOfDepartment', Object.assign(this.options,
+              { elementsPerPage: -1, currentPage: 1, fetchThumbnail: false })).pipe(getFirstSucceededRemoteDataPayload()).subscribe(item=>{
+                console.log(item)
+                this.relationsCounter.next((this.relationsCounter.getValue() + item.totalElements))
+              })
+
+          })
+        })
     }
      else {
       this.relationshipService.getRelatedItems(this.dso).subscribe(res=>{

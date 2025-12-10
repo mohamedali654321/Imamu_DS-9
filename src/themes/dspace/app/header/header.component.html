@@ -70,10 +70,10 @@
 
                <!-- kware start edit -- issue.8.0.005
     - add Help links menu in header -->
-    <!-- <ds-help-links ></ds-help-links> -->
+    <ds-help-links ></ds-help-links>
     <!-- kware end edit -- issue.8.0.005 -->
         <ds-context-help-toggle></ds-context-help-toggle>
-        <a [attr.title]="('help.serach' | translate)" routerLink="info/help"><i style="font-size: 1.3333333333em;" class="fa-solid fa-circle-info"></i></a>
+        <a target="_blank" [attr.title]="('help.serach' | translate)" routerLink="info/help"><i style="font-size: 1.3333333333em;" class="fa-solid fa-circle-info"></i></a>
         <ds-impersonate-navbar></ds-impersonate-navbar>
         <ds-auth-nav-menu></ds-auth-nav-menu>
         <ds-lang-switch></ds-lang-switch>

@@ -374,6 +374,16 @@
     <ds-tabbed-related-entities-search
       [item]="object"
       [relationTypes]="[
+                {
+          label: 'isChildEventOf',
+          filter: 'isChildEventOf',
+          configuration: 'default-relationships'
+        },
+                {
+          label: 'isParentEventOf',
+          filter: 'isParentEventOf',
+          configuration: 'default-relationships'
+        },
         {
           label: 'isPublicationOfEvent',
           filter: 'isEventOfPublication',
@@ -384,16 +394,8 @@
           filter: 'isEventOfPerson',
           configuration: 'person-relationships'
         },
-        {
-          label: 'isParentEventOf',
-          filter: 'isParentEventOf',
-          configuration: 'default-relationships'
-        },
-        {
-          label: 'isChildEventOf',
-          filter: 'isChildEventOf',
-          configuration: 'default-relationships'
-        },
+
+
         {
           label: 'isAdministrationOfEvent',
           filter: 'isEventOfAdministration',

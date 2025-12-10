@@ -1,19 +1,93 @@
-<a
-  #selectedFileRef
-  (click)="emitMediaViewerSwitcher()"
-  [ngClass]="
-    bitstream?.format ? 'file-link-container matomo_download' : 'file-link-container-disabled matomo_download'
-  "
-  download="download"
-  target="_blank"
-  
->
-  <ds-item-file-icon
-    *ngIf="(bitstream.canDownload | async) && bitstream?.format | async"
-    [fileFormat]="bitstream?.format | async"
-  ></ds-item-file-icon>
-  <span class="no-perms" *ngIf="!(bitstream.canDownload | async) && bitstream?.format | async"
-    ><em class="fas fa-lock fa-lg"></em
-  ></span>
-  <span class="file-name">{{ bitstream?.name }}</span>
-</a>
+ <table class="ui striped table files fluid open">
+      <tbody>
+        <tr class="row-data">
+          <td [ngClass]="{'bg-td':isEvenIndex === false && fileIndex > 0}" class="ten wide">
+            <a
+              #selectedFileRef
+              (click)="emitMediaViewerSwitcher()"
+              [ngClass]="
+                bitstream?.format
+                  ? 'file-link-container matomo_download'
+                  : 'file-link-container-disabled matomo_download'
+              "
+              download="download"
+              target="_blank"
+            >
+              <span
+                class="no-perms"
+                *ngIf="
+                  !(bitstream['canDownload'] | async) && bitstream?.format
+                    | async
+                "
+                ><em class="fas fa-lock fa-lg"></em
+              ></span>
+              <span class="file-name">{{ bitstream?.name }}</span>
+            </a>
+
+            <small class="ui text-muted font-tiny"
+              >{{bitstream['checkSum'].checkSumAlgorithm}}:{{ bitstream['checkSum'].value }}
+              <div
+                class="ui icon inline-block"
+                
+                placement="top"  [ngbTooltip]="'kware.media.viewer.browseFiles.tooltip.fingerprint' | translate"
+              >
+                <!-- <i class="question circle checksum icon"></i> -->
+                <i class="fa-solid fa-circle-question"></i>
+              </div>
+            </small>
+          </td>
+          <td [ngClass]="{'bg-td':isEvenIndex === false && fileIndex > 0}" style="font-size: 14px" class="size-font">
+            {{ formatBytes(bitstream?.sizeBytes) }}
+          </td>
+          <td *ngVar="(bitstream['canDownload'] | async) as canDownload" [ngClass]="{'bg-td':isEvenIndex === false && fileIndex > 0}" class="right aligned">
+            <span>
+              <a
+                class="ui compact mini button preview-link"
+                role="button"
+                #selectedFileRef
+                (click)="emitMediaViewerSwitcher()"
+                [ngClass]="
+                  bitstream?.format ? ' matomo_download' : ' matomo_download'
+                "
+                download="download"
+                target="_blank"
+              >
+                <i class="fa-solid fa-eye"></i>&nbsp;{{'kware.media.viewer.browseFiles.btn.preview' | translate}}
+              </a>
+
+              <a
+              
+                [ngClass]="
+                  bitstream?.format ? ' matomo_download' : ' matomo_download'
+                "
+                target="_blank"
+                role="button"
+                class="ui compact mini button"
+                (click)="download(canDownload)"
+              >
+                <i class="fa-solid fa-download"></i> &nbsp;{{'kware.media.viewer.browseFiles.btn.download' | translate}}
+              </a>
+
+                            <!-- <a
+              *ngIf="!canDownload"
+                [ngClass]="
+                  bitstream?.format ? ' matomo_download' : ' matomo_download'
+                "
+                [routerLink]="routerLinkReqACopy"
+                [queryParams]="queryParamsReqACopy"
+              target="_blank"
+                role="button"
+                class="ui compact mini button"
+                
+              >
+                <i class="fa-solid fa-download"></i> &nbsp;{{'kware.media.viewer.browseFiles.btn.download' | translate}}
+              </a> -->
+            </span>
+          </td>
+        </tr>
+      </tbody>
+</table>
+
+
+
+      

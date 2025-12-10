@@ -1,4 +1,4 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 import {
   ChangeDetectorRef,
   Component,
@@ -57,6 +57,7 @@ import { SectionModelComponent } from '../models/section.model';
 import { SectionDataObject } from '../models/section-data.model';
 import { SectionsService } from '../sections.service';
 import { SectionsType } from '../sections-type';
+import { LocaleService } from 'src/app/core/locale/locale.service';
 
 /**
  * This component represents the submission section to select the Creative Commons license.
@@ -74,6 +75,8 @@ import { SectionsType } from '../sections-type';
     ThemedLoadingComponent,
     TranslateModule,
     VarDirective,
+    NgFor,
+    NgIf
   ],
   standalone: true,
 })
@@ -155,6 +158,10 @@ export class SubmissionSectionCcLicensesComponent extends SectionModelComponent 
 
   ccLicenseLink$: Observable<string>;
 
+
+     // kware-edit
+    locale: boolean = this.localeService.getCurrentLanguageCode() === 'ar' ? true : false;
+
   constructor(
     protected modalService: NgbModal,
     protected sectionService: SectionsService,
@@ -163,6 +170,7 @@ export class SubmissionSectionCcLicensesComponent extends SectionModelComponent 
     protected operationsBuilder: JsonPatchOperationsBuilder,
     protected configService: ConfigurationDataService,
     protected ref: ChangeDetectorRef,
+    public localeService: LocaleService , /* kware edit - call service from LocaleService */
     @Inject('collectionIdProvider') public injectedCollectionId: string,
     @Inject('sectionDataProvider') public injectedSectionData: SectionDataObject,
     @Inject('submissionIdProvider') public injectedSubmissionId: string,
@@ -407,4 +415,13 @@ export class SubmissionSectionCcLicensesComponent extends SectionModelComponent 
       ),
     );
   }
+
+     // kware-edit
+    createKey(str: string){
+      let res: string ;
+      if (str || str !== null){
+       res = str.replace(' ', '.');
+      }
+      return res.toLocaleLowerCase();
+    }
 }

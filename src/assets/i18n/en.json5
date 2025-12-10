@@ -17107,7 +17107,7 @@
   "submission.sections.describe.relationship-lookup.search-tab.tab-title.isPublicationOfSubject": "Local Publications ({{ count }})",
   "submission.sections.describe.relationship-lookup.title.isPublicationOfSubject": "Publications",
 
-    "item.citation.modal.header":"Citations",
+    "item.citation.modal.header":"Cite this!",
   "show.citation.btn":"Cite this",
 
    "copy.to.clipboard":"Copy to Clipboard",
@@ -17154,7 +17154,7 @@
 "query.filter.narrowerSubject":"Narrower Subject",
 "query.filter.relatedSubject":"Related Subject",
 "query.filter.subjectHeading":"Subject Heading List",
-"query.filter.deway":"Dewey Classification Identifier",
+"query.filter.dewey":"Dewey Classification Identifier",
 "item.page.dewey":"Dewey Classification Identifier",
 
 "query.filter.doi":"DOI",
@@ -17220,7 +17220,35 @@
   "publication.page.startPage": "Start page",
   "publication.page.issueNumber": "Issue number",
   "item.page.Edition": "Edition",
+  "cookies.consent.content-notice.description": "We collect and process your personal information for the following purposes: Authentication, Preferences, Acknowledgement and Statistics.  To learn more, please read our {privacyPolicy}.",
 
+ "citation.item.page.style":"Style",
+   "kware.details.section":"Details",
+     "kware.lisence.header":"Rights",
+  "kware.lisence.title":"License",
+
+  "kware.media.viewer.browseFiles.btn.download": "Download",
+  "kware.media.viewer.browseFiles.btn.preview": "Preview",
+  "kware.media.viewer.browseFiles.btn.downloadAll": "Download all",
+  "kware.media.viewer.browseFiles.name": "Name",
+  "kware.media.viewer.browseFiles.size": "Size",
+  "kware.media.viewer.browseFiles.tooltip.fingerprint":"This is the file fingerprint (checksum), which can be used to verify the file integrity.",
+
+"item.page.metrics":"Citation/Recitation/Republication Metrics",
+
+"item.page.metrics":"Citation/Recitation/Mentions ",
+
+"page.tooltip.dewey":"Dewey Classification Identifier",
+
+"submission.sections.describe.relationship-lookup.selection-tab.title.openalexPerson":"Search Results",
+  "submission.sections.describe.relationship-lookup.selection-tab.title.openalexInstitution":"Search Results",
+  "submission.sections.describe.relationship-lookup.selection-tab.title.openalexFunder":"Search Results",
+  "submission.sections.describe.relationship-lookup.selection-tab.title.dataciteProject":"Search Results",
+ "home.browse-by.college":"Browse by College",
+
+  "department-relationships.search.results.head":"Related Departments Search Results",
+  "item.page.relationships.isOrgUnitOfDepartment":"Departments",
+"suggestion.source.openalex": "OpenAlex",
 
 }
 

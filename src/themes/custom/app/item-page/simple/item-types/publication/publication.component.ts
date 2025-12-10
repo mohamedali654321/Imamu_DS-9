@@ -30,6 +30,11 @@ import { SimpleViewStatisticsComponent } from "src/app/shared/simple-view-statis
 import { KwareTranslatePipe } from "src/app/shared/utils/kware-translate.pipe";
 import { KwareSocialSharingComponent } from "src/app/shared/kware-social-sharing/kware-social-sharing.component";
 import { KwareNavigateItemsComponent } from "src/app/shared/kware-navigate-items/kware-navigate-items.component";
+import { KwareCitationSectionComponent } from "src/app/shared/kware-citation-section/kware-citation-section.component";
+import { KwareSubjectsSectionComponent } from "src/app/shared/kware-subjects-section/kware-subjects-section.component";
+import { KwareDetailsSectionComponent } from "src/app/shared/kware-details-section/kware-details-section.component";
+import { KwareLisenceSectionComponent } from "src/app/shared/kware-lisence-section/kware-lisence-section.component";
+import { ItemPageMetricsFieldComponent } from "src/app/item-page/simple/field-components/specific-field/metrics/item-page-metrics-field.component";
 
 @listableObjectComponent(
   "Publication",
@@ -76,7 +81,12 @@ import { KwareNavigateItemsComponent } from "src/app/shared/kware-navigate-items
     KwareTranslatePipe,
     NgStyle,
     KwareSocialSharingComponent,
-    KwareNavigateItemsComponent
+    KwareNavigateItemsComponent,
+    KwareCitationSectionComponent,
+    KwareSubjectsSectionComponent,
+    KwareDetailsSectionComponent,
+    KwareLisenceSectionComponent,
+    ItemPageMetricsFieldComponent
   ],
 })
 export class PublicationComponent extends BaseComponent {}

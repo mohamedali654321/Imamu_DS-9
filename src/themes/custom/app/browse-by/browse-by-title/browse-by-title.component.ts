@@ -6,6 +6,7 @@ import { BrowseByTitleComponent as BaseComponent } from '../../../../../app/brow
 import { ThemedBrowseByComponent } from '../../../../../app/shared/browse-by/themed-browse-by.component';
 import { ThemedLoadingComponent } from '../../../../../app/shared/loading/themed-loading.component';
 import { KwareTranslatePipe } from 'src/app/shared/utils/kware-translate.pipe';
+import { ThemedConfigurationSearchPageComponent } from 'src/app/search-page/themed-configuration-search-page.component';
 
 @Component({
   selector: 'ds-browse-by-title',
@@ -19,7 +20,8 @@ import { KwareTranslatePipe } from 'src/app/shared/utils/kware-translate.pipe';
     ThemedBrowseByComponent,
     ThemedLoadingComponent,
     TranslateModule,
-    KwareTranslatePipe
+    KwareTranslatePipe,
+    ThemedConfigurationSearchPageComponent
   ],
 })
 export class BrowseByTitleComponent extends BaseComponent {

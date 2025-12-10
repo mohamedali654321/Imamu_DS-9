@@ -9,6 +9,8 @@
     <ds-loading></ds-loading>
   }
   @if (item && collection) {
+    <div style="justify-content: space-between" class="d-flex">
+    <div>
     <ul ngbNav #nav="ngbNav" class="nav-tabs">
       <li ngbNavItem role="presentation">
         <a ngbNavLink>{{'submission.sections.describe.relationship-lookup.search-tab.tab-title.' + relationshipOptions.relationshipType | translate  : { count: (totalInternal$ | async)} }}</a>
@@ -22,6 +24,7 @@
             [query]="query"
             [hiddenQuery]="hiddenQuery"
             [relationshipType]="relationshipType"
+            [relationshipLabel]="relationshipLabel"
             [isLeft]="isLeft"
             [item]="item"
             [isEditRelationship]="isEditRelationship"
@@ -71,6 +74,115 @@
         </li>
       }
     </ul>
+    </div>
+       <!-- kware start edit 
+       -- add fast add btn -->
+
+      <div>
+        <a
+          *ngIf="collectionIdByEntity && submissionIdByEntity"
+          [routerLink]="['/workspaceitems/', submissionIdByEntity, 'edit']"
+          [queryParams]="{
+            action: 'fastAdd',
+            entityType: relationshipOptions?.searchConfiguration
+          }"
+          class="btn btn-primary"
+          role="button"
+          target="_blank"
+        >
+          <span
+            ><i class="fas fa-plus"></i>
+            {{
+              ("entity.add" | translate) +
+                " " +
+                (modelPlaceholder?.startsWith("ال") &&
+                modelPlaceholder !== undefined
+                  ? modelPlaceholder.slice(2, 1000)
+                  : modelPlaceholder === undefined
+                  ? (
+                      "submission.sections.describe.relationship-lookup.title." +
+                        relationshipOptions.relationshipType | translate
+                    ).replaceAll("ال", "")
+                  : modelPlaceholder)
+            }}</span
+          >
+        </a>
+
+        <div
+          *ngIf="!collectionIdByEntity && !submissionIdByEntity"
+          class="d-flex"
+        >
+          <div>
+            <a
+              style="
+                pointer-events: none;
+                background-color: #530a86 !important;
+                border: none;
+                opacity: 0.65;
+              "
+              [routerLink]="['/workspaceitems/', submissionIdByEntity, 'edit']"
+              [queryParams]="{
+                action: 'fastAdd',
+                entityType: relationshipOptions?.searchConfiguration
+              }"
+              class="nav-link btn btn-primary"
+              role="button"
+              target="_blank"
+            >
+              <span
+                ><i class="fas fa-plus"></i>
+                {{
+                  ("entity.add" | translate) +
+                    " " +
+                    (modelPlaceholder?.startsWith("ال") &&
+                    modelPlaceholder !== undefined
+                      ? modelPlaceholder.slice(2, 1000)
+                      : modelPlaceholder === undefined
+                      ? (
+                          "submission.sections.describe.relationship-lookup.title." +
+                            relationshipOptions.relationshipType | translate
+                        ).replaceAll("ال", "")
+                      : modelPlaceholder)
+                }}</span
+              >
+            </a>
+          </div>
+          <div>
+            <button
+              style="border: none; background-color: transparent"
+              type="button"
+              placement="top"
+              ngbTooltip="{{
+                ('fast.add.disable.part1' | translate) +
+                  (' ' +
+                    (modelPlaceholder?.startsWith('ال') &&
+                    modelPlaceholder !== undefined
+                      ? modelPlaceholder.slice(2, 1000)
+                      : modelPlaceholder === undefined
+                      ? (
+                          'submission.sections.describe.relationship-lookup.title.' +
+                            relationshipOptions.relationshipType | translate
+                        ).replaceAll('ال', '')
+                      : modelPlaceholder)) +
+                  ('fast.add.disable.part2' | translate)
+              }}"
+            >
+              <i
+                _ngcontent-dspace-angular-c156=""
+                autoclose="outside"
+                triggers="manual"
+                container="body"
+                placement="top"
+                ngbTooltip="Tooltip on top"
+                class="ds-context-help-icon fas fa-question-circle shadow-sm ds-context-help-icon-right ng-star-inserted"
+              >
+              </i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- kware end edit -->
+    </div>
     <div [ngbNavOutlet]="nav"></div>
   }
 </div>

@@ -1,18 +1,59 @@
-<div #viewerWrapper class="viewer-wrapper">
-  <div #viewerToolbar class="viewer-toolbar">
-    <div class="toolbar-container">
+<div #viewerWrapper class="viewer-wrapper ">
+  <div [ngClass]="{ 'viewer-toolbar-border': isShowContent, '': !isShowContent }" #viewerToolbar class="viewer-toolbar">
+    <div class="toolbar-container accordion-header" id="ngb-panel-0-header">
       <div class="toolbar-controls-group">
-        <button class="viewer-toolbar-btn" (click)="setViewerPanelStatus()">
-          <i
-            [ngClass]="
-              viewerPanelsStatus.isFilesMenuOpen
-                ? 'fa fa-angle-double-right'
-                : 'fa fa-bars fa-lg'
-            "
-            aria-hidden="true"
-          ></i>
+        <ng-content *ngIf="!isMobile" select="[leftMenu]"></ng-content>
+      </div>
+      <div style="cursor: pointer;" (click)="showContent()" class="toolbar-center-controls-group">
+        <ng-content select="[centerMenu]"></ng-content>
+      </div>
+      <div class="toolbar-controls-group">
+        <ng-content *ngIf="!isMobile" select="[rightMenu]"></ng-content>
+        <button
+          *ngIf="enableFullScreen"
+          class="viewer-toolbar-btn"
+          (click)="isFullScreen ? exitFullscreen() : openFullscreen()"
+          dsStopContextMenu
+        >
+          <i [ngClass]="isFullScreen ? 'fas fa-compress' : 'fas fa-expand'"></i>
         </button>
-        <div class="divider-v"></div>
+         
+        <button class="viewer-toolbar-btn " (click)="showContent()">
+          <i style="font-size: 1.15rem;font-weight: 700 !important;" [ngClass]="isShowContent ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down'"  aria-hidden="true"></i>         
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isMobile" class="mobile-toolbar">
+    <ng-content select="[mobileToolbar]"></ng-content>
+  </div>
+  <div [ngStyle]="{ 'height': isFullScreen ? '100%' : '70vh' }" *ngIf="isShowContent" #viewerContent class="viewer-content accordion-body collapse show">
+    <ng-content select="[viewerContent]"></ng-content>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div #viewerWrapper class="viewer-wrapper">
+    <ngb-accordion #acc="ngbAccordion" [activeIds]="['panel-0']">
+    <ngb-panel id="panel-0">
+      
+      <ng-template style="margin-bottom: -9px;" ngbPanelTitle>
+         <div #viewerToolbar class="viewer-toolbar">
+    <div class="toolbar-container">
+      <div  class="toolbar-controls-group">
+
         <ng-content *ngIf="!isMobile" select="[leftMenu]"></ng-content>
       </div>
       <div class="toolbar-center-controls-group">
@@ -28,17 +69,35 @@
         >
           <i [ngClass]="isFullScreen ? 'fas fa-compress' : 'fas fa-expand'"></i>
         </button>
-        <div class="divider-v"></div>
-        <button class="viewer-toolbar-btn" (click)="closeViewer()">
-          <i class="fa fa-times fa-lg" aria-hidden="true"></i>
-        </button>
+
       </div>
     </div>
   </div>
   <div *ngIf="isMobile" class="mobile-toolbar">
     <ng-content select="[mobileToolbar]"></ng-content>
   </div>
-  <div #viewerContent class="viewer-content">
+      </ng-template>
+      <ng-template  ngbPanelContent>
+      <div #viewerContent class="viewer-content">
     <ng-content select="[viewerContent]"></ng-content>
   </div>
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
+ 
+
 </div>
+
+ -->
+
+
+
+
+
+
+
+
+
+
+
+ 

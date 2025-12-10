@@ -1,4 +1,4 @@
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgForOf, NgIf } from "@angular/common";
 import {
   Component,
   EventEmitter,
@@ -6,72 +6,77 @@ import {
   OnDestroy,
   OnInit,
   Output,
-} from '@angular/core';
-import { Router } from '@angular/router';
+} from "@angular/core";
+import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import {
   NgbActiveModal,
   NgbNavModule,
-} from '@ng-bootstrap/ng-bootstrap';
-import { Store } from '@ngrx/store';
-import { TranslateModule } from '@ngx-translate/core';
+  NgbTooltipModule,
+} from "@ng-bootstrap/ng-bootstrap";
+import { Store } from "@ngrx/store";
+import { TranslateModule } from "@ngx-translate/core";
 import {
   BehaviorSubject,
   combineLatest as observableCombineLatest,
   Observable,
   Subscription,
-} from 'rxjs';
-import {
-  map,
-  skip,
-  switchMap,
-  take,
-} from 'rxjs/operators';
+} from "rxjs";
+import { map, skip, switchMap, take } from "rxjs/operators";
 
-import { AppState } from '../../../../../app.reducer';
-import { RemoteDataBuildService } from '../../../../../core/cache/builders/remote-data-build.service';
-import { RequestParam } from '../../../../../core/cache/models/request-param.model';
-import { ExternalSourceDataService } from '../../../../../core/data/external-source-data.service';
-import { FindListOptions } from '../../../../../core/data/find-list-options.model';
-import { LookupRelationService } from '../../../../../core/data/lookup-relation.service';
-import { PaginatedList } from '../../../../../core/data/paginated-list.model';
-import { RelationshipDataService } from '../../../../../core/data/relationship-data.service';
-import { Context } from '../../../../../core/shared/context.model';
-import { DSpaceObject } from '../../../../../core/shared/dspace-object.model';
-import { ExternalSource } from '../../../../../core/shared/external-source.model';
-import { Item } from '../../../../../core/shared/item.model';
-import { RelationshipType } from '../../../../../core/shared/item-relationships/relationship-type.model';
+import { AppState } from "../../../../../app.reducer";
+import { RemoteDataBuildService } from "../../../../../core/cache/builders/remote-data-build.service";
+import { RequestParam } from "../../../../../core/cache/models/request-param.model";
+import { ExternalSourceDataService } from "../../../../../core/data/external-source-data.service";
+import { FindListOptions } from "../../../../../core/data/find-list-options.model";
+import { LookupRelationService } from "../../../../../core/data/lookup-relation.service";
+import {
+  buildPaginatedList,
+  PaginatedList,
+} from "../../../../../core/data/paginated-list.model";
+import { RelationshipDataService } from "../../../../../core/data/relationship-data.service";
+import { Context } from "../../../../../core/shared/context.model";
+import { DSpaceObject } from "../../../../../core/shared/dspace-object.model";
+import { ExternalSource } from "../../../../../core/shared/external-source.model";
+import { Item } from "../../../../../core/shared/item.model";
+import { RelationshipType } from "../../../../../core/shared/item-relationships/relationship-type.model";
 import {
   getAllSucceededRemoteDataPayload,
+  getFirstCompletedRemoteData,
   getFirstSucceededRemoteDataPayload,
-} from '../../../../../core/shared/operators';
-import { SearchConfigurationService } from '../../../../../core/shared/search/search-configuration.service';
-import { SEARCH_CONFIG_SERVICE } from '../../../../../my-dspace-page/my-dspace-configuration.service';
-import { BtnDisabledDirective } from '../../../../btn-disabled.directive';
-import {
-  hasValue,
-  isNotEmpty,
-} from '../../../../empty.util';
-import { ThemedLoadingComponent } from '../../../../loading/themed-loading.component';
-import { ItemSearchResult } from '../../../../object-collection/shared/item-search-result.model';
-import { ListableObject } from '../../../../object-collection/shared/listable-object.model';
-import { SelectableListState } from '../../../../object-list/selectable-list/selectable-list.reducer';
-import { SelectableListService } from '../../../../object-list/selectable-list/selectable-list.service';
-import { SearchResult } from '../../../../search/models/search-result.model';
-import { followLink } from '../../../../utils/follow-link-config.model';
-import { RelationshipOptions } from '../../models/relationship-options.model';
-import { ThemedDynamicLookupRelationExternalSourceTabComponent } from './external-source-tab/themed-dynamic-lookup-relation-external-source-tab.component';
+} from "../../../../../core/shared/operators";
+import { SearchConfigurationService } from "../../../../../core/shared/search/search-configuration.service";
+import { SEARCH_CONFIG_SERVICE } from "../../../../../my-dspace-page/my-dspace-configuration.service";
+import { BtnDisabledDirective } from "../../../../btn-disabled.directive";
+import { hasValue, isNotEmpty, isNotNull } from "../../../../empty.util";
+import { ThemedLoadingComponent } from "../../../../loading/themed-loading.component";
+import { ItemSearchResult } from "../../../../object-collection/shared/item-search-result.model";
+import { ListableObject } from "../../../../object-collection/shared/listable-object.model";
+import { SelectableListState } from "../../../../object-list/selectable-list/selectable-list.reducer";
+import { SelectableListService } from "../../../../object-list/selectable-list/selectable-list.service";
+import { SearchResult } from "../../../../search/models/search-result.model";
+import { followLink } from "../../../../utils/follow-link-config.model";
+import { RelationshipOptions } from "../../models/relationship-options.model";
+import { ThemedDynamicLookupRelationExternalSourceTabComponent } from "./external-source-tab/themed-dynamic-lookup-relation-external-source-tab.component";
 import {
   AddRelationshipAction,
   RemoveRelationshipAction,
   UpdateRelationshipNameVariantAction,
-} from './relationship.actions';
-import { ThemedDynamicLookupRelationSearchTabComponent } from './search-tab/themed-dynamic-lookup-relation-search-tab.component';
-import { DsDynamicLookupRelationSelectionTabComponent } from './selection-tab/dynamic-lookup-relation-selection-tab.component';
+} from "./relationship.actions";
+import { ThemedDynamicLookupRelationSearchTabComponent } from "./search-tab/themed-dynamic-lookup-relation-search-tab.component";
+import { DsDynamicLookupRelationSelectionTabComponent } from "./selection-tab/dynamic-lookup-relation-selection-tab.component";
+import { SearchService } from "src/app/core/shared/search/search.service";
+import { CollectionDataService } from "src/app/core/data/collection-data.service";
+import { SubmissionService } from "src/app/submission/submission.service";
+import { Collection } from "src/app/core/shared/collection.model";
+import { RemoteData } from "src/app/core/data/remote-data";
+import { SubmissionObject } from "src/app/core/submission/models/submission-object.model";
+import { CollectionSearchResult } from "src/app/shared/object-collection/shared/collection-search-result.model";
+import { Location } from "@angular/common";
 
 @Component({
-  selector: 'ds-dynamic-lookup-relation-modal',
-  styleUrls: ['./dynamic-lookup-relation-modal.component.scss'],
-  templateUrl: './dynamic-lookup-relation-modal.component.html',
+  selector: "ds-dynamic-lookup-relation-modal",
+  styleUrls: ["./dynamic-lookup-relation-modal.component.scss"],
+  templateUrl: "./dynamic-lookup-relation-modal.component.html",
   providers: [
     {
       provide: SEARCH_CONFIG_SERVICE,
@@ -87,15 +92,24 @@ import { DsDynamicLookupRelationSelectionTabComponent } from './selection-tab/dy
     ThemedDynamicLookupRelationSearchTabComponent,
     ThemedLoadingComponent,
     TranslateModule,
+    RouterLink,
+    NgbTooltipModule,
+    NgIf,
+    NgForOf,
   ],
+
   standalone: true,
 })
 
 /**
  * Represents a modal where the submitter can select items to be added as a certain relationship type to the object being submitted
  */
-export class DsDynamicLookupRelationModalComponent implements OnInit, OnDestroy {
-  @Output() selectEvent: EventEmitter<ListableObject[]> = new EventEmitter<ListableObject[]>();
+export class DsDynamicLookupRelationModalComponent
+  implements OnInit, OnDestroy
+{
+  @Output() selectEvent: EventEmitter<ListableObject[]> = new EventEmitter<
+    ListableObject[]
+  >();
 
   /**
    * The label to use to display i18n messages (describing the type of relationship)
@@ -153,7 +167,7 @@ export class DsDynamicLookupRelationModalComponent implements OnInit, OnDestroy 
    * A map of subscriptions within this component
    */
   subMap: {
-    [uuid: string]: Subscription
+    [uuid: string]: Subscription;
   } = {};
   submissionId: string;
 
@@ -207,6 +221,21 @@ export class DsDynamicLookupRelationModalComponent implements OnInit, OnDestroy 
    */
   isPending = false;
 
+  /** kware start edit -- add fast add btn */
+
+  collectionIdByEntity = "";
+
+  submissionIdByEntity: string;
+
+  modelPlaceholder: string;
+
+  //check url
+  isWorkSpace: boolean;
+
+  relationshipLabel: string;
+
+  /** kware end edit */
+
   constructor(
     public modal: NgbActiveModal,
     private selectableListService: SelectableListService,
@@ -218,9 +247,13 @@ export class DsDynamicLookupRelationModalComponent implements OnInit, OnDestroy 
     private zone: NgZone,
     private store: Store<AppState>,
     private router: Router,
-  ) {
-
-  }
+    /** kware start edit -- add fast add btn */
+    private searchService: SearchService,
+    private collectionDataService: CollectionDataService,
+    private submissionService: SubmissionService,
+    private route: ActivatedRoute,
+    private location: Location
+  ) {}
 
   ngOnInit(): void {
     if (this.currentItemIsLeftItem$) {
@@ -232,45 +265,123 @@ export class DsDynamicLookupRelationModalComponent implements OnInit, OnDestroy 
 
     this.selection$ = this.selectableListService
       .getSelectableList(this.listId)
-      .pipe(map((listState: SelectableListState) => hasValue(listState) && hasValue(listState.selection) ? listState.selection : []));
-    this.selection$.pipe(take(1)).subscribe((selection) =>
-      selection.map((s: SearchResult<Item>) => this.addNameVariantSubscription(s)),
-    );
-    if (this.relationshipOptions.nameVariants === 'true') {
+      .pipe(
+        map((listState: SelectableListState) =>
+          hasValue(listState) && hasValue(listState.selection)
+            ? listState.selection
+            : []
+        )
+      );
+    this.selection$
+      .pipe(take(1))
+      .subscribe((selection) =>
+        selection.map((s: SearchResult<Item>) =>
+          this.addNameVariantSubscription(s)
+        )
+      );
+    if (this.relationshipOptions.nameVariants === "true") {
       this.context = Context.EntitySearchModalWithNameVariants;
     } else {
       this.context = Context.EntitySearchModal;
     }
 
     if (isNotEmpty(this.relationshipOptions.externalSources)) {
-      this.externalSourcesRD$ = this.rdbService.aggregate(
-        this.relationshipOptions.externalSources.map((source) => {
-          return this.externalSourceService.findById(
-            source,
-            true,
-            true,
-            followLink('entityTypes'),
-          );
-        }),
-      ).pipe(
-        getAllSucceededRemoteDataPayload(),
-      );
+      this.externalSourcesRD$ = this.rdbService
+        .aggregate(
+          this.relationshipOptions.externalSources.map((source) => {
+            return this.externalSourceService.findById(
+              source,
+              true,
+              true,
+              followLink("entityTypes")
+            );
+          })
+        )
+        .pipe(getAllSucceededRemoteDataPayload());
     } else {
       const findListOptions = Object.assign({}, new FindListOptions(), {
         elementsPerPage: 5,
         currentPage: 1,
         searchParams: [
-          new RequestParam('entityType', this.relationshipOptions.relationshipType),
+          new RequestParam(
+            "entityType",
+            this.relationshipOptions.relationshipType
+          ),
         ],
       });
-      this.externalSourcesRD$ = this.externalSourceService.searchBy('findByEntityType', findListOptions,
-        true, true, followLink('entityTypes'))
-        .pipe(getFirstSucceededRemoteDataPayload(), map((r: PaginatedList<ExternalSource>) => {
-          return r.page;
-        }));
+      this.externalSourcesRD$ = this.externalSourceService
+        .searchBy(
+          "findByEntityType",
+          findListOptions,
+          true,
+          true,
+          followLink("entityTypes")
+        )
+        .pipe(
+          getFirstSucceededRemoteDataPayload(),
+          map((r: PaginatedList<ExternalSource>) => {
+            return r.page;
+          })
+        );
     }
 
     this.setTotals();
+
+    /*
+    kware-edit start
+    -add fast add btn
+    - get collection by entity type 
+    */
+    // check if url has workspaceitems to display fast add btn
+    this.isWorkSpace = this.route.snapshot["_routerState"].url.includes(
+      "workspaceitems/"
+    )
+      ? true
+      : false;
+    let searchListService$: Observable<RemoteData<PaginatedList<Collection>>> =
+      null;
+    searchListService$ = this.collectionDataService.getAuthorizedCollection(
+      this.relationshipOptions?.searchConfiguration === "journal"
+        ? this.relationshipOptions?.searchConfiguration + "~0"
+        : this.relationshipOptions?.searchConfiguration,
+      {},
+      true,
+      false,
+      followLink("parentCommunity")
+    );
+    searchListService$.pipe(
+      getFirstCompletedRemoteData(),
+      map((rd) =>
+        Object.assign(new RemoteData(null, null, null, null), rd, {
+          payload: hasValue(rd.payload)
+            ? buildPaginatedList(
+                rd.payload.pageInfo,
+                rd.payload.page.map((col) =>
+                  Object.assign(new CollectionSearchResult(), {
+                    indexableObject: col,
+                  })
+                )
+              )
+            : null,
+        })
+      )
+    );
+    searchListService$.subscribe((res) => {
+      if (res?.payload?.page[0]?.id !== this.collectionIdByEntity) {
+        this.collectionIdByEntity = res?.payload?.page[0]?.id;
+        this.submissionService
+          .createSubmission(this.collectionIdByEntity)
+          .subscribe((submissionObject: SubmissionObject) => {
+            // NOTE new submission is created on the browser side only
+            if (isNotNull(submissionObject)) {
+              if (isNotEmpty(submissionObject)) {
+                this.submissionIdByEntity = submissionObject?.id;
+              }
+            }
+          });
+      }
+    });
+    /* kware-edit end*/
   }
 
   close() {
@@ -285,11 +396,12 @@ export class DsDynamicLookupRelationModalComponent implements OnInit, OnDestroy 
    * @param selectableObjects
    */
   select(...selectableObjects: SearchResult<DSpaceObject>[]) {
-    this.zone.runOutsideAngular(
-      () => {
-        const obs: Observable<any[]> = observableCombineLatest([...selectableObjects.map((sri: SearchResult<Item>) => {
+    this.zone.runOutsideAngular(() => {
+      const obs: Observable<any[]> = observableCombineLatest([
+        ...selectableObjects.map((sri: SearchResult<Item>) => {
           this.addNameVariantSubscription(sri);
-          return this.relationshipService.getNameVariant(this.listId, sri.indexableObject.uuid)
+          return this.relationshipService
+            .getNameVariant(this.listId, sri.indexableObject.uuid)
             .pipe(
               take(1),
               map((nameVariant: string) => {
@@ -297,19 +409,23 @@ export class DsDynamicLookupRelationModalComponent implements OnInit, OnDestroy 
                   item: sri.indexableObject,
                   nameVariant,
                 };
-              }),
+              })
             );
         }),
-        ]);
-        obs
-          .subscribe((arr: any[]) => {
-            return arr.forEach((object: any) => {
-              const addRelationshipAction = new AddRelationshipAction(this.item, object.item, this.relationshipOptions.relationshipType, this.submissionId, object.nameVariant);
-              this.store.dispatch(addRelationshipAction);
-            },
-            );
-          });
+      ]);
+      obs.subscribe((arr: any[]) => {
+        return arr.forEach((object: any) => {
+          const addRelationshipAction = new AddRelationshipAction(
+            this.item,
+            object.item,
+            this.relationshipOptions.relationshipType,
+            this.submissionId,
+            object.nameVariant
+          );
+          this.store.dispatch(addRelationshipAction);
+        });
       });
+    });
   }
 
   /**
@@ -317,10 +433,23 @@ export class DsDynamicLookupRelationModalComponent implements OnInit, OnDestroy 
    * @param sri The search result to track name variants for
    */
   private addNameVariantSubscription(sri: SearchResult<Item>) {
-    const nameVariant$ = this.relationshipService.getNameVariant(this.listId, sri.indexableObject.uuid);
-    this.subMap[sri.indexableObject.uuid] = nameVariant$.pipe(
-      skip(1),
-    ).subscribe((nameVariant: string) => this.store.dispatch(new UpdateRelationshipNameVariantAction(this.item, sri.indexableObject, this.relationshipOptions.relationshipType, this.submissionId, nameVariant)));
+    const nameVariant$ = this.relationshipService.getNameVariant(
+      this.listId,
+      sri.indexableObject.uuid
+    );
+    this.subMap[sri.indexableObject.uuid] = nameVariant$
+      .pipe(skip(1))
+      .subscribe((nameVariant: string) =>
+        this.store.dispatch(
+          new UpdateRelationshipNameVariantAction(
+            this.item,
+            sri.indexableObject,
+            this.relationshipOptions.relationshipType,
+            this.submissionId,
+            nameVariant
+          )
+        )
+      );
   }
 
   /**
@@ -328,11 +457,18 @@ export class DsDynamicLookupRelationModalComponent implements OnInit, OnDestroy 
    * @param selectableObjects
    */
   deselect(...selectableObjects: SearchResult<DSpaceObject>[]) {
-    this.zone.runOutsideAngular(
-      () => selectableObjects.forEach((object) => {
+    this.zone.runOutsideAngular(() =>
+      selectableObjects.forEach((object) => {
         this.subMap[object.indexableObject.uuid].unsubscribe();
-        this.store.dispatch(new RemoveRelationshipAction(this.item, object.indexableObject as Item, this.relationshipOptions.relationshipType, this.submissionId));
-      }),
+        this.store.dispatch(
+          new RemoveRelationshipAction(
+            this.item,
+            object.indexableObject as Item,
+            this.relationshipOptions.relationshipType,
+            this.submissionId
+          )
+        );
+      })
     );
   }
 
@@ -356,38 +492,43 @@ export class DsDynamicLookupRelationModalComponent implements OnInit, OnDestroy 
 
     this.totalExternal$ = externalSourcesAndOptions$.pipe(
       switchMap(([sources, options]) =>
-        observableCombineLatest([...sources.map((source: ExternalSource) => this.lookupRelationService.getTotalExternalResults(source, options))])),
+        observableCombineLatest([
+          ...sources.map((source: ExternalSource) =>
+            this.lookupRelationService.getTotalExternalResults(source, options)
+          ),
+        ])
+      )
     );
   }
-
 
   setTotalInternals(totalPages: number) {
     this.totalInternal$.next(totalPages);
   }
 
   ngOnDestroy() {
-    this.router.navigate([], {});
-    Object.values(this.subMap).forEach((subscription) => subscription.unsubscribe());
+    // this.router.navigate([], {});
+    /** kware start edit -- fix search modal focus */
+    this.location.replaceState(window.location.pathname);
+    /** kware end edit */
+    Object.values(this.subMap).forEach((subscription) =>
+      subscription.unsubscribe()
+    );
   }
 
   /* eslint-disable no-empty,@typescript-eslint/no-empty-function */
   /**
    * Called when close button is clicked
    */
-  closeEv(): void {
-  }
+  closeEv(): void {}
 
   /**
    * Called when discard button is clicked
    */
-  discardEv(): void {
-  }
+  discardEv(): void {}
 
   /**
    * Called when submit button is clicked
    */
-  submitEv(): void {
-  }
+  submitEv(): void {}
   /* eslint-enable no-empty, @typescript-eslint/no-empty-function */
-
 }

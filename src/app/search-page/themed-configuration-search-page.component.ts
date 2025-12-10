@@ -28,6 +28,9 @@ export class ThemedConfigurationSearchPageComponent extends ThemedComponent<Conf
    */
   @Input() configurationList: SearchConfigurationOption[];
 
+
+  @Input() filterFields: string;
+
   /**
    * The current context
    * If empty, 'search' is used
@@ -149,6 +152,7 @@ export class ThemedConfigurationSearchPageComponent extends ThemedComponent<Conf
 
   protected inAndOutputNames: (keyof ConfigurationSearchPageComponent & keyof this)[] = [
     'configurationList',
+    'filterFields',
     'context',
     'configuration',
     'fixedFilterQuery',

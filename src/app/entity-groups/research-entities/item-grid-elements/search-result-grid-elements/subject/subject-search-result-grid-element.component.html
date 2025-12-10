@@ -9,13 +9,13 @@
        rel="noopener noreferrer" [routerLink]="[itemPageRoute]"
        class="card-img-top full-width" [attr.title]="'search.results.view-result' | translate">
       <div>
-        <ds-thumbnail [thumbnail]="dso?.thumbnail | async" [limitWidth]="false">
+        <ds-thumbnail [item]="dso" [thumbnail]="dso?.thumbnail | async" [limitWidth]="false">
         </ds-thumbnail>
       </div>
     </a>
     <span *ngIf="linkType == linkTypes.None" class="card-img-top full-width">
             <div>
-                <ds-thumbnail [thumbnail]="dso?.thumbnail | async" [limitWidth]="false">
+                <ds-thumbnail [item]="dso" [thumbnail]="dso?.thumbnail | async" [limitWidth]="false">
                 </ds-thumbnail>
             </div>
         </span>
@@ -35,6 +35,12 @@
         <!-- kware-edit kwareTranslatePipe -->
         <!-- <h4 class="card-title" [innerHTML]="dsoTitle | kwareTranslate"></h4> -->
         <h4 class="card-title"><a [routerLink]="[itemPageRoute]">{{ dsoTitle  | kwareTranslate}}</a> 
+                                                            <!-- <a *ngIf="dso.hasMetadata('dc.identifier.dewey')"  class="container-img">
+      
+      <img  style="width: 70px;height: 20px;border-radius: 15px;" class="orcid-icon ng-star-inserted orcid-img"  src="/assets/images/dewey.png"/>
+
+  <div class="centered-dewey">{{dso.firstMetadataValue('dc.identifier.dewey')}}</div>
+    </a>  -->
           <!-- <ds-publictaion-count style="font-size: 16px !important;"  [dso]="dso"></ds-publictaion-count> -->
         </h4>
       </ds-truncatable-part>

@@ -1,4 +1,4 @@
-import { DOCUMENT, NgClass, NgIf } from '@angular/common';
+import { DOCUMENT, NgClass, NgIf, NgStyle } from '@angular/common';
 import {
   Component,
   ElementRef,
@@ -8,13 +8,14 @@ import {
 } from '@angular/core';
 import { MediaViewerService } from '../../services/media-viewer.service';
 import { StopContextMenuDirective } from 'src/app/shared/kware-custom-directives/stop-context-menu-directive/stop-context-menu.directive';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'ds-viewer-wrapper',
   templateUrl: './viewer-wrapper.component.html',
   styleUrls: ['./viewer-wrapper.component.scss'],
   standalone:true,
-  imports:[NgClass,NgIf,StopContextMenuDirective]
+  imports:[NgClass,NgStyle,NgIf,StopContextMenuDirective,NgbAccordionModule]
 })
 export class ViewerWrapperComponent {
   @ViewChild('viewerWrapper', { static: false }) viewerWrapper: ElementRef;
@@ -24,6 +25,9 @@ export class ViewerWrapperComponent {
   @Input() enableFullScreen = true;
 
   isFullScreen = false;
+  disabled = false;
+
+  isShowContent:boolean=true;
 
   constructor(
     private viewerService: MediaViewerService,
@@ -74,5 +78,13 @@ export class ViewerWrapperComponent {
         isViewerPanelOpen: true,
       });
     }
+  }
+
+  handleClick(){
+  const elementToBeHidden = document.querySelector(".collapse:not(.show)");
+  elementToBeHidden.classList.toggle("showContent");
+  }
+  showContent(){
+    this.isShowContent = !this.isShowContent;
   }
 }

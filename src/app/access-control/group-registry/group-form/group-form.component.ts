@@ -82,6 +82,7 @@ import {
 import { MembersListComponent } from './members-list/members-list.component';
 import { SubgroupsListComponent } from './subgroup-list/subgroups-list.component';
 import { ValidateGroupExists } from './validators/group-exists.validator';
+import { LocaleService } from 'src/app/core/locale/locale.service';
 
 @Component({
   selector: 'ds-group-form',
@@ -201,6 +202,7 @@ export class GroupFormComponent implements OnInit, OnDestroy {
     public requestService: RequestService,
     protected changeDetectorRef: ChangeDetectorRef,
     public dsoNameService: DSONameService,
+    protected localeService:LocaleService
   ) {
   }
 
@@ -351,7 +353,7 @@ export class GroupFormComponent implements OnInit, OnDestroy {
       getFirstCompletedRemoteData(),
     ).subscribe((rd: RemoteData<Group>) => {
       if (rd.hasSucceeded) {
-        this.notificationsService.success(this.translateService.get(this.messagePrefix + '.notification.created.success', { name: groupToCreate.name }));
+        this.notificationsService.success(this.translateService.get(this.messagePrefix + '.notification.created.success', { name:this.localeService.getStringByLocale(groupToCreate.name ) }));
         this.submitForm.emit(groupToCreate);
         if (isNotEmpty(rd.payload)) {
           const groupSelfLink = rd.payload._links.self.href;
@@ -360,7 +362,7 @@ export class GroupFormComponent implements OnInit, OnDestroy {
           void this.router.navigateByUrl(getGroupEditRoute(rd.payload.uuid));
         }
       } else {
-        this.notificationsService.error(this.translateService.get(this.messagePrefix + '.notification.created.failure', { name: groupToCreate.name }));
+        this.notificationsService.error(this.translateService.get(this.messagePrefix + '.notification.created.failure', { name: this.localeService.getStringByLocale(groupToCreate.name ) }));
         this.showNotificationIfNameInUse(groupToCreate, 'created');
         this.cancelForm.emit();
       }

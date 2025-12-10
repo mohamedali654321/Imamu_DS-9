@@ -12,6 +12,7 @@ import { ThemedConfigurationSearchPageComponent } from "../../../../app/search-p
 import { ThemedSearchFormComponent } from "../../../../app/shared/search-form/themed-search-form.component";
 import { BrowseCategoriesComponent } from "src/app/home-page/browse-categories/browse-categories.component";
 import { TopSectionComponent } from "src/app/home-page/top-section/top-section.component";
+import { BrowseBySchoolComponent } from "src/app/home-page/browse-by-school/browse-by-school.component";
 
 @Component({
   selector: "ds-themed-home-page",
@@ -33,6 +34,7 @@ import { TopSectionComponent } from "src/app/home-page/top-section/top-section.c
     TranslateModule,
     BrowseCategoriesComponent,
     TopSectionComponent,
+    BrowseBySchoolComponent
   ],
 })
 export class HomePageComponent extends BaseComponent {}

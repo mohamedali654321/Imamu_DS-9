@@ -142,7 +142,7 @@ export class PaginationService {
     paginationId: string,
     params: PaginationRouteParams,
     extraParams?: Record<string, unknown>,
-    retainScrollPosition?: boolean,
+    retainScrollPosition = true,
     navigationExtras?: NavigationExtras,
   ) {
 
@@ -163,7 +163,7 @@ export class PaginationService {
     url: string[],
     params: PaginationRouteParams,
     extraParams?: Record<string, unknown>,
-    retainScrollPosition?: boolean,
+    retainScrollPosition = true,
     navigationExtras?: NavigationExtras,
   ) {
     this.getCurrentRouting(paginationId).subscribe((currentFindListOptions) => {

@@ -5,3 +5,33 @@
         cursor: pointer;
     }
 }
+
+
+::ng-deep html[dir="ltr"] {
+
+    div.altmetric-embed[id^=_altmetric_popover_el] div.altmetric_container div.altmetric-popover-inner.altmetric-floating {
+        transform: translate(-360px, 0px);
+
+    }
+
+    div.altmetric-embed[id^=_altmetric_popover_el] div.altmetric_container div.altmetric_arrow.altmetric-right {
+
+        left: -25.53%;
+        transform: rotate(180deg);
+    }
+}
+
+
+::ng-deep html[dir="rtl"] {
+
+    div.altmetric-embed[id^=_altmetric_popover_el] div.altmetric_container div.altmetric-popover-inner.altmetric-floating {
+        transform: translate(10px, 0px);
+
+    }
+
+    div.altmetric-embed[id^=_altmetric_popover_el] div.altmetric_container div.altmetric_arrow.altmetric-right {
+
+        left: 3.5%;
+        transform: rotate(0deg);
+    }
+}

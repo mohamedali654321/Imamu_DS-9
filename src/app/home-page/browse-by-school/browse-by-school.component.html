@@ -1,0 +1,19 @@
+<div class="container">
+  <div *ngIf="!(itemRD$ | async)?.payload?.page.length" class="content-loading">
+    <ds-loading
+      message="{{ 'loading.default' | translate }}"
+      [showMessage]="true"
+    ></ds-loading>
+  </div>
+  <h2 *ngIf="(itemRD$ | async)?.payload?.page.length"  style="color: #530a86 !important;"> {{'home.browse-by.college' | translate}}</h2>
+
+  <ds-viewable-collection
+    [config]="paginationConfig"
+    [sortConfig]="sortConfig"
+    [objects]="itemRD$ | async"
+    [hideGear]="true"
+  >
+  </ds-viewable-collection>
+
+
+</div>

@@ -1,0 +1,35 @@
+@import '../../../styles/_kware_styles.scss';
+
+
+
+::ng-deep ds-kware-lisence-section {
+    h2 {
+        font-size: 1.28571429rem !important;
+    }
+
+    h4 {
+        font-weight: 700;
+        font-size: 1rem;
+        color: #000;
+    }
+
+    .sidebar-container .ui.top.attached.header {
+        background-color: transparent;
+        border: none;
+        font-size: 1.2rem !important;
+        font-weight: 500 !important;
+        padding: 1.75rem 1.5rem 1.125rem;
+    }
+
+    ds-item-page-cc-license-field {
+        .link-anchor {
+            color: #000;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        img {
+            width: 100px !important;
+        }
+    }
+}

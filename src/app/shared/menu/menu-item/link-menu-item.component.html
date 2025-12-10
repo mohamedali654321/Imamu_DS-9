@@ -4,7 +4,7 @@
    [attr.data-test]="'link-menu-item.'+item.text"
    [routerLink]="getRouterLink()"
    [queryParams]="item.queryParams"
-   (click)="$event.stopPropagation()"
+   (click)="$event.stopPropagation();ToggleShow()"
    (keyup.space)="navigate($event)"
    (keydown.enter)="navigate($event)"
    href="javascript:void(0);"

@@ -103,8 +103,8 @@
                 Total views
               </p>
             </td>
-            <td data-label="All versions" class="right aligned">{{ (TotalVisitsVersions | async) > 0 ? (TotalVisitsVersions | async | dsShortNumber) : (TotalVisits | async | dsShortNumber) }}</td>
-            <td data-label="This version" class="right aligned">{{ TotalVisits | async | dsShortNumber }}</td>
+            <td [attr.data-label]="'statistics.all.versions' | translate"  class="right aligned"> {{ (TotalVisitsVersions | async) > 0 ? (TotalVisitsVersions | async | dsShortNumber) : (TotalVisits | async | dsShortNumber) }}</td>
+            <td [attr.data-label]="'statistics.this.version' | translate" class="right aligned">{{ TotalVisits | async | dsShortNumber }}</td>
           </tr>
           <tr>
             <td>
@@ -127,8 +127,8 @@
                 Total downloads
               </p>
             </td>
-            <td data-label="All versions" class="right aligned">{{ (TotalDownloadsVersions | async) > 0 ? (TotalDownloadsVersions | async | dsShortNumber) : (TotalDownloads | async | dsShortNumber ) }}</td>
-            <td data-label="This version" class="right aligned">{{ TotalDownloads | async | dsShortNumber }}</td>
+            <td [attr.data-label]="'statistics.all.versions' | translate"  class="right aligned">{{ (TotalDownloadsVersions | async) > 0 ? (TotalDownloadsVersions | async | dsShortNumber) : (TotalDownloads | async | dsShortNumber ) }}</td>
+            <td [attr.data-label]="'statistics.this.version' | translate" class="right aligned">{{ TotalDownloads | async | dsShortNumber }}</td>
           </tr>
           <tr>
             <td>
@@ -152,8 +152,8 @@
               </p>
             </td>
 
-            <td data-label="All versions" class="right aligned">{{(TotalDownloadsVersions | async ) > 0 ?  (formatBytes((dataVolumes$ | async)*(TotalDownloadsVersions | async ))) : (formatBytes((dataVolumes$ | async)*(TotalDownloads | async )))}}</td>
-            <td data-label="This version" class="right aligned">{{formatBytes((dataVolumes$ | async)*(TotalDownloads | async ))}}</td>
+            <td [attr.data-label]="'statistics.all.versions' | translate"  class="right aligned">{{(TotalDownloadsVersions | async ) > 0 ?  (formatBytes((dataVolumes$ | async)*(TotalDownloadsVersions | async ))) : (formatBytes((dataVolumes$ | async)*(TotalDownloads | async )))}}</td>
+            <td [attr.data-label]="'statistics.this.version' | translate" class="right aligned">{{formatBytes((dataVolumes$ | async)*(TotalDownloads | async ))}}</td>
           </tr>
         </tbody>
       </table>

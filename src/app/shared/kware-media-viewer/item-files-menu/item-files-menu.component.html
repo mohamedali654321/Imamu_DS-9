@@ -1,42 +1,43 @@
-<div class="files-wrapper">
-  <div class="files-menu-header">
-    <div *ngIf="!isMobile">
-      <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
-    </div>
-    <button
-      *ngIf="isMobile"
-      class="viewer-toolbar-btn"
-      (click)="setViewerPanelStatus()"
-    >
-      <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
-    </button>
-    <span *ngIf="totalElements > 0"
-      >{{ selectedFile >= 0 ? selectedFile + 1 : 0 }}
-      /
-      {{ totalElements }}</span
-    >
-    <div>
-      <button
-        [disabled]="!selectedFile || selectedFile === 0 || isEmptyList"
-        (click)="getPrevFile()"
-        dsStopContextMenu
-      >
-        <i class="fa fa-angle-right fa-lg"></i>
-      </button>
 
-      <button
-        [disabled]="selectedFile === totalElements - 1 || isEmptyList"
-        (click)="getNextFile()"
-        dsStopContextMenu
-      >
-        <i class="fa fa-angle-left fa-lg"></i>
-      </button>
-    </div>
-  </div>
+  <ngb-accordion #acc="ngbAccordion" [activeIds]="['panel-1']">
+    <ngb-panel id="panel-1">
+      <ng-template style="margin-bottom: -9px;" ngbPanelTitle>
+        <span>{{ 'item.page.files' | translate }}
+          <small class="text-muted"> ({{formatBytes((totalSize  |async))}})</small>
+
+        </span>
+      </ng-template>
+      <ng-template  ngbPanelContent>
+                  <div class="file-section">
+            <div>
+              <table class="ui striped table files fluid open">
+                <thead>
+                  <tr>
+                    <th class="ten wide">{{'kware.media.viewer.browseFiles.name' | translate}}</th>
+                    <th>{{'kware.media.viewer.browseFiles.size' | translate}}</th>
+                    <th class="right aligned">
+                      <a
+                        role="button"
+                        class="ui compact mini button right floated archive-link"
+                        (click)="downloadFiles()"
+                      >
+                       <i class="fa-solid fa-file-zipper"></i>
+                       &nbsp; {{'kware.media.viewer.browseFiles.btn.downloadAll' | translate}}
+                      </a>
+                    </th>
+                  </tr>
+                </thead>
+               
+              </table>
+            </div>
+
+          </div>
+       <div class="files-wrapper">
+
   <div #filesListContainer class="files-menu" (scroll)="onScroll($event)">
     <ds-viewer-file
       #filesIds
-      *ngFor="let file of bitstreams; let index = index; trackBy: trackByIdx"
+      *ngFor="let file of (bitstreams | async); let index = index; trackBy: trackByIdx"
       [bitstream]="file"
       [fileIndex]="index"
       [item]="item"
@@ -59,3 +60,7 @@
     {{ "kware.media.viewer.nofiles.msg" | translate }}
   </div>
 </div>
+
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
